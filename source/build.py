@@ -15,9 +15,9 @@ RULES={'change':[('t=["SL0","SL1"].concat(6===e.Q1?["SL1m"]:[],[','t=["SL1"].con
 def shell(title,body,css=True):
     link='<link rel="stylesheet" href="gs-global.css">' if css else ''
     return ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-     '<meta name="robots" content="noindex,nofollow"><title>'+title+' | Glamourless Systems</title>'+link+'<script src="payhip-links.js"></script>'
+     '<meta name="robots" content="noindex,nofollow"><title>'+title+' | Glamourless Systems</title>'+link+'<script src="payhip-links.js?v=1"></script>'
      '<style>.gs-backup-top{background:#061529;padding:14px 20px}.gs-backup-top a{color:#fff;font-family:Oswald,Arial,sans-serif;font-size:20px;text-decoration:none;letter-spacing:.5px}</style>'
-     '</head><body>\n<div class="gs-backup-top"><a href="'+SYS+'">GLAMOURLESS SYSTEMS</a></div>\n'+body+'\n<script src="backup-glue.js"></script></body></html>\n')
+     '</head><body>\n<div class="gs-backup-top"><a href="'+SYS+'">GLAMOURLESS SYSTEMS</a></div>\n'+body+'\n<script src="backup-glue.js?v=3"></script></body></html>\n')
 raw_start=None
 for k,(slug,title) in PAGES.items():
     raw=requests.get('https://glamourlesssystems.com/'+slug,timeout=30).text
