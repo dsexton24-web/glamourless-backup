@@ -45,4 +45,4 @@
               new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("gzip"))).arrayBuffer().then(function(ab){var h=new TextDecoder("utf-8").decode(ab);root.innerHTML=h;
                                                                                                                                 root.querySelectorAll("script").forEach(function(o){var s=document.createElement("script");if(o.id)s.id=o.id;s.textContent=o.textContent;o.parentNode.replaceChild(s,o)})}).catch(function(e){st.textContent="Could not unpack the page: "+e})})();
 </script>
-<script src="backup-glue.js?v=3"></script></body></html>
+<script src="backup-glue.js?v=4"></script></body></html>
