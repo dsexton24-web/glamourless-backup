@@ -1,0 +1,72 @@
+#gstb{--navy:#061529;--navy3:#0e2a52;--blue:#2f7bf5;--blue2:#5aa2ff;--ice:#eef3fa;--line:#d6e0ee;--ink:#101c36;--muted:#53607a;--gold:#f2b632;--green:#18a058;font-family:Inter,Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.55;overflow-x:hidden}
+#gstb *{box-sizing:border-box}
+#gstb h1,#gstb h2,#gstb h3{font-family:Oswald,"Arial Narrow",Arial,sans-serif;letter-spacing:.3px;line-height:1.1;margin:0}
+#gstb .w{max-width:1140px;margin:0 auto;padding:0 22px}
+#gstb .nar{max-width:860px}
+#gstb .stage{background:var(--gold);color:#1a1300;text-align:center;font-weight:700;font-size:13px;letter-spacing:.6px;padding:8px 12px;text-transform:uppercase}
+#gstb .hero{background:radial-gradient(1100px 460px at 85% -10%,#1d4f9a 0%,transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy3) 100%);color:#fff;padding:56px 0 60px}
+#gstb .hg{display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center}
+#gstb .kick{display:inline-block;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue2);margin-bottom:14px}
+#gstb .hero h1{font-size:clamp(36px,4.8vw,58px);text-transform:uppercase}
+#gstb .hero h1 span{color:var(--blue2)}
+#gstb .lead{font-size:19px;color:#d6e3f5;margin:18px 0 0}
+#gstb .cta2{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+#gstb .btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;border:0;border-radius:10px;padding:14px 22px;font-size:16px;cursor:pointer;font-family:inherit;transition:transform .15s,background .15s}
+#gstb .btn:hover{background:#1f6ae6;transform:translateY(-1px)}
+#gstb .btn:focus-visible,#gstb input:focus-visible,#gstb select:focus-visible,#gstb textarea:focus-visible,#gstb summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+#gstb .btn.ghost{background:transparent;border:2px solid rgba(255,255,255,.55)}
+#gstb .chips{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+#gstb .chips li{font-size:13px;font-weight:600;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:6px 12px}
+#gstb figure{margin:0}
+#gstb .hfig{background:#fff;border-radius:18px;padding:14px 10px 10px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+#gstb figure svg{width:100%;height:auto;display:block}
+#gstb figcaption{font-size:13px;color:var(--muted);text-align:center;margin-top:6px}
+#gstb section.s{padding:68px 0}
+#gstb section.alt{background:var(--ice)}
+#gstb .sh{max-width:760px;margin-bottom:32px}
+#gstb .sh h2{font-size:clamp(30px,3.6vw,42px);text-transform:uppercase;color:var(--navy)}
+#gstb .sh p{color:var(--muted);font-size:18px;margin:10px 0 0}
+#gstb .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+#gstb .step{border:1px solid var(--line);border-radius:16px;padding:22px}
+#gstb .step b{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;margin-bottom:12px}
+#gstb .step h3,#gstb .get h3{font-size:21px;color:var(--navy);margin-bottom:6px}
+#gstb .step p,#gstb .get p{margin:0;color:var(--muted);font-size:15px}
+#gstb .gets{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+#gstb .get{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;border-top:4px solid var(--blue)}
+#gstb .two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+#gstb .two figure{background:var(--ice);border-radius:16px;padding:12px}
+#gstb .specs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+#gstb .specs div{background:var(--navy3);color:#fff;border-radius:12px;padding:14px 16px}
+#gstb .specs span{display:block;font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:#a9c3e6}
+#gstb .specs b{font-size:18px}
+#gstb .note{font-size:14px;color:var(--muted);margin-top:16px}
+#gstb .prices{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:760px}
+#gstb .price{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px}
+#gstb .price:first-child{border:2px solid var(--blue)}
+#gstb .pt{font-size:13px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#3e6a98}
+#gstb .amt{font-family:Oswald,Arial,sans-serif;font-size:52px;color:var(--navy);line-height:1.1;margin:6px 0}
+#gstb .price p{margin:0;color:var(--muted)}
+#gstb .terms{margin:22px 0 0;padding-left:20px;color:var(--ink)}
+#gstb .terms li{margin:6px 0}
+#gstb .rf{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:820px;background:var(--ice);border-radius:18px;padding:26px}
+#gstb .fld{display:flex;flex-direction:column;gap:6px}
+#gstb .fld.full{grid-column:1/-1}
+#gstb .fld>label{font-weight:700;font-size:14px}
+#gstb input,#gstb select,#gstb textarea{font:inherit;font-size:16px;padding:12px;border:1px solid #b9c7dc;border-radius:10px;background:#fff;color:var(--ink)}
+#gstb textarea{min-height:90px;resize:vertical}
+#gstb .rad{display:flex;gap:18px;flex-wrap:wrap}
+#gstb .rad label,#gstb .chk{display:flex;gap:8px;align-items:flex-start;font-size:15px;font-weight:500}
+#gstb .chk input,#gstb .rad input{margin-top:4px}
+#gstb .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+#gstb .msg{grid-column:1/-1;display:none;border-radius:10px;padding:12px 14px;font-weight:600}
+#gstb .msg.show{display:block}
+#gstb .msg.err{background:#fde8e8;color:#9b1c1c}
+#gstb .msg.ok{background:#e3f6ec;color:#11713d}
+#gstb details{background:#fff;border:1px solid var(--line);border-radius:12px;margin:10px 0;padding:0 18px}
+#gstb summary{cursor:pointer;font-weight:700;padding:16px 0;list-style-position:outside}
+#gstb details p{margin:0 0 16px;color:var(--muted)}
+#gstb footer{background:var(--navy);color:#9fb4d3;font-size:14px;padding:26px 0}
+#gstb footer .w{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+#gstb footer a{color:#9fb4d3}
+@media (max-width:900px){#gstb .hg,#gstb .two{grid-template-columns:1fr}#gstb .steps,#gstb .specs{grid-template-columns:1fr 1fr}#gstb .gets{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){#gstb .steps,#gstb .gets,#gstb .prices,#gstb .rf{grid-template-columns:1fr}#gstb section.s{padding:50px 0}#gstb .rf{padding:18px}}
