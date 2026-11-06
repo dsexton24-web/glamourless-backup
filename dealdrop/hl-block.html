@@ -1,0 +1,354 @@
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+#gsdd{width:100vw;position:relative;left:50%;margin-left:-50vw;overflow-x:hidden;--navy:#061529;--navy2:#0a1f3d;--navy3:#0e2a52;--blue:#2f7bf5;--blue2:#5aa2ff;--steel:#3e6a98;--ice:#eef3fa;--line:#d6e0ee;--ink:#101c36;--muted:#53607a;--gold:#f2b632;--green:#18a058;
+ font-family:Inter,Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.55;margin:0}
+#gsdd *{box-sizing:border-box}
+#gsdd h1,#gsdd h2,#gsdd h3{font-family:Oswald,"Arial Narrow",Arial,sans-serif;letter-spacing:.3px;line-height:1.1;margin:0}
+#gsdd a{color:inherit}
+#gsdd .w{max-width:1140px;margin:0 auto;padding:0 22px}
+#gsdd .stage{background:var(--gold);color:#1a1300;text-align:center;font-weight:700;font-size:13px;letter-spacing:.6px;padding:8px 12px;text-transform:uppercase}
+#gsdd .top{background:var(--navy);color:#fff}
+#gsdd .top .w{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px}
+#gsdd .brand{font-family:Oswald,Arial,sans-serif;font-size:20px;letter-spacing:1px;text-decoration:none}
+#gsdd .brand b{color:var(--blue2)}
+#gsdd .btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;border-radius:10px;padding:14px 22px;border:0;cursor:pointer;font-size:16px;font-family:inherit;transition:transform .15s,background .15s}
+#gsdd .btn:hover{background:#1f6ae6;transform:translateY(-1px)}
+#gsdd .btn.ghost{background:transparent;border:2px solid rgba(255,255,255,.55)}
+#gsdd .btn.sm{padding:10px 16px;font-size:14px}
+#gsdd .hero{background:radial-gradient(1200px 500px at 85% -10%,#1d4f9a 0%,transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy3) 100%);color:#fff;padding:64px 0 72px}
+#gsdd .hero .w{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+#gsdd .kick{display:inline-block;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue2);margin-bottom:14px}
+#gsdd .hero h1{font-size:clamp(38px,5.4vw,64px);text-transform:uppercase}
+#gsdd .hero h1 span{color:var(--blue2)}
+#gsdd .hero p.lead{font-size:19px;color:#d6e3f5;margin:18px 0 28px;max-width:560px}
+#gsdd .hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+#gsdd .hero .fine{font-size:13px;color:#9fb4d3;margin-top:16px}
+#gsdd .heroimg{position:relative}
+#gsdd .heroimg img{width:100%;height:auto;display:block;border-radius:12px;box-shadow:0 30px 60px rgba(0,0,0,.45);transform:rotate(1.5deg)}
+#gsdd .heroimg span{display:block;text-align:center;font-size:12px;color:#9fb4d3;margin-top:14px}
+#gsdd .sides{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+#gsdd figure{margin:0}
+#gsdd figure img{width:100%;height:auto;display:block;border-radius:12px;box-shadow:0 14px 34px rgba(16,28,54,.18)}
+#gsdd figcaption{text-align:center;font-weight:700;color:var(--navy);margin-top:10px}
+#gsdd .anat{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px}
+#gsdd .anat div{background:var(--ice);border-radius:12px;padding:16px;font-size:14px;color:var(--muted)}
+#gsdd .anat b{display:block;color:var(--navy);font-size:15px;margin-bottom:4px}
+/* stats */
+#gsdd .stats{background:var(--navy2);color:#fff}
+#gsdd .stats .w{display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+#gsdd .stat{padding:22px 12px;text-align:center;border-right:1px solid rgba(255,255,255,.08)}
+#gsdd .stat:last-child{border-right:0}
+#gsdd .stat b{display:block;font-family:Oswald,Arial,sans-serif;font-size:30px;color:#fff}
+#gsdd .stat span{font-size:13px;color:#a9bdd8}
+/* sections */
+#gsdd section.s{padding:76px 0}
+#gsdd section.alt{background:var(--ice)}
+#gsdd .sh{max-width:720px;margin-bottom:38px}
+#gsdd .sh h2{font-size:clamp(30px,3.6vw,44px);text-transform:uppercase;color:var(--navy)}
+#gsdd .sh p{color:var(--muted);font-size:18px;margin:12px 0 0}
+#gsdd .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+#gsdd .step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
+#gsdd .step i{font-style:normal;display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;margin-bottom:14px}
+#gsdd .step h3{font-size:21px;color:var(--navy);margin-bottom:8px}
+#gsdd .step p{margin:0;color:var(--muted);font-size:15px}
+#gsdd .grid2{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+#gsdd .incl{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+#gsdd .incl li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px 16px 54px;position:relative}
+#gsdd .incl li:before{content:"";position:absolute;left:18px;top:18px;width:22px;height:22px;border-radius:50%;background:var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='white' stroke-width='3' d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/14px no-repeat}
+#gsdd .incl b{display:block;color:var(--navy);font-size:16px}
+#gsdd .incl span{color:var(--muted);font-size:15px}
+#gsdd .call{background:var(--navy);color:#fff;border-radius:16px;padding:28px}
+#gsdd .call h3{font-size:24px;margin-bottom:14px}
+#gsdd .flow{display:grid;gap:10px;margin:0;padding:0;list-style:none;counter-reset:f}
+#gsdd .flow li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px 12px 48px;position:relative;font-size:15px;color:#d6e3f5}
+#gsdd .flow li:before{counter-increment:f;content:counter(f);position:absolute;left:14px;top:11px;width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center}
+#gsdd .call .num{margin-top:18px;background:#fff;color:var(--navy);border-radius:10px;padding:14px;text-align:center;font-family:Oswald,Arial,sans-serif;font-size:22px}
+#gsdd .call .num small{display:block;font-family:Inter,Arial,sans-serif;font-size:12px;color:var(--muted)}
+/* categories */
+#gsdd .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+#gsdd .cat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,box-shadow .15s}
+#gsdd .cat:hover{border-color:var(--blue);box-shadow:0 10px 24px rgba(16,28,54,.08)}
+#gsdd .cat .ext{font-size:12px;font-weight:700;color:var(--steel);letter-spacing:.5px}
+#gsdd .cat h3{font-size:22px;color:var(--navy)}
+#gsdd .cat .idea{font-size:14px;color:var(--muted)}
+#gsdd .cat .idea b{color:var(--ink)}
+#gsdd .pill{align-self:flex-start;font-size:12px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;border-radius:20px;padding:4px 10px;background:#e3f6ec;color:#11713d}
+#gsdd .pill.taken{background:#fde8e8;color:#a32020}
+#gsdd .cat button{margin-top:auto}
+#gsdd .note{font-size:13px;color:var(--muted);margin-top:18px}
+/* rules */
+#gsdd .rules{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+#gsdd .rule{background:#fff;border-left:4px solid var(--blue);border-radius:10px;padding:20px 22px;box-shadow:0 1px 0 var(--line)}
+#gsdd .rule h3{font-size:19px;color:var(--navy);margin-bottom:6px}
+#gsdd .rule p{margin:0;color:var(--muted);font-size:15px}
+/* pricing */
+#gsdd .price{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px}
+#gsdd .plan{background:#fff;border:2px solid var(--line);border-radius:16px;padding:28px;position:relative}
+#gsdd .plan.best{border-color:var(--blue);box-shadow:0 18px 40px rgba(47,123,245,.15)}
+#gsdd .plan .tag{position:absolute;top:-13px;left:24px;background:var(--blue);color:#fff;font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:20px}
+#gsdd .plan h3{font-size:22px;color:var(--navy)}
+#gsdd .plan .amt{font-family:Oswald,Arial,sans-serif;font-size:52px;color:var(--navy);margin:8px 0 2px}
+#gsdd .plan .amt small{font-size:18px;color:var(--muted)}
+#gsdd .plan p{color:var(--muted);margin:6px 0 0;font-size:15px}
+/* timeline */
+#gsdd .tl{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+#gsdd .tl div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;font-size:14px;color:var(--muted)}
+#gsdd .tl b{display:block;color:var(--navy);font-size:15px;margin-bottom:4px}
+/* reserve */
+#gsdd .res{background:linear-gradient(160deg,var(--navy) 0%,var(--navy3) 100%);color:#fff}
+#gsdd .res .sh h2{color:#fff}
+#gsdd .res .sh p{color:#c5d6ee}
+#gsdd form.rf{background:#fff;color:var(--ink);border-radius:18px;padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:16px 18px;max-width:900px}
+#gsdd .fld{display:flex;flex-direction:column;gap:6px}
+#gsdd .fld.full{grid-column:1/-1}
+#gsdd label{font-weight:700;font-size:14px;color:var(--navy)}
+#gsdd input,#gsdd select,#gsdd textarea{font:inherit;font-size:16px;padding:12px 13px;border:1.5px solid var(--line);border-radius:10px;background:#fbfdff;color:var(--ink);width:100%}
+#gsdd input:focus,#gsdd select:focus,#gsdd textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(47,123,245,.15)}
+#gsdd textarea{min-height:90px;resize:vertical}
+#gsdd .pay{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#gsdd .pay label{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;font-weight:600}
+#gsdd .pay input{width:auto;margin-top:3px}
+#gsdd .pay label:has(input:checked){border-color:var(--blue);background:#f2f7ff}
+#gsdd .pay small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+#gsdd .chk{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:14px;color:var(--muted)}
+#gsdd .chk input{width:auto;margin-top:3px}
+#gsdd .msg{grid-column:1/-1;display:none;border-radius:10px;padding:14px;font-size:15px}
+#gsdd .msg.show{display:block}
+#gsdd .msg.err{background:#fde8e8;color:#8a1c1c}
+#gsdd .msg.ok{background:#e3f6ec;color:#11713d}
+/* faq */
+#gsdd details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:0 20px;margin-bottom:10px}
+#gsdd summary{cursor:pointer;font-weight:700;color:var(--navy);padding:18px 0;list-style:none;position:relative;padding-right:30px}
+#gsdd summary::-webkit-details-marker{display:none}
+#gsdd summary:after{content:"+";position:absolute;right:0;top:14px;font-size:24px;color:var(--blue)}
+#gsdd details[open] summary:after{content:"\2212"}
+#gsdd details p{margin:0 0 18px;color:var(--muted)}
+#gsdd footer{background:var(--navy);color:#9fb4d3;font-size:14px;padding:30px 0}
+#gsdd footer .w{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:960px){
+ #gsdd .anat{grid-template-columns:1fr 1fr}
+ #gsdd .heroimg img{transform:none}
+ #gsdd .hero .w,#gsdd .grid2{grid-template-columns:1fr}
+ #gsdd .steps,#gsdd .cats{grid-template-columns:repeat(2,1fr)}
+ #gsdd .rules{grid-template-columns:1fr 1fr}
+ #gsdd .tl{grid-template-columns:repeat(3,1fr)}
+ #gsdd .stats .w{grid-template-columns:repeat(3,1fr)}
+ #gsdd .stat:nth-child(3){border-right:0}
+}
+@media (max-width:620px){
+ #gsdd .sides,#gsdd .anat{grid-template-columns:1fr}
+ #gsdd section.s{padding:56px 0}
+ #gsdd .steps,#gsdd .cats,#gsdd .rules,#gsdd .price,#gsdd .pay,#gsdd form.rf{grid-template-columns:1fr}
+ #gsdd .tl{grid-template-columns:1fr 1fr}
+ #gsdd .stats .w{grid-template-columns:1fr 1fr}
+ #gsdd .stat{border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}
+ #gsdd form.rf{padding:22px}
+}
+</style>
+<div id="gsdd">
+
+<div class="stage">Staging preview. Not live. Not linked from the GS website. Do not share yet.</div>
+
+<header class="top"><div class="w">
+ <a class="brand" href="#top">GS <b>DEAL DROP</b></a>
+ <a class="btn sm" href="#reserve">Claim your category</a>
+</div></header>
+
+<section class="hero" id="top"><div class="w">
+ <div>
+  <span class="kick">Port Huron pilot edition</span>
+  <h1>12 local businesses.<br><span>5,000 front doors.</span><br>One real deal each.</h1>
+  <p class="lead">GS Deal Drop is an oversized 9 x 12 full-color postcard mailed to about 5,000 homes in neighborhoods selected for estimated average household income of $100K to $200K. Only one business per category gets in, and every call and scan is answered for you.</p>
+  <div class="ctas"><a class="btn" href="#reserve">Claim your category</a><a class="btn ghost" href="#how">See how it works</a></div>
+  <p class="fine">$650 pilot placement. Pay in full or half down.</p>
+ </div>
+ <div class="heroimg"><img src="IMG_FRONT" onerror="this.parentNode.style.display='none'" alt="Sample GS Deal Drop card, front side with six local business offers" width="1000" height="772"><span>Sample card. Businesses shown are examples.</span></div>
+</div></section>
+
+<div class="stats"><div class="w">
+ <div class="stat"><b>12</b><span>Advertisers per edition</span></div>
+ <div class="stat"><b>1</b><span>Business per category</span></div>
+ <div class="stat"><b>~5,000</b><span>Homes reached</span></div>
+ <div class="stat"><b>9 x 12</b><span>Full color, both sides</span></div>
+ <div class="stat"><b>$650</b><span>Pilot placement</span></div>
+</div></div>
+
+<section class="s" id="card"><div class="w">
+ <div class="sh"><h2>See the card</h2><p>Six businesses on the front, six different businesses on the back, with a slim Port Huron brand strip across the middle of each side.</p></div>
+ <div class="sides">
+  <figure><img src="IMG_FRONT" onerror="this.parentNode.style.display='none'" alt="Sample front of the GS Deal Drop card" loading="lazy" width="1000" height="772"><figcaption>Front: ads 1 to 6</figcaption></figure>
+  <figure><img src="IMG_BACK" onerror="this.parentNode.style.display='none'" alt="Sample back of the GS Deal Drop card" loading="lazy" width="1000" height="772"><figcaption>Back: ads 7 to 12</figcaption></figure>
+ </div>
+ <div class="anat">
+  <div><b>Your name and logo</b>Big and clear at the top of your spot.</div>
+  <div><b>Deal Drop number and your extension</b>Same number on every ad, your own extension.</div>
+  <div><b>Your real offer</b>The dollar amount or percentage is the biggest thing in your ad.</div>
+  <div><b>Printed terms and expiration</b>Short, readable, and the same date on all 12 ads.</div>
+  <div><b>Scan to Learn More</b>Your own QR code to your deal page and AI chat.</div>
+ </div>
+ <p class="note">Sample card for illustration. Businesses, offers and the phone number shown are examples, not real promotions.</p>
+</div></section>
+
+<section class="s" id="how"><div class="w">
+ <div class="sh"><h2>How it works</h2><p>You bring one real offer. We handle the design, printing, mailing, phones, QR pages and booking.</p></div>
+ <div class="steps">
+  <div class="step"><i>1</i><h3>Claim your category</h3><p>Pick your category while it is open. Once it is claimed, no competitor can buy into that edition.</p></div>
+  <div class="step"><i>2</i><h3>Approve your deal</h3><p>Choose a specific, real offer with clear terms. We help you shape it so it stands out on the card.</p></div>
+  <div class="step"><i>3</i><h3>We print and mail</h3><p>We design your ad, you approve the proof, and the card goes out by USPS Every Door Direct Mail.</p></div>
+  <div class="step"><i>4</i><h3>Calls become appointments</h3><p>Callers and scanners reach an AI receptionist that knows your offer and books into the times you approve.</p></div>
+ </div>
+</div></section>
+
+<section class="s alt" id="included"><div class="w grid2">
+ <div>
+  <div class="sh"><h2>What every placement includes</h2><p>Not just an ad. A full response system for the length of the campaign.</p></div>
+  <ul class="incl">
+   <li><b>A category-exclusive ad on the card</b><span>Your name, logo, headline deal, terms, expiration date and a large QR code, designed for you.</span></li>
+   <li><b>Your own extension on the Deal Drop line</b><span>One shared number on every ad, plus your extension from 101 to 112.</span></li>
+   <li><b>AI receptionist that books for you</b><span>Answers with your offer, handles questions and books only into the time slots you approve.</span></li>
+   <li><b>Your own QR deal page with AI chat</b><span>"Scan to Learn More" opens your offer page, where shoppers can ask questions and request a booking.</span></li>
+   <li><b>Instant lead alerts and confirmations</b><span>You and your customer both get the booking details, with reminders and easy rescheduling.</span></li>
+   <li><b>Post-drop results report</b><span>Scans, calls, conversations, bookings, attended appointments and the sales you report back.</span></li>
+  </ul>
+ </div>
+ <div class="call">
+  <h3>What happens when a neighbor calls</h3>
+  <ol class="flow">
+   <li>They dial the Deal Drop number printed on your ad.</li>
+   <li>They say your extension or your business name.</li>
+   <li>The AI receptionist greets them as your business and explains your offer.</li>
+   <li>It answers common questions and checks your approved open times.</li>
+   <li>It books the appointment and texts both of you the details.</li>
+   <li>Urgent calls go straight to your on-call line instead of a calendar.</li>
+  </ol>
+  <div class="num">Deal Drop Line, Ext. 101 to 112<small>Same number on all 12 ads. Your extension is yours for the edition.</small></div>
+ </div>
+</div></section>
+
+<section class="s" id="categories"><div class="w">
+ <div class="sh"><h2>The 12 categories</h2><p>One spot each. When a category is claimed, it closes for this edition.</p></div>
+ <div class="cats" id="cats"></div>
+ <p class="note">Offer ideas are starting points to discuss. Your final deal and terms are always yours to approve.</p>
+</div></section>
+
+<section class="s alt" id="rules"><div class="w">
+ <div class="sh"><h2>The Deal Drop standard</h2><p>These rules are why homeowners keep the card on the fridge.</p></div>
+ <div class="rules">
+  <div class="rule"><h3>A real deal or no spot</h3><p>A specific dollar amount, percentage, package price or paid upgrade. Free estimates and "call for details" do not qualify.</p></div>
+  <div class="rule"><h3>One business per category</h3><p>No competitor shares your edition. Six different businesses on each side, twelve in total.</p></div>
+  <div class="rule"><h3>Clear, printed terms</h3><p>Minimum spend, limits and exclusions are printed on the card in readable type, not hidden behind the QR code.</p></div>
+  <div class="rule"><h3>One fixed expiration date</h3><p>Every offer expires 40 days after the print order is placed. About 10 days to print and mail, about 30 days for shoppers to claim.</p></div>
+  <div class="rule"><h3>You approve the proof</h3><p>Nothing prints until you sign off on your ad exactly as it will appear.</p></div>
+  <div class="rule"><h3>Honest offers only</h3><p>No made-up regular prices or inflated savings. We turn down offers that could mislead a shopper.</p></div>
+ </div>
+</div></section>
+
+<section class="s" id="pricing"><div class="w">
+ <div class="sh"><h2>Pilot pricing</h2><p>One flat price covers your ad design, printing, postage, mailing, phone line extension, AI receptionist, QR page and report.</p></div>
+ <div class="price">
+  <div class="plan best"><span class="tag">Default</span><h3>Pay in full</h3><div class="amt">$650</div><p>One payment today. Your category is locked the moment your payment goes through.</p></div>
+  <div class="plan"><h3>Half down</h3><div class="amt">$325 <small>today</small></div><p>Then $325 charged automatically to the same card 14 days later. Your category is locked today.</p></div>
+ </div>
+ <p class="note">If this edition does not go to print, every payment is refunded in full. Pilot rate for the Port Huron launch edition.</p>
+</div></section>
+
+<section class="s alt" id="timeline"><div class="w">
+ <div class="sh"><h2>Edition timeline</h2></div>
+ <div class="tl">
+  <div><b>Claim</b>Category locked at checkout.</div>
+  <div><b>Offer and logo</b>Send your deal, terms and logo.</div>
+  <div><b>Proof</b>Approve your ad as it will print.</div>
+  <div><b>Print order</b>Expiration set at order date plus 40 days.</div>
+  <div><b>In homes</b>About 10 days to print and mail.</div>
+  <div><b>Results</b>About 30 days to redeem, then your report.</div>
+ </div>
+</div></section>
+
+<section class="s res" id="reserve"><div class="w">
+ <div class="sh"><h2>Claim your category</h2><p>Tell us about your business, pick how you want to pay, and continue to secure checkout.</p></div>
+ <form class="rf" id="rf" novalidate>
+  <div class="fld full"><label for="f-cat">Category</label><select id="f-cat" required></select></div>
+  <div class="fld"><label for="f-biz">Business name</label><input id="f-biz" required autocomplete="organization"></div>
+  <div class="fld"><label for="f-name">Your name</label><input id="f-name" required autocomplete="name"></div>
+  <div class="fld"><label for="f-email">Email</label><input id="f-email" type="email" required autocomplete="email"></div>
+  <div class="fld"><label for="f-phone">Phone</label><input id="f-phone" type="tel" required autocomplete="tel"></div>
+  <div class="fld full"><label for="f-offer">Your deal idea</label><textarea id="f-offer" placeholder="Example: $79 furnace tune-up, 21-point checklist, new customers only"></textarea></div>
+  <div class="fld full"><label>How do you want to pay?</label>
+   <div class="pay">
+    <label><input type="radio" name="pay" value="full" checked><span>Pay in full, $650<small>One payment today.</small></span></label>
+    <label><input type="radio" name="pay" value="split"><span>Half down, $325 today<small>$325 more charged to the same card in 14 days.</small></span></label>
+   </div>
+  </div>
+  <div class="fld full"><label class="chk"><input type="checkbox" id="f-ok" required><span>I understand my ad needs a real, specific offer that I approve, and that my category is held for this edition once payment goes through.</span></label></div>
+  <div class="msg" id="rf-msg"></div>
+  <div class="fld full"><button class="btn" type="submit">Continue to secure checkout</button></div>
+ </form>
+</div></section>
+
+<section class="s" id="faq"><div class="w" style="max-width:860px">
+ <div class="sh"><h2>Questions</h2></div>
+ <details><summary>Who receives the card?</summary><p>About 5,000 homes on USPS mail routes selected for estimated average household income of $100K to $200K, based on Census-level estimates. Every home on a selected route gets the card.</p></details>
+ <details><summary>Why only one business per category?</summary><p>So your offer is the only one of its kind on the card. Shoppers looking for a plumber see one plumber: you.</p></details>
+ <details><summary>What counts as a real deal?</summary><p>A specific, meaningful benefit: a dollar amount off, a percentage, a set package price, or a paid upgrade at no charge. Free estimates, "best prices" and "call for details" do not count.</p></details>
+ <details><summary>What does the AI receptionist actually do?</summary><p>It answers your extension as your business, explains your approved offer, answers common questions, and books appointments only into time slots you approve, with at least 48 hours of lead time. It never makes up availability. Urgent and emergency calls route to your own line.</p></details>
+ <details><summary>I do not take appointments. Does this still work?</summary><p>Yes. For businesses that do not book appointments, shoppers claim or reserve the offer instead, and you get their details right away.</p></details>
+ <details><summary>Do I need a website?</summary><p>No. Your QR code opens a deal page we build for you for this campaign.</p></details>
+ <details><summary>When do I pay, and what if the edition does not print?</summary><p>You pay at checkout, in full or half down with the rest charged 14 days later. If the edition does not go to print, every payment is refunded in full.</p></details>
+ <details><summary>Who owns the leads?</summary><p>You do. Every inquiry and booking for your business is sent to you, and nothing is held back.</p></details>
+ <details><summary>Can I come back for the next edition?</summary><p>Yes. Current advertisers get first chance to keep their category in the next edition.</p></details>
+</div></section>
+
+<footer><div class="w">
+ <span>GS Deal Drop by Glamourless Systems | 1614 23rd St., Port Huron, MI 48060</span>
+ <span><a href="mailto:admin@glamourlesssystems.com">admin@glamourlesssystems.com</a></span>
+</div></footer>
+
+</div>
+<script>
+(function(){
+/* GS Deal Drop page script. Category list, availability, and checkout routing.
+   To mark a category claimed, set taken:true. To go live, fill CHECKOUT with the HighLevel payment links. */
+var CATS=[
+ {ext:101,name:"Heating and Cooling",idea:"$79 furnace tune-up",taken:false},
+ {ext:102,name:"Plumbing",idea:"$50 off a repair of $250+",taken:false},
+ {ext:103,name:"Dental",idea:"$99 new-patient exam and X-rays",taken:false},
+ {ext:104,name:"Law Office",idea:"$100 off a flat-fee estate plan",taken:false},
+ {ext:105,name:"Auto Repair",idea:"$39 winter inspection with battery test",taken:false},
+ {ext:106,name:"Roofing",idea:"$250 off a roof replacement of $5,000+",taken:false},
+ {ext:107,name:"Water Damage Restoration",idea:"$99 moisture assessment with written findings",taken:false},
+ {ext:108,name:"Electrical",idea:"$100 off electrical work of $750+",taken:false},
+ {ext:109,name:"Garage Doors",idea:"$79 tune-up with safety checks",taken:false},
+ {ext:110,name:"Basement Waterproofing",idea:"$300 off an installation of $3,000+",taken:false},
+ {ext:111,name:"Insulation",idea:"$250 off attic insulation of $2,000+",taken:false},
+ {ext:112,name:"Tax Preparation",idea:"$25 off individual tax prep of $150+",taken:false}
+];
+var CHECKOUT={full:"",split:""};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var grid=document.getElementById("cats"),sel=document.getElementById("f-cat");
+var h="",o='<option value="">Choose your category</option>';
+CATS.forEach(function(c){
+ h+='<div class="cat"><span class="ext">EXT. '+c.ext+'</span><h3>'+esc(c.name)+'</h3>'+
+  '<span class="pill'+(c.taken?' taken':'')+'">'+(c.taken?'Claimed':'Open')+'</span>'+
+  '<span class="idea"><b>Offer idea:</b> '+esc(c.idea)+'</span>'+
+  (c.taken?'':'<button class="btn sm" type="button" data-cat="'+esc(c.name)+'">Claim this category</button>')+'</div>';
+ if(!c.taken)o+='<option>'+esc(c.name)+'</option>';
+});
+grid.innerHTML=h;sel.innerHTML=o;
+grid.addEventListener("click",function(e){var b=e.target.closest("button[data-cat]");if(!b)return;sel.value=b.getAttribute("data-cat");document.getElementById("reserve").scrollIntoView({behavior:"smooth"});setTimeout(function(){document.getElementById("f-biz").focus({preventScroll:true})},500)});
+var f=document.getElementById("rf"),m=document.getElementById("rf-msg");
+function show(t,ok){m.textContent=t;m.className="msg show "+(ok?"ok":"err")}
+f.addEventListener("submit",function(e){
+ e.preventDefault();
+ var v=function(id){return document.getElementById(id).value.trim()};
+ if(!v("f-cat"))return show("Please choose a category.");
+ if(!v("f-biz")||!v("f-name"))return show("Please add your business name and your name.");
+ if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v("f-email")))return show("Please enter a valid email.");
+ if(v("f-phone").replace(/\D/g,"").length<10)return show("Please enter a 10-digit phone number.");
+ if(!document.getElementById("f-ok").checked)return show("Please check the box to confirm the deal requirement.");
+ var pay=f.querySelector('input[name="pay"]:checked').value,url=CHECKOUT[pay];
+ if(!url)return show("Checkout opens when this page goes live. Your details were not sent. Staging preview only.",true);
+ var q="category="+encodeURIComponent(v("f-cat"))+"&business="+encodeURIComponent(v("f-biz"))+"&name="+encodeURIComponent(v("f-name"))+"&email="+encodeURIComponent(v("f-email"))+"&phone="+encodeURIComponent(v("f-phone"));
+ location.href=url+(url.indexOf("?")<0?"?":"&")+q;
+});
+})();
+</script>
