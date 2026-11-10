@@ -147,13 +147,6 @@
 </style>
 <div id="gsdd">
 
-<div class="stage">Staging preview. Not live. Not linked from the GS website. Do not share yet.</div>
-
-<header class="top"><div class="w">
- <a class="brand" href="#top">GS <b>DEAL DROP</b></a>
- <a class="btn sm" href="#reserve">Claim your category</a>
-</div></header>
-
 <section class="hero" id="top"><div class="w">
  <div>
   <span class="kick">Port Huron pilot edition</span>
@@ -298,16 +291,11 @@
  <details><summary>Can I come back for the next edition?</summary><p>Yes. Current advertisers get first chance to keep their category in the next edition.</p></details>
 </div></section>
 
-<footer><div class="w">
- <span>GS Deal Drop by Glamourless Systems | 1614 23rd St., Port Huron, MI 48060</span>
- <span><a href="mailto:admin@glamourlesssystems.com">admin@glamourlesssystems.com</a></span>
-</div></footer>
-
 </div>
 <script>
 (function(){
 /* GS Deal Drop page script. Category list, availability, and checkout routing.
-   To mark a category claimed, set taken:true. To go live, fill CHECKOUT with the HighLevel payment links. */
+   To mark a category claimed, set taken:true. Until CHECKOUT holds the HighLevel payment links, claims open a filled-in email to admin@glamourlesssystems.com. */
 var CATS=[
  {ext:101,name:"Heating and Cooling",idea:"$79 furnace tune-up",taken:false},
  {ext:102,name:"Plumbing",idea:"$50 off a repair of $250+",taken:false},
@@ -346,7 +334,7 @@ f.addEventListener("submit",function(e){
  if(v("f-phone").replace(/\D/g,"").length<10)return show("Please enter a 10-digit phone number.");
  if(!document.getElementById("f-ok").checked)return show("Please check the box to confirm the deal requirement.");
  var pay=f.querySelector('input[name="pay"]:checked').value,url=CHECKOUT[pay];
- if(!url)return show("Checkout opens when this page goes live. Your details were not sent. Staging preview only.",true);
+ if(!url){var L=["category: "+v("f-cat"),"business: "+v("f-biz"),"name: "+v("f-name"),"email: "+v("f-email"),"phone: "+v("f-phone"),"payment: "+pay];window.location.href="mailto:admin@glamourlesssystems.com?subject="+encodeURIComponent("Deal Drop category claim - "+v("f-cat")+" - "+v("f-biz"))+"&body="+encodeURIComponent(L.join("\n"));return show("Your email app should open with your claim filled in. Press send and we will hold your category and send your payment link. If it did not open, email admin@glamourlesssystems.com.",true)}
  var q="category="+encodeURIComponent(v("f-cat"))+"&business="+encodeURIComponent(v("f-biz"))+"&name="+encodeURIComponent(v("f-name"))+"&email="+encodeURIComponent(v("f-email"))+"&phone="+encodeURIComponent(v("f-phone"));
  location.href=url+(url.indexOf("?")<0?"?":"&")+q;
 });

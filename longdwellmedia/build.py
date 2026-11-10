@@ -56,7 +56,6 @@ faq="".join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for
 page=f'''<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
 <style>{CSS}</style>
 <div id="gsld">
-<div class="stage">Staging preview. Not live. Not linked from the GS website. Do not share yet.</div>
 
 <section class="hero"><div class="w hg">
  <div>
@@ -131,7 +130,6 @@ page=f'''<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500
  {faq}
 </div></section>
 
-<footer><div class="w"><span>Glamourless Systems | 1614 23rd St., Port Huron, MI 48060</span><span><a href="mailto:admin@glamourlesssystems.com">admin@glamourlesssystems.com</a></span></div></footer>
 </div>
 '''
 open('page.html','w').write(page)
@@ -143,5 +141,5 @@ f"root.innerHTML={json.dumps(page)};\n{FORMJS}\n"
 "function fit(){g.style.marginLeft='0';var r=root.getBoundingClientRect();g.style.width=document.documentElement.clientWidth+'px';g.style.marginLeft=(-r.left)+'px'}\n"
 "fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);setTimeout(fit,800);\n})();\n")
 open('longdwellmedia.js','w').write(js)
-open('index.html','w').write('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Long Dwell Media | Glamourless Systems (staging)</title><style>body{margin:0}</style></head><body><script>var s=document.createElement("script");s.src="longdwellmedia.js?v=1";document.body.appendChild(s);</script></body></html>\n')
-open('hl-block.html','w').write('<script>var s=document.createElement("script");s.src="https://dsexton24-web.github.io/glamourless-backup/longdwellmedia/longdwellmedia.js?v=1";document.body.appendChild(s);</script>\n')
+open('index.html','w').write('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Long Dwell Media | Glamourless Systems</title><style>body{margin:0}</style></head><body><script>var s=document.createElement("script");s.src="longdwellmedia.js?v=2";document.body.appendChild(s);</script></body></html>\n')
+open('hl-block.html','w').write('<script>var s=document.createElement("script");s.src="https://dsexton24-web.github.io/glamourless-backup/longdwellmedia/longdwellmedia.js?v=2";document.body.appendChild(s);</script>\n')

@@ -13,14 +13,13 @@ FAQ = [
 ("How fast can it go live?", "Usually within a few days of your OK. Connecting a domain can take 24 to 48 hours on the internet's side."),
 ("What does the CRM actually do?", "It catches every lead from your site in one place, replies right away, follows up until they book, sends booking reminders, asks happy customers for a review and checks in with past customers. All automatic."),
 ("Can you text back missed calls?", "Yes, as an add-on. Texting needs a business phone line and carrier registration, so we set that up separately through HighLevel."),
-("What if I want to leave?", "You keep your domain and your account. If you want the website files to take elsewhere, you can buy them out. [CONFIRM: buyout price]"),
+("What if I want to leave?", "You keep your domain and your account. If you want the website files to take elsewhere, you can buy them out. Ask us for the buyout price."),
 ]
 faq = "".join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in FAQ)
 
 page = f'''<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
 <style>{CSS}</style>
 <div id="gssr">
-<div class="stage">Staging preview. Not live. Not linked from the GS website. Do not share yet.</div>
 
 <section class="hero"><div class="w hg">
  <div>
@@ -116,7 +115,6 @@ page = f'''<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;5
  {faq}
 </div></section>
 
-<footer><div class="w"><span>Glamourless Systems | 1614 23rd St., Port Huron, MI 48060</span><span><a href="mailto:admin@glamourlesssystems.com">admin@glamourlesssystems.com</a></span></div></footer>
 </div>
 '''
 open('page.html', 'w').write(page)
@@ -128,5 +126,5 @@ f"root.innerHTML={json.dumps(page)};\n{FORMJS}\n"
 "function fit(){g.style.marginLeft='0';var r=root.getBoundingClientRect();g.style.width=document.documentElement.clientWidth+'px';g.style.marginLeft=(-r.left)+'px'}\n"
 "fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);setTimeout(fit,800);\n})();\n")
 open('starttorank.js', 'w').write(js)
-open('index.html', 'w').write('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Start to Rank | Glamourless Systems (staging)</title><style>body{margin:0}</style></head><body><script>var s=document.createElement("script");s.src="starttorank.js?v=1";document.body.appendChild(s);</script></body></html>\n')
-open('hl-block.html', 'w').write('<script>var s=document.createElement("script");s.src="https://dsexton24-web.github.io/glamourless-backup/starttorank/starttorank.js?v=1";document.body.appendChild(s);</script>\n')
+open('index.html', 'w').write('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Start to Rank | Glamourless Systems</title><style>body{margin:0}</style></head><body><script>var s=document.createElement("script");s.src="starttorank.js?v=2";document.body.appendChild(s);</script></body></html>\n')
+open('hl-block.html', 'w').write('<script>var s=document.createElement("script");s.src="https://dsexton24-web.github.io/glamourless-backup/starttorank/starttorank.js?v=2";document.body.appendChild(s);</script>\n')
