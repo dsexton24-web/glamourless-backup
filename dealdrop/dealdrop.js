@@ -53,6 +53,7 @@ f.addEventListener("submit",function(e){
 
 (function(){var g=document.getElementById('gsdd');if(!g)return;
  var p=root.parentElement;for(var i=0;i<8&&p&&p!==document.body;i++){if(/c-section|c-row|c-column|inner|custom-code/.test(p.className||'')){p.style.paddingTop='0';p.style.paddingBottom='0';p.style.marginTop='0';p.style.marginBottom='0';p.style.maxWidth='none'}p=p.parentElement}
+ try{if(!document.title||/^https?:/.test(document.title))document.title="Deal Drop 9 x 12 Mailer | Glamourless Systems"}catch(e){}
  try{document.documentElement.style.overflowX='hidden';document.body.style.overflowX='hidden'}catch(e){}
  function fit(){g.style.marginLeft='0';var r=root.getBoundingClientRect();g.style.width=document.documentElement.clientWidth+'px';g.style.marginLeft=(-r.left)+'px'}
  fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);setTimeout(fit,800);

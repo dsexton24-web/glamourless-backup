@@ -1,0 +1,51 @@
+<!-- GS MENU ADDITIONS: Services dropdown and Apps link in the header, mobile menu and footer. Paste at the very end of the website head code. -->
+<style>
+.gs-dd{position:relative}
+.gs-dd>summary{list-style:none;cursor:pointer;color:#E4ECF6;font:600 15px/1 var(--gs-font-body,Inter,Arial,sans-serif);padding:10px 4px;white-space:nowrap}
+.gs-dd>summary::-webkit-details-marker{display:none}
+.gs-dd>summary::after{content:"";display:inline-block;margin-left:6px;border:5px solid transparent;border-top-color:currentColor;vertical-align:-2px}
+.gs-dd>summary:hover,.gs-dd[open]>summary{color:#fff;box-shadow:inset 0 -2px 0 #5B9BFF}
+.gs-dd__panel{position:absolute;left:-14px;top:44px;min-width:250px;background:#0A1F3D;border:1px solid rgba(157,180,207,.25);border-radius:4px;padding:8px;box-shadow:0 6px 18px rgba(6,21,41,.35);z-index:60}
+.gs-nav .gs-dd__panel a{display:block;padding:12px 12px!important;box-shadow:none!important;border-bottom:1px solid rgba(157,180,207,.15)}
+.gs-nav .gs-dd__panel a:last-child{border-bottom:0}
+.gs-nav .gs-dd__panel a:hover{background:rgba(91,155,255,.12)}
+.gs-menu__label{display:block;color:#9DB4CF;font:600 12px var(--gs-font-body,Inter,Arial,sans-serif);letter-spacing:.14em;text-transform:uppercase;padding:14px 12px 4px}
+.gs-menu__panel{max-height:calc(100vh - 90px);overflow-y:auto}
+@media(min-width:960px) and (max-width:1149px){header.gs-header .gs-nav{display:none!important}header.gs-header .gs-menu{display:block!important}}
+@media(min-width:900px){.gs-footer__cols.gs-has-services{grid-template-columns:1.4fr repeat(5,1fr)!important}}
+</style>
+<script>
+(function(){
+var SV=[["/dealdrop","Deal Drop 9 x 12 Mailer"],["/totebillboard","Tote Billboard System"],["/longdwellmedia","Long Dwell Media"],["/starttorank","Start to Rank Websites"]];
+var APPS="https://glamourlessapps.com";
+function a(h,t,ev){var x=document.createElement("a");x.href=h;x.textContent=t;x.setAttribute("data-gs-event","nav_click");x.setAttribute("data-gs-target",ev);return x}
+function cur(){return (location.pathname.replace(/\/$/,"")||"/").toLowerCase()}
+function add(){
+ var nav=document.querySelector("header.gs-header .gs-nav");
+ if(nav&&!nav.querySelector(".gs-dd")){
+  var d=document.createElement("details");d.className="gs-dd";var s=document.createElement("summary");s.textContent="Services";d.appendChild(s);
+  var p=document.createElement("div");p.className="gs-dd__panel";
+  SV.forEach(function(v){var l=a(v[0],v[1],"services_"+v[0].slice(1));if(cur()===v[0])l.setAttribute("aria-current","page");p.appendChild(l)});
+  d.appendChild(p);
+  var ref=nav.querySelector('a[href="/about"]');nav.insertBefore(d,ref||null);
+  nav.insertBefore(a(APPS,"Apps","apps"),ref||null);
+  document.addEventListener("click",function(e){if(!d.contains(e.target))d.removeAttribute("open")});
+ }
+ var mp=document.querySelector("header.gs-header .gs-menu__panel");
+ if(mp&&!mp.querySelector(".gs-menu__label")){
+  var ref2=mp.querySelector('a[href="/about"]');
+  var lb=document.createElement("span");lb.className="gs-menu__label";lb.textContent="Services";mp.insertBefore(lb,ref2||null);
+  SV.forEach(function(v){mp.insertBefore(a(v[0],v[1],"services_"+v[0].slice(1)),ref2||null)});
+  mp.insertBefore(a(APPS,"Apps","apps"),ref2||null);
+ }
+ var fc=document.querySelector("footer.gs-footer .gs-footer__cols");
+ if(fc&&!fc.classList.contains("gs-has-services")){
+  var col=document.createElement("div");var h=document.createElement("h4");h.textContent="Services";col.appendChild(h);var ul=document.createElement("ul");
+  SV.concat([[APPS,"Glamourless Apps"]]).forEach(function(v){var li=document.createElement("li");var l=document.createElement("a");l.href=v[0];l.textContent=v[1];li.appendChild(l);ul.appendChild(li)});
+  col.appendChild(ul);var pol=fc.lastElementChild;fc.insertBefore(col,pol);fc.classList.add("gs-has-services");
+ }
+ return nav&&mp&&fc&&nav.querySelector(".gs-dd")&&fc.classList.contains("gs-has-services");
+}
+var n=0,iv=setInterval(function(){n++;if(add()&&n>8)clearInterval(iv);if(n>60)clearInterval(iv)},500);
+})();
+</script>

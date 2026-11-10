@@ -137,6 +137,7 @@ js=('/* GS Long Dwell Media page loader. Source of truth: Drive folder GS Long D
 "var root=document.getElementById('gsld-mount');if(!root){root=document.createElement('div');root.id='gsld-mount';var anchor=[].slice.call(document.querySelectorAll('script')).filter(function(x){return !x.src&&x.textContent.indexOf('longdwellmedia.js')>=0})[0];if(anchor&&anchor.parentNode){anchor.parentNode.insertBefore(root,anchor)}else{document.body.appendChild(root)}}\n"
 f"root.innerHTML={json.dumps(page)};\n{FORMJS}\n"
 "var g=document.getElementById('gsld');var p=root.parentElement;for(var i=0;i<8&&p&&p!==document.body;i++){if(/c-section|c-row|c-column|inner|custom-code/.test(p.className||'')){p.style.paddingTop='0';p.style.paddingBottom='0';p.style.marginTop='0';p.style.marginBottom='0';p.style.maxWidth='none'}p=p.parentElement}\n"
+"try{if(!document.title||/^https?:/.test(document.title))document.title=\"Long Dwell Media | Glamourless Systems\"}catch(e){}\n"
 "try{document.documentElement.style.overflowX='hidden';document.body.style.overflowX='hidden'}catch(e){}\n"
 "function fit(){g.style.marginLeft='0';var r=root.getBoundingClientRect();g.style.width=document.documentElement.clientWidth+'px';g.style.marginLeft=(-r.left)+'px'}\n"
 "fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);setTimeout(fit,800);\n})();\n")
