@@ -1,0 +1,2062 @@
+{
+ "GS-0266": {
+  "sku": "GS-0266",
+  "title": "3D Human and Pet Figurine Studio Blueprint",
+  "category": "Equipment-Based Businesses",
+  "secondary": "3D Printing",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Blueprint for a studio that scans and prints 3D figurines of people and pets."
+ },
+ "GS-0003": {
+  "sku": "GS-0003",
+  "title": "After Hours Call Capture Blueprint",
+  "category": "B2B Services",
+  "secondary": "AI Businesses",
+  "customer": "B2B",
+  "location": "HYBRID",
+  "budget": "$1K-$5K",
+  "description": "Provide an after-hours call-capture service for local businesses: collect caller needs and contact details, hand leads to the owner, and report the calls captured. Technology supports the service; bookings and revenue are not guaranteed."
+ },
+ "GS-0228": {
+  "sku": "GS-0228",
+  "title": "Agentic Commerce Readiness and Testing Service Blueprint",
+  "category": "AI Businesses",
+  "secondary": "Ecommerce / QA",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Service blueprint for auditing and testing merchant readiness for agentic commerce, structured product data, trust signals, and AI-assisted checkout."
+ },
+ "GS-0193": {
+  "sku": "GS-0193",
+  "title": "AI Agency Operator Blueprint",
+  "category": "AI Businesses",
+  "secondary": "AI Agency",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "$1K-$5K",
+  "description": "Blueprint for launching a compliance-first AI agency."
+ },
+ "GS-0230": {
+  "sku": "GS-0230",
+  "title": "AI Agent Operations Blueprint",
+  "category": "AI Businesses",
+  "secondary": "AI Governance / Operations",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Varies",
+  "description": "Service blueprint for governing AI agents across inventory, permissions, approval boundaries, monitoring, exception handling, and decommissioning."
+ },
+ "GS-0002": {
+  "sku": "GS-0002",
+  "title": "AI Training Operator Blueprint",
+  "category": "AI Businesses",
+  "secondary": "Online Businesses",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Complete human-feedback contract tasks such as ranking AI responses, checking facts, rewriting answers, and labeling data against project rubrics. Active task work\u2014not passive income, guaranteed queues, or employment at an AI company."
+ },
+ "GS-0001": {
+  "sku": "GS-0001",
+  "title": "AI-Generated Children's Books Blueprint",
+  "category": "Digital Products",
+  "secondary": "Online Businesses",
+  "customer": "B2C",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Build a niche children's-book publishing catalog with researched topics, AI-supported production, quality review, and publishing workflows. A publishing business\u2014not automatic book sales or guaranteed platform approval."
+ },
+ "GS-0125": {
+  "sku": "GS-0125",
+  "title": "The Appointment Based Mattress Store Blueprint",
+  "category": "Local Services",
+  "secondary": "Consumer Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$15K-$50K",
+  "description": "Plan an independent appointment-based mattress retail operation through legitimate sourcing, suitable premises, buyer screening, scheduling, sales, delivery, and inventory control. Low-overhead scheduling does not remove retail obligations, inventory risk, or the need to earn customer trust."
+ },
+ "GS-0004": {
+  "sku": "GS-0004",
+  "title": "The Appointment Network Blueprint",
+  "category": "B2B Services",
+  "secondary": "Local Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Build a local appointment-setting network for home-service contractors through territory selection, partner agreements, homeowner conversations, confirmations, and delivery records. Qualified appointment operations\u2014not performing contractor work or guaranteeing sales and commissions."
+ },
+ "GS-0249": {
+  "sku": "GS-0249",
+  "title": "Artificial Skylight Installation Blueprint",
+  "category": "Home Services",
+  "secondary": "Lighting and Interiors",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Blueprint for installing artificial skylights in homes and businesses."
+ },
+ "GS-0005": {
+  "sku": "GS-0005",
+  "title": "ATM Playbook Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Equipment-Based Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Build and service an ATM placement route: prospect for host locations, manage cash and machine operations, and track transaction-based fees and costs. Requires ongoing service and cash-risk controls\u2014not zero-effort passive income."
+ },
+ "GS-0250": {
+  "sku": "GS-0250",
+  "title": "Automotive Laser Button Restoration Blueprint",
+  "category": "Automotive",
+  "secondary": "Restoration",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Varies",
+  "description": "Blueprint for restoring worn laser-etched buttons and controls in vehicles."
+ },
+ "GS-0159": {
+  "sku": "GS-0159",
+  "title": "The Billboard Broker Blueprint",
+  "category": "B2B Services",
+  "secondary": "Online Businesses",
+  "customer": "B2B",
+  "location": "HYBRID",
+  "budget": "Under $1K",
+  "description": "Build a supplier-agnostic digital billboard campaign service for local advertisers: source existing inventory, price packages, coordinate creative approvals, run campaigns, and report delivery. Media resale and campaign operations\u2014not owning billboards or guaranteeing customers from impressions."
+ },
+ "GS-0008": {
+  "sku": "GS-0008",
+  "title": "Bin Clean Route Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Cleaning",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Run a scheduled curbside-bin cleaning route, grouping nearby customers and managing cleaning, deodorizing, wastewater handling, and repeat service. Hands-on route work\u2014not passive income."
+ },
+ "GS-0276": {
+  "sku": "GS-0276",
+  "title": "Buy the Business Blueprint",
+  "category": "Business Services",
+  "secondary": "Business Acquisition",
+  "customer": "B2B",
+  "location": "HYBRID",
+  "budget": "$50K+",
+  "description": "Blueprint for finding, evaluating and buying an existing small business."
+ },
+ "GS-0284": {
+  "sku": "GS-0284",
+  "title": "The Career Pivot Playbook Blueprint",
+  "category": "Education",
+  "secondary": "Career Entry",
+  "customer": "B2C",
+  "location": "HYBRID",
+  "budget": "Under $1K",
+  "description": "Playbook for moving from one career to another."
+ },
+ "GS-0296": {
+  "sku": "GS-0296",
+  "title": "Ceiling Texture Modernization Blueprint",
+  "category": "Home Services",
+  "secondary": "Interior Finishing",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Varies",
+  "description": "Blueprint for modernizing textured ceilings in homes."
+ },
+ "GS-0255": {
+  "sku": "GS-0255",
+  "title": "Cemetery Memorial Vending Route Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Vending",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Blueprint for a cemetery memorial vending route."
+ },
+ "GS-0039": {
+  "sku": "GS-0039",
+  "title": "The Clearout Blueprint",
+  "category": "Commercial Services",
+  "secondary": "Property Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Organize deadline-driven commercial clearance and asset recovery: verify ownership authority, inventory items, separate resale value from disposal costs, coordinate labor and buyers, and document closeout. Not simply used-furniture retail or guaranteed recovered value."
+ },
+ "GS-0009": {
+  "sku": "GS-0009",
+  "title": "Climate Operator Blueprint",
+  "category": "Home Services",
+  "secondary": "Professional Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Plan an HVAC trade business around customer demand, estimating, service delivery, maintenance, and the worker-to-owner transition. An operating roadmap\u2014not technical training, exam preparation, or permission to perform regulated work."
+ },
+ "GS-0011": {
+  "sku": "GS-0011",
+  "title": "Clutter to Cash Junk Removal Blueprint",
+  "category": "Home Services",
+  "secondary": "Mobile Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Quote and carry out authorized junk-removal jobs: screen materials, plan loading and disposal, protect the site, and keep clear customer and chain-of-custody records."
+ },
+ "GS-0010": {
+  "sku": "GS-0010",
+  "title": "Comfort First Blueprint",
+  "category": "Home Services",
+  "secondary": "B2B Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Work in homeowner energy-upgrade sales, using comfort and waste-reduction needs to guide conversations and follow-up. A sales and customer-education lane\u2014not certified energy auditing, technical diagnosis, or promised savings."
+ },
+ "GS-0128": {
+  "sku": "GS-0128",
+  "title": "Commercial Floor Mat Exchange Route Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Commercial Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Rent commercial floor mats on a recurring exchange route: replace dirty mats with clean stock, coordinate a laundry partner, and manage inventory and service records. A route business\u2014not simply selling mats."
+ },
+ "GS-0129": {
+  "sku": "GS-0129",
+  "title": "Commercial Ice Machine Cleaning Route Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Cleaning",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Provide scheduled cleaning, descaling, and sanitizing of commercial ice machines and storage bins using model-specific procedures and service records. Sanitation maintenance\u2014not refrigeration repair or an inspection-pass guarantee."
+ },
+ "GS-0012": {
+  "sku": "GS-0012",
+  "title": "Commercial Kitchen and Food Truck Cleaning Blueprint",
+  "category": "Cleaning",
+  "secondary": "Commercial Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Deliver recurring surface deep-cleaning, degreasing, and sanitation-reset work for commercial kitchens and food trucks, with defined scope and service documentation. Separate from exhaust-system cleaning, appliance repair, or code inspection."
+ },
+ "GS-0013": {
+  "sku": "GS-0013",
+  "title": "Commercial Parking Monetization Blueprint",
+  "category": "Commercial Services",
+  "secondary": "B2B Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Manage unused commercial parking capacity with written owner authority: evaluate suitable properties, organize listings and pricing, support customers, and track agreed revenue sharing. Not ownership of the real estate or guaranteed occupancy."
+ },
+ "GS-0014": {
+  "sku": "GS-0014",
+  "title": "Commercial Pilot Blueprint",
+  "category": "Education",
+  "secondary": "Career Entry",
+  "customer": "B2C",
+  "location": "HYBRID",
+  "budget": "$1K-$5K",
+  "description": "Career path blueprint for becoming a commercial pilot."
+ },
+ "GS-0131": {
+  "sku": "GS-0131",
+  "title": "Commercial Trash Enclosure Cleaning Route Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Cleaning",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Clean dumpster pads, enclosure walls, and gates on a recurring property-service route, with wastewater handling, photographs, and service reports. Keep hazardous cleanup, grease-trap pumping, and equipment repair outside this service scope."
+ },
+ "GS-0015": {
+  "sku": "GS-0015",
+  "title": "Compliance Readiness and Documentation Operator Blueprint",
+  "category": "Inspection and Auditing",
+  "secondary": "B2B Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Run a recurring readiness-documentation service: record observable conditions, photograph gaps, track follow-up obligations, and refer decisions outside your scope. Documentation and escalation\u2014not compliance certification or authority to issue approvals."
+ },
+ "GS-0071": {
+  "sku": "GS-0071",
+  "title": "Construction Draw Inspection Blueprint",
+  "category": "Inspection and Auditing",
+  "secondary": "Professional Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Document visible construction progress against a lender\u2019s draw request with photographs, line-item observations, and a clear report. Progress verification\u2014not code certification or a lending decision."
+ },
+ "GS-0196": {
+  "sku": "GS-0196",
+  "title": "Contextual Collectible Vending Route Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Vending",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Blueprint for a contextual collectible vending route."
+ },
+ "GS-0016": {
+  "sku": "GS-0016",
+  "title": "Critical Medical Air Cargo Operator Blueprint",
+  "category": "Transportation",
+  "secondary": "B2B Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Build a local specialty-courier operation around airport recovery, controlled custody, documented handoffs, and customer-approved shipment procedures. High-consequence logistics\u2014not generic delivery or a substitute for cargo-specific qualifications."
+ },
+ "GS-0147": {
+  "sku": "GS-0147",
+  "title": "CRM Operator Blueprint",
+  "category": "B2B Services",
+  "secondary": "AI Businesses",
+  "customer": "B2B",
+  "location": "HYBRID",
+  "budget": "Under $1K",
+  "description": "Implement and manage approved lead-follow-up workflows for local service businesses, including setup, owner training, monitoring, and ongoing improvements. Operating support\u2014not software ownership, vendor authorization, or guaranteed conversion results."
+ },
+ "GS-0130": {
+  "sku": "GS-0130",
+  "title": "Cryptocurrency Mining Operator Blueprint",
+  "category": "Equipment-Based Businesses",
+  "secondary": "Online Businesses",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "$5K-$15K",
+  "description": "Evaluate cryptocurrency mining as an active, speculative operation: hardware, electricity, cooling, monitoring, fees, depreciation, and operating risk. Not passive income or a profitability promise."
+ },
+ "GS-0017": {
+  "sku": "GS-0017",
+  "title": "The Curb Flip Blueprint",
+  "category": "Reselling",
+  "secondary": "Local Services",
+  "customer": "B2C",
+  "location": "HYBRID",
+  "budget": "Under $1K",
+  "description": "Source legitimately offered free items, clean and assess them, photograph and list them, and manage pickup and resale. A systematic inventory-and-sales workflow; measure results after transport, storage, materials, and time\u2014not assuming every free item is profitable."
+ },
+ "GS-0251": {
+  "sku": "GS-0251",
+  "title": "Custom 3D Chocolate Printing Blueprint",
+  "category": "Food and Hospitality",
+  "secondary": "Custom Food",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Blueprint for making custom 3D printed chocolate for events, gifts and brands."
+ },
+ "GS-0297": {
+  "sku": "GS-0297",
+  "title": "Custom Vendor Signage Blueprint",
+  "category": "Business Services",
+  "secondary": "Signage",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Varies",
+  "description": "Blueprint for making custom signage for vendors and events."
+ },
+ "GS-0018": {
+  "sku": "GS-0018",
+  "title": "Damage to Deal Blueprint",
+  "category": "B2B Services",
+  "secondary": "Home Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Work in restoration sales by booking inspections, documenting observable conditions, setting accurate expectations, and following up through the contractor's process. Sales and documentation\u2014not claim adjustment or promised insurance coverage."
+ },
+ "GS-0019": {
+  "sku": "GS-0019",
+  "title": "Dealership Lead Machine Blueprint",
+  "category": "B2B Services",
+  "secondary": "Online Businesses",
+  "customer": "B2B",
+  "location": "HYBRID",
+  "budget": "Under $1K",
+  "description": "Create dealer-authorized vehicle listings, validate buyer inquiries, and deliver leads under an agreed acceptance and payment process. A lead-delivery service\u2014not negotiating vehicle sales or handling purchase funds."
+ },
+ "GS-0248": {
+  "sku": "GS-0248",
+  "title": "Decorative Gravel Stabilization and Resin Surfaces Blueprint",
+  "category": "Home Services",
+  "secondary": "Outdoor Surfaces",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Blueprint for installing decorative gravel stabilization and resin surfaces for driveways and paths."
+ },
+ "GS-0229": {
+  "sku": "GS-0229",
+  "title": "Digital Access Continuity Service Blueprint",
+  "category": "Professional Services",
+  "secondary": "Business Continuity / Access",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Varies",
+  "description": "Service blueprint for inventorying critical digital access, removing single points of failure, and building tested successor and recovery procedures."
+ },
+ "GS-0231": {
+  "sku": "GS-0231",
+  "title": "Digital Media Provenance Operator Blueprint",
+  "category": "Professional Services",
+  "secondary": "Media Provenance / Trust",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Varies",
+  "description": "Service blueprint for configuring, testing, monitoring, and documenting Content Credentials and digital-media provenance workflows."
+ },
+ "GS-0232": {
+  "sku": "GS-0232",
+  "title": "Digital Product Passport Operator Blueprint",
+  "category": "Professional Services",
+  "secondary": "Product Data / Digital Product Passports",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Varies",
+  "description": "Service blueprint for collecting, normalizing, evidencing, importing, and maintaining Digital Product Passport data and readiness."
+ },
+ "GS-0257": {
+  "sku": "GS-0257",
+  "title": "Disc Golf Scorecard Sponsorship Network Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Advertising Networks",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Blueprint for selling sponsorships on disc golf scorecards."
+ },
+ "GS-0021": {
+  "sku": "GS-0021",
+  "title": "Drive Deliver Get Paid Blueprint",
+  "category": "Transportation",
+  "secondary": "Mobile Businesses",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Treat delivery and rideshare work as an operating business: select trips, plan routes, track time and vehicle costs, and review actual earnings after expenses. Active driving\u2014not guaranteed orders, platform acceptance, or income."
+ },
+ "GS-0040": {
+  "sku": "GS-0040",
+  "title": "The Dryer Vent Route Blueprint",
+  "category": "Home Services",
+  "secondary": "Route Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Build a dryer-exhaust cleaning route around job qualification, visible-condition records, cleaning, reporting, and recurring reminders. Verify jurisdiction and system-specific limits; cleaning documentation is not code certification, appliance diagnosis, or a guarantee against fire."
+ },
+ "GS-0133": {
+  "sku": "GS-0133",
+  "title": "Errand and Delivery Route Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Transportation",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Build direct local courier and errand customers, moving ordinary property through a defined request, pickup, delivery, proof, and billing process. Scheduled routes and individual runs\u2014not passenger transportation, caregiving, or a medical-cargo launch model."
+ },
+ "GS-0144": {
+  "sku": "GS-0144",
+  "title": "The Escape Ladder Specialist",
+  "category": "Home Services",
+  "secondary": "Safety Installation",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Specialist business installing hidden emergency escape ladders."
+ },
+ "GS-0022": {
+  "sku": "GS-0022",
+  "title": "The Estate Transition Operator Blueprint",
+  "category": "Home Services",
+  "secondary": "Consumer Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Coordinate household transitions through family decisions, a written plan, vendor management, and respectful documented handoffs. Coordination\u2014not legal representation, appraisal, real-estate brokerage, therapy, or authority over belongings without verified permission."
+ },
+ "GS-0023": {
+  "sku": "GS-0023",
+  "title": "EV Parking Blueprint",
+  "category": "Equipment-Based Businesses",
+  "secondary": "Commercial Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$15K-$50K",
+  "description": "Develop a site-hosted Level 2 charging operation: evaluate host agreements, installation and utility costs, pricing, monitoring, and maintenance responsibilities. Requires site-specific verification\u2014not guaranteed usage, incentives, or payback."
+ },
+ "GS-0024": {
+  "sku": "GS-0024",
+  "title": "Event Audience Staffing Blueprint",
+  "category": "B2B Services",
+  "secondary": "Local Services",
+  "customer": "B2B",
+  "location": "HYBRID",
+  "budget": "$1K-$5K",
+  "description": "Build a local event-staffing roster and manage recruitment, scheduling, confirmations, on-site coordination, timekeeping, and replacement plans. An agency operating model\u2014not simply being paid to attend events."
+ },
+ "GS-0038": {
+  "sku": "GS-0038",
+  "title": "The Exit Ramp Blueprint",
+  "category": "Online Businesses",
+  "secondary": "Exit Planning",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Blueprint for planning an exit from a business or role into online income."
+ },
+ "GS-0027": {
+  "sku": "GS-0027",
+  "title": "Field Verification",
+  "category": "Inspection and Auditing",
+  "secondary": "Mobile Businesses",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Complete authorized retail audits and property-verification assignments with accurate photographs, factual notes, and organized client submissions. Local task-based work\u2014not guaranteed assignments or professional certification."
+ },
+ "GS-0028": {
+  "sku": "GS-0028",
+  "title": "Filter and Fixture Route Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Property Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Organize scheduled basic filter, battery, and bulb replacements with visual property observations and owner reports. Define permitted task limits; this is not an HVAC, electrical, or plumbing repair service."
+ },
+ "GS-0273": {
+  "sku": "GS-0273",
+  "title": "The First Career Playbook",
+  "category": "Education",
+  "secondary": "Career Entry",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Playbook for people choosing and starting their first career."
+ },
+ "GS-0134": {
+  "sku": "GS-0134",
+  "title": "Fleet Care Route Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Commercial Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Provide recurring small-fleet yard visits: clean, visually observe, document, flag issues, and coordinate approved vendors. Fleet appearance and condition records\u2014not mechanical diagnosis or a certified vehicle inspection."
+ },
+ "GS-0030": {
+  "sku": "GS-0030",
+  "title": "Flow Operator Blueprint",
+  "category": "Home Services",
+  "secondary": "Professional Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Explore plumbing-business ownership through service models, entry paths, pricing, customer acquisition, and operations. A business roadmap\u2014not technical plumbing training, a license, or permission to perform regulated work."
+ },
+ "GS-0029": {
+  "sku": "GS-0029",
+  "title": "Flow to Funds Gutter Cleaning Blueprint",
+  "category": "Home Services",
+  "secondary": "Property Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "A cleaning-only gutter route business: clear and flush gutters, document condition, and sell recurring clean plans."
+ },
+ "GS-0285": {
+  "sku": "GS-0285",
+  "title": "The Food Business Operator Blueprint",
+  "category": "Food and Hospitality",
+  "secondary": "Food Operations",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Blueprint for operating a small food business."
+ },
+ "GS-0031": {
+  "sku": "GS-0031",
+  "title": "Forgot It Essentials Machine Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Equipment-Based Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Place and operate compact vending machines for everyday forgotten essentials at suitable host locations. Evaluate placement agreements, stock, restocking routes, and machine upkeep\u2014not a zero-effort income model."
+ },
+ "GS-0007": {
+  "sku": "GS-0007",
+  "title": "Four Hour Rental Turnover Blueprint",
+  "category": "Cleaning",
+  "secondary": "Property Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Organize short-term rental turnovers between guests, balancing cleaning, property reset, owner communication, and tight scheduling. Physical, time-sensitive work; the title is not a universal completion-time guarantee."
+ },
+ "GS-0271": {
+  "sku": "GS-0271",
+  "title": "The Fractional Operator Blueprint",
+  "category": "Business Services",
+  "secondary": "Fractional Operations",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Blueprint for running operations for small businesses as a fractional operator."
+ },
+ "GS-0032": {
+  "sku": "GS-0032",
+  "title": "Frame Operator Blueprint",
+  "category": "Home Services",
+  "secondary": "Professional Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Explore carpentry-business ownership, including service lanes, customer relationships, and the shift from worker to operator. A business roadmap\u2014not structural-design instruction, technical trade training, or authorization to perform construction."
+ },
+ "GS-0033": {
+  "sku": "GS-0033",
+  "title": "French Intensive Microfarm Blueprint",
+  "category": "Food and Hospitality",
+  "secondary": "Local Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Plan a small-footprint vegetable business around specific buyers, crop scheduling, and bed-level costs and labor. Test site conditions and demand locally; yields and farm income are not guaranteed."
+ },
+ "GS-0035": {
+  "sku": "GS-0035",
+  "title": "Fresh Line Blueprint",
+  "category": "Commercial Services",
+  "secondary": "B2B Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Explore broker and owner-operator models for parking-lot striping and permitted curb-number painting. Coordinate approved layouts, qualified subcontractors, materials, and job closeout\u2014not permission to invent regulated markings."
+ },
+ "GS-0037": {
+  "sku": "GS-0037",
+  "title": "Garage Door Repair and Service Blueprint",
+  "category": "Home Services",
+  "secondary": "Local Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Plan a garage-door service business around qualified technicians, service calls, parts sourcing, quoting, and operations. A business roadmap\u2014not spring-repair training or authorization for safety-critical work."
+ },
+ "GS-0036": {
+  "sku": "GS-0036",
+  "title": "Garage Money Playbook Blueprint",
+  "category": "Consumer Services",
+  "secondary": "Local Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Build a local woodworking side business around product selection, material and labor costs, photographs, listings, buyer communication, and pickup. A repeatable sales workflow\u2014not guaranteed weekend earnings."
+ },
+ "GS-0254": {
+  "sku": "GS-0254",
+  "title": "Golf Ball Recovery and Resale Blueprint",
+  "category": "Reselling",
+  "secondary": "Golf",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Varies",
+  "description": "Blueprint for recovering golf balls from courses and reselling them."
+ },
+ "GS-0132": {
+  "sku": "GS-0132",
+  "title": "The Green Light Blueprint",
+  "category": "Mobile Businesses",
+  "secondary": "Commercial Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Plan portable putting and disc-challenge events through venue approval, sponsor packages, a contained pilot, hosted participation, measurement, and sponsor recaps. A mobile event-activation business\u2014not a permanent sports facility or guaranteed sponsor reach and sales."
+ },
+ "GS-0043": {
+  "sku": "GS-0043",
+  "title": "Grime to Green Window Cleaning Blueprint",
+  "category": "Cleaning",
+  "secondary": "Home Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Build residential and storefront window-cleaning accounts with scoped quotes, consistent quality checks, route planning, and scheduled return visits. Detail-oriented physical service\u2014not automatic recurring income."
+ },
+ "GS-0136": {
+  "sku": "GS-0136",
+  "title": "Gutter Guard and Clean Route Blueprint",
+  "category": "Home Services",
+  "secondary": "Route Businesses",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Adds the gutter-guard installation lane to the cleaning route: cleaning as the front door, guard installs as the ticket expansion."
+ },
+ "GS-0045": {
+  "sku": "GS-0045",
+  "title": "Gym Amenity Route Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Equipment-Based Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Evaluate a gym-hosted amenity station combining protein-shake vending, shoe-refresh equipment, and phone-charging lockers. Manage placement agreements, servicing, and operating costs; food and equipment safeguards are part of the model."
+ },
+ "GS-0044": {
+  "sku": "GS-0044",
+  "title": "Hard Drive Storage Rental Blueprint",
+  "category": "Online Businesses",
+  "secondary": "B2B Services",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "$1K-$5K",
+  "description": "Compare spare-capacity storage nodes, purpose-built nodes, and managed customer backup services. Evaluate hardware, operating costs, security, and recovery responsibilities; capacity hosting is not the same as promising customer data protection."
+ },
+ "GS-0135": {
+  "sku": "GS-0135",
+  "title": "The Headlight Hustle Blueprint",
+  "category": "Automotive",
+  "secondary": "Mobile Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Build a mobile exterior headlight-lens restoration service with condition screening, documented exclusions, surface protection, customer communication, and local pricing. Cosmetic surface work\u2014not fixing wiring, internal moisture, broken housings, or guaranteeing inspection compliance."
+ },
+ "GS-0041": {
+  "sku": "GS-0041",
+  "title": "Healthcare Field Auditor Blueprint",
+  "category": "Inspection and Auditing",
+  "secondary": "Health and Healthcare Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Carry out authorized patient-experience and procedure-observation assignments, organize routes, and submit factual reports. Field evaluation\u2014not clinical review, professional compliance certification, or guaranteed assignments."
+ },
+ "GS-0047": {
+  "sku": "GS-0047",
+  "title": "Heirloom Book Restoration and Repair Blueprint",
+  "category": "Consumer Services",
+  "secondary": "Online Businesses",
+  "customer": "BOTH",
+  "location": "REMOTE",
+  "budget": "$1K-$5K",
+  "description": "Develop a mail-in book-repair service with photo estimates, documented intake, customer updates, careful shipping, and quality checks. Work within demonstrated craft skills; irreplaceable books require clear limits and careful handling."
+ },
+ "GS-0245": {
+  "sku": "GS-0245",
+  "title": "The Helping-Hands Career Entry Guide Blueprint",
+  "category": "Education",
+  "secondary": "Career Entry",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Career entry guide for people who want to start work in helping and care roles."
+ },
+ "GS-0048": {
+  "sku": "GS-0048",
+  "title": "Hidden in the Court Blueprint",
+  "category": "Professional Services",
+  "secondary": "Online Businesses",
+  "customer": "BOTH",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Research bankruptcy-court unclaimed-funds records, screen leads, locate potential claimants, and organize attorney-partner workflows. Not legal advice, authority to file for others, or a promise that funds can be recovered."
+ },
+ "GS-0233": {
+  "sku": "GS-0233",
+  "title": "High Ticket Offer Blueprint",
+  "category": "Business Services",
+  "secondary": "Offer Design / Sales",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Blueprint for designing, pricing, selling, onboarding, and measuring a high-ticket service offer with repeatable sales and delivery controls."
+ },
+ "GS-0049": {
+  "sku": "GS-0049",
+  "title": "Home Based Custom Picture Framing Blueprint",
+  "category": "Consumer Services",
+  "secondary": "Local Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Build a home-based framing service around customer consultation, design, supplier-cut components, fitting, finishing, and delivery. Distinguish everyday framing from preservation work requiring specialized expertise."
+ },
+ "GS-0190": {
+  "sku": "GS-0190",
+  "title": "Hosted Hive and Micro Apiary Blueprint",
+  "category": "Local Services",
+  "secondary": "Route Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Compare small-batch honey production with a managed hosted-hive route, including colony care, customer agreements, service scheduling, and product sales. Living assets bring biological and seasonal risk; honey yield and colony survival are not guaranteed."
+ },
+ "GS-0051": {
+  "sku": "GS-0051",
+  "title": "Ice Anytime Operator Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Food and Hospitality",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$15K-$50K",
+  "description": "Evaluate a self-service ice-vending operation through site demand, equipment, utilities, sanitation, servicing, and full operating costs. Unattended sales still require active food-safety and maintenance controls\u2014not guaranteed payback."
+ },
+ "GS-0137": {
+  "sku": "GS-0137",
+  "title": "The Kit Builder Blueprint",
+  "category": "Online Businesses",
+  "secondary": "Reselling",
+  "customer": "BOTH",
+  "location": "REMOTE",
+  "budget": "$1K-$5K",
+  "description": "Validate niche curated-kit ideas, choose compatible components, calculate landed costs, assemble and inspect stock, and manage sales and fulfillment. Inventory discipline and component compliance\u2014not assuming a bundle of common products will sell."
+ },
+ "GS-0052": {
+  "sku": "GS-0052",
+  "title": "Land Flipping Blueprint",
+  "category": "Reselling",
+  "secondary": "Online Businesses",
+  "customer": "BOTH",
+  "location": "REMOTE",
+  "budget": "$5K-$15K",
+  "description": "Explore land acquisition and resale with documented title, access, use constraints, pricing, and exit costs. Educational deal evaluation\u2014not investment advice, guaranteed appreciation, or approval to offer financing."
+ },
+ "GS-0138": {
+  "sku": "GS-0138",
+  "title": "The Laser Engraving Blueprint",
+  "category": "Local Services",
+  "secondary": "Equipment-Based Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Build a local personalization and small-batch production shop around repeat business customers, focused products, design approval, pricing, and quality control. Active manufacturing and relationship-building\u2014not buying a laser and waiting for automatic online sales."
+ },
+ "GS-0256": {
+  "sku": "GS-0256",
+  "title": "Laundromat Long-Dwell Media Network Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Advertising Networks",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Varies",
+  "description": "Blueprint for selling advertising on a network of laundromat screens and surfaces."
+ },
+ "GS-0056": {
+  "sku": "GS-0056",
+  "title": "Lawn and Seasonal Route Blueprint",
+  "category": "Home Services",
+  "secondary": "Route Businesses",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Build a dense mowing, trimming, and cleanup route, using reliable schedules and seasonal add-ons for existing customers. Track travel and equipment costs before expanding the service list or territory."
+ },
+ "GS-0139": {
+  "sku": "GS-0139",
+  "title": "The Legal Support Runner Blueprint",
+  "category": "Professional Services",
+  "secondary": "Mobile Businesses",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Explore authorized field and administrative support for legal offices: document delivery, record retrieval, filing logistics, deadline control, and completion records. A broader support-operation roadmap\u2014not legal advice or automatic authority for every court or service lane."
+ },
+ "GS-0279": {
+  "sku": "GS-0279",
+  "title": "The Licensed Sales Professional Blueprint",
+  "category": "Professional Services",
+  "secondary": "Licensed Sales",
+  "customer": "BOTH",
+  "location": "HYBRID",
+  "budget": "$1K-$5K",
+  "description": "Blueprint for working as a licensed sales professional."
+ },
+ "GS-0058": {
+  "sku": "GS-0058",
+  "title": "Life Event Partner Network Blueprint",
+  "category": "B2B Services",
+  "secondary": "Local Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Organize local business partnerships around life-event needs, using consent-based introductions, partner recruitment, and tracked outcomes. Validate each vertical's referral arrangements rather than assuming all paid introductions are permitted."
+ },
+ "GS-0252": {
+  "sku": "GS-0252",
+  "title": "Live Event Stick-Catching Games Blueprint",
+  "category": "Equipment-Based Businesses",
+  "secondary": "Event Entertainment",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Blueprint for running stick-catching games at live events."
+ },
+ "GS-0247": {
+  "sku": "GS-0247",
+  "title": "Live Shopping Business Blueprint",
+  "category": "Online Businesses",
+  "secondary": "Live Selling",
+  "customer": "B2C",
+  "location": "REMOTE",
+  "budget": "$1K-$5K",
+  "description": "Blueprint for running a live shopping business that sells through live video."
+ },
+ "GS-0055": {
+  "sku": "GS-0055",
+  "title": "Local Business Loyalty System Blueprint",
+  "category": "B2B Services",
+  "secondary": "Professional Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Install and manage small-business loyalty workflows: rewards rules, staff adoption, consent records, customer communications, and measured repeat behavior. Operational retention support\u2014not guaranteed incremental sales."
+ },
+ "GS-0057": {
+  "sku": "GS-0057",
+  "title": "Local Reputation Desk Blueprint",
+  "category": "B2B Services",
+  "secondary": "Professional Services",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Manage honest review requests, client-approved responses, separate service-recovery channels, and reputation reporting for local businesses. No fake reviews, satisfaction-based review gating, or guaranteed search rankings."
+ },
+ "GS-0162": {
+  "sku": "GS-0162",
+  "title": "The Lost Places Blueprint",
+  "category": "Consumer Services",
+  "secondary": "Tourism",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Blueprint for a business built around lost and hidden places."
+ },
+ "GS-0141": {
+  "sku": "GS-0141",
+  "title": "The Marine Cargo Salvage Desk Blueprint",
+  "category": "Reselling",
+  "secondary": "B2B Services",
+  "customer": "BOTH",
+  "location": "HYBRID",
+  "budget": "$5K-$15K",
+  "description": "Evaluate distressed commercial freight through document and release checks, cargo grading, recovery-value estimates, logistics costs, and resale channels. A capital-intensive acquisition and liquidation operation\u2014not casual mystery-box buying or guaranteed salvage margins."
+ },
+ "GS-0059": {
+  "sku": "GS-0059",
+  "title": "Mattress Money Machine Blueprint",
+  "category": "Home Services",
+  "secondary": "Mobile Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Build a mobile mattress-cleaning service around equipment demonstrations, customer communication, service visits, and rebooking. Describe the cleaning performed\u2014not unverified germ-kill, allergy-relief, or health outcomes."
+ },
+ "GS-0191": {
+  "sku": "GS-0191",
+  "title": "Mattress Sanitization Blueprint",
+  "category": "Equipment-Based Businesses",
+  "secondary": "Home Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": ""
+ },
+ "GS-0173": {
+  "sku": "GS-0173",
+  "title": "Meal Prep and Delivery Blueprint",
+  "category": "Food and Hospitality",
+  "secondary": "Meal Prep",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Blueprint for a meal prep and delivery business."
+ },
+ "GS-0060": {
+  "sku": "GS-0060",
+  "title": "Memorial Grave Care Blueprint",
+  "category": "Property Services",
+  "secondary": "Local Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Provide authorized gravesite care with cemetery rule checks, condition documentation, family photo reports, and optional seasonal visits. Respect material-specific limits and refer fragile or historic memorials beyond your competence."
+ },
+ "GS-0194": {
+  "sku": "GS-0194",
+  "title": "MicroSaaS Operator Blueprint",
+  "category": "Online Businesses",
+  "secondary": "MicroSaaS",
+  "customer": "BOTH",
+  "location": "REMOTE",
+  "budget": "Varies",
+  "description": "Blueprint for building and operating a small software product."
+ },
+ "GS-0269": {
+  "sku": "GS-0269",
+  "title": "Mobile Advertising Bicycle Blueprint",
+  "category": "Mobile Businesses",
+  "secondary": "Advertising",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Blueprint for a mobile advertising business built around advertising bicycles."
+ },
+ "GS-0298": {
+  "sku": "GS-0298",
+  "title": "Mobile Basketball Trailer Blueprint",
+  "category": "Mobile Businesses",
+  "secondary": "Event Entertainment",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Varies",
+  "description": "Blueprint for a mobile basketball trailer business."
+ },
+ "GS-0062": {
+  "sku": "GS-0062",
+  "title": "Mobile Collection Authority Blueprint",
+  "category": "Mobile Businesses",
+  "secondary": "Health and Healthcare Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Explore a mobile specimen-collection business serving employer accounts through qualified collection, chain-of-custody records, and laboratory handoffs. Collection operations\u2014not laboratory analysis or authority to interpret test results."
+ },
+ "GS-0161": {
+  "sku": "GS-0161",
+  "title": "The Mobile Comfort Showroom Blueprint",
+  "category": "Mobile Businesses",
+  "secondary": "Reselling",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$15K-$50K",
+  "description": "Plan a small mobile couch and mattress retail operation through curated inventory, paid appointment screening, fit checks, zone scheduling, home demonstrations, and delivery. Verify product and access requirements; same-day availability and retail profits are not guaranteed."
+ },
+ "GS-0061": {
+  "sku": "GS-0061",
+  "title": "Mobile Locksmith Blueprint",
+  "category": "Mobile Businesses",
+  "secondary": "Consumer Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Plan a vehicle-based locksmith service through service mix, verified customer authorization, training, supplier access, and job records. Tools alone do not authorize entry, key creation, or restricted access-control work."
+ },
+ "GS-0142": {
+  "sku": "GS-0142",
+  "title": "Mobile Notary Route Blueprint",
+  "category": "Professional Services",
+  "secondary": "Mobile Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Build an appointment-based mobile notary route around referral relationships, reliable travel, clear quoting, and accurate records. Commission scope and permitted charges must be verified for the jurisdiction\u2014not assumed from a national template."
+ },
+ "GS-0143": {
+  "sku": "GS-0143",
+  "title": "The Mobile Sharpening Route Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Mobile Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Develop a recurring sharpening route with disciplined item intake, tagging, scope checks, testing, returns, and service dates. Kitchen, beauty, garden, and specialty tools require different skills; accept only work matching verified training and equipment."
+ },
+ "GS-0184": {
+  "sku": "GS-0184",
+  "title": "Mobile Window Tinting Blueprint",
+  "category": "Mobile Businesses",
+  "secondary": "Automotive Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Blueprint for mobile window tinting."
+ },
+ "GS-0145": {
+  "sku": "GS-0145",
+  "title": "The Mobility Equipment Cleaning Route Blueprint",
+  "category": "Cleaning",
+  "secondary": "Health and Healthcare Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Provide scheduled cleaning and documentation for approved noncritical mobility-equipment surfaces using facility procedures and manufacturer-compatible products. Track inventory and exceptions; not equipment repair, sterilization, clinical validation, or a guarantee against infection."
+ },
+ "GS-0064": {
+  "sku": "GS-0064",
+  "title": "Money Left Behind Blueprint",
+  "category": "Professional Services",
+  "secondary": "Consumer Services",
+  "customer": "B2C",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Research overlooked consumer funds such as escrow refunds, deposits, and uncashed checks, with careful identity matching, outreach, and case records. A research-service framework\u2014not legal representation or guaranteed recovery."
+ },
+ "GS-0066": {
+  "sku": "GS-0066",
+  "title": "Move In Maintenance Operator Blueprint",
+  "category": "Home Services",
+  "secondary": "Mobile Businesses",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Serve new homeowners with useful supplies, setup tasks, and a defined small-project punch list. Verify competence and permitted service scope before offering installations or work belonging to regulated trades."
+ },
+ "GS-0063": {
+  "sku": "GS-0063",
+  "title": "Muscle Truck Money Blueprint",
+  "category": "Transportation",
+  "secondary": "Mobile Businesses",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Organize vehicle-based moving and hauling work through job selection, physical limits, customer expectations, proof of delivery, and expense tracking. Active lifting and transport\u2014not guaranteed platform approval or job availability."
+ },
+ "GS-0065": {
+  "sku": "GS-0065",
+  "title": "New Homeowner Welcome Network Blueprint",
+  "category": "B2B Services",
+  "secondary": "Online Businesses",
+  "customer": "B2B",
+  "location": "HYBRID",
+  "budget": "Under $1K",
+  "description": "Provide contractors with organized recent-home-sale information in defined territories, using data checks, scheduled delivery, and clear exclusivity terms. Records are not confirmed buyer inquiries or permission for unrestricted marketing."
+ },
+ "GS-0195": {
+  "sku": "GS-0195",
+  "title": "Niche Directory Website Blueprint",
+  "category": "Online Businesses",
+  "secondary": "Directory Websites",
+  "customer": "BOTH",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Blueprint for building a niche directory website."
+ },
+ "GS-0068": {
+  "sku": "GS-0068",
+  "title": "On Board Courier Blueprint",
+  "category": "Transportation",
+  "secondary": "B2B Services",
+  "customer": "B2B",
+  "location": "HYBRID",
+  "budget": "$1K-$5K",
+  "description": "Explore personally escorted, time-critical cargo missions and the later dispatch-network model. Focus on vetted assignments, custody, travel coordination, and documented handoffs\u2014not tourism or guaranteed mission volume."
+ },
+ "GS-0006": {
+  "sku": "GS-0006",
+  "title": "One Machine Blueprint",
+  "category": "Equipment-Based Businesses",
+  "secondary": "Mobile Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Evaluate a focused equipment-service business: choose one machine and service, validate demand, plan transport and upkeep, price jobs, and build customer relationships. Equipment ownership does not replace training or safe operating competence."
+ },
+ "GS-0277": {
+  "sku": "GS-0277",
+  "title": "The Online Store Operator Blueprint",
+  "category": "Online Businesses",
+  "secondary": "Ecommerce",
+  "customer": "B2C",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Blueprint for running an online store as an operator."
+ },
+ "GS-0267": {
+  "sku": "GS-0267",
+  "title": "Outdoor Lighting Transformation Blueprint",
+  "category": "Home Services",
+  "secondary": "Lighting",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Varies",
+  "description": "Blueprint for designing and installing outdoor lighting for homes."
+ },
+ "GS-0188": {
+  "sku": "GS-0188",
+  "title": "Oversized Gift and Novelty Delivery Blueprint",
+  "category": "Local Services",
+  "secondary": "Mobile Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Source, assemble, personalize, and locally deliver oversized gifts with a narrow product menu and repeatable occasion packages. Plan presentation, delivery logistics, and customer permissions\u2014not guaranteed viral reactions or sales."
+ },
+ "GS-0070": {
+  "sku": "GS-0070",
+  "title": "Paid Content Writing Blueprint",
+  "category": "Professional Services",
+  "secondary": "Online Businesses",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Build a specialist writing service through portfolio samples, niche selection, direct pitching, client onboarding, scope control, and pricing. Active client work\u2014not guaranteed retainers or automatic income from writing tools."
+ },
+ "GS-0158": {
+  "sku": "GS-0158",
+  "title": "The Paper Trail Blueprint",
+  "category": "Professional Services",
+  "secondary": "Mobile Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Explore a field legal-services operation combining process-serving, mobile-notary, and loan-signing appointments on shared routes. Each service retains its own verified authority, qualifications, records, and limits\u2014not legal representation or guaranteed assignment volume."
+ },
+ "GS-0146": {
+  "sku": "GS-0146",
+  "title": "The Parking Lot Maintenance Route Blueprint",
+  "category": "Commercial Services",
+  "secondary": "Route Businesses",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Build recurring private-property lot-maintenance accounts through condition reports, authorized touch-ups, scheduling, and qualified specialist coordination. Follow approved layouts and local scope requirements\u2014not public-road authority or permission to certify accessibility and fire-lane compliance."
+ },
+ "GS-0081": {
+  "sku": "GS-0081",
+  "title": "Party Vault Blueprint",
+  "category": "Consumer Services",
+  "secondary": "Local Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Plan an event-rental operation using portable entertainment kits, bookings, storage, delivery and pickup coordination. Evaluate storage permission, equipment condition, staffing, and operating costs before expanding locations."
+ },
+ "GS-0080": {
+  "sku": "GS-0080",
+  "title": "Permit Runner Blueprint",
+  "category": "B2B Services",
+  "secondary": "Professional Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Provide authorized permit-administration support through jurisdiction maps, document checks, submissions, status tracking, and contractor communication. Administrative coordination\u2014not design approval or a guaranteed permit outcome."
+ },
+ "GS-0079": {
+  "sku": "GS-0079",
+  "title": "Pest Control Authority Blueprint",
+  "category": "Home Services",
+  "secondary": "Route Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Explore a pest-control business through permission-path research, service-niche selection, setup, and recurring route operations. A business roadmap\u2014not pesticide-use training, a license, or permission to apply treatments."
+ },
+ "GS-0083": {
+  "sku": "GS-0083",
+  "title": "Pet Care Provider Blueprint",
+  "category": "Consumer Services",
+  "secondary": "Local Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Organize walking, sitting, boarding, and drop-in pet-care work through client profiles, scheduling, key handling, communication, and proof of service. Responsible animal care\u2014not guaranteed platform acceptance or bookings."
+ },
+ "GS-0082": {
+  "sku": "GS-0082",
+  "title": "Pet Waste Removal Business Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Home Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Build a scheduled pet-waste collection route through service-area selection, customer plans, route density, access and animal-safety rules, disposal, and retention. Active outdoor service\u2014not effortless subscription income or a guarantee that every yard or waste-disposal route is permitted."
+ },
+ "GS-0185": {
+  "sku": "GS-0185",
+  "title": "Piano Tuning and Service Route Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Specialty Service Route",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Blueprint for a piano tuning and service route."
+ },
+ "GS-0148": {
+  "sku": "GS-0148",
+  "title": "The Pickup and Fold Laundry Route Blueprint",
+  "category": "Cleaning",
+  "secondary": "Route Businesses",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Operate a pickup, wash-and-fold, and return route with careful garment handling, communication, pricing, and route density. Build independent demand lawfully and observe marketplace rules; recurring household need does not guarantee customer retention or order volume."
+ },
+ "GS-0236": {
+  "sku": "GS-0236",
+  "title": "Pinterest Profit Blueprint",
+  "category": "Online Businesses",
+  "secondary": "Pinterest / Traffic",
+  "customer": "BOTH",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Blueprint for building a Pinterest traffic system around keyword research, boards, pins, landing-page match, analytics, and monetization."
+ },
+ "GS-0235": {
+  "sku": "GS-0235",
+  "title": "Podcast Launch Blueprint",
+  "category": "Online Businesses",
+  "secondary": "Podcasting / Media",
+  "customer": "BOTH",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Blueprint for planning, launching, producing, guesting, promoting, and measuring a podcast."
+ },
+ "GS-0183": {
+  "sku": "GS-0183",
+  "title": "Portable Restroom Rental and Luxury Bathroom Trailers Blueprint",
+  "category": "Equipment-Based Businesses",
+  "secondary": "Rentals",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Varies",
+  "description": "Blueprint for renting portable restrooms and luxury bathroom trailers."
+ },
+ "GS-0084": {
+  "sku": "GS-0084",
+  "title": "Power Operator Blueprint",
+  "category": "Home Services",
+  "secondary": "Commercial Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Plan electrical-service business operations with verified scope, qualified workers, estimates, customer records, and operating safeguards. A business roadmap\u2014not wiring instruction or authorization for regulated electrical work."
+ },
+ "GS-0086": {
+  "sku": "GS-0086",
+  "title": "Premium Address and Customer Clarity Signage Blueprint",
+  "category": "Reselling",
+  "secondary": "B2B Services",
+  "customer": "BOTH",
+  "location": "HYBRID",
+  "budget": "$1K-$5K",
+  "description": "Source, assemble, package, and sell residential address and no-soliciting signs alongside standardized customer-direction signage for businesses. A physical-product operation built around sourcing, direct sales, inventory, and fulfillment\u2014not an app or subscription business."
+ },
+ "GS-0085": {
+  "sku": "GS-0085",
+  "title": "Pressure Washing Grime Off Profit On Blueprint",
+  "category": "Home Services",
+  "secondary": "Commercial Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Build a pressure-washing service around quoting, written scope, condition records, customer permission, and job economics. Surface-appropriate methods, runoff controls, training, and site safety must be verified for each job; not a universal cleaning procedure."
+ },
+ "GS-0087": {
+  "sku": "GS-0087",
+  "title": "Probate Acquisition Blueprint",
+  "category": "Reselling",
+  "secondary": "Professional Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Research probate properties, verify estate decision-making authority, approach families respectfully, and evaluate offers and closing costs. Business education with jurisdiction-specific legal and title checks\u2014not investment advice or guaranteed discounted deals."
+ },
+ "GS-0088": {
+  "sku": "GS-0088",
+  "title": "Process Server Blueprint",
+  "category": "Professional Services",
+  "secondary": "Local Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "A jurisdiction-first process-serving workflow: verify assignment instructions and authority, attempt lawful service, document facts, and return proof. Includes safety and privacy boundaries; the blueprint itself does not authorize service or replace controlling court rules."
+ },
+ "GS-0242": {
+  "sku": "GS-0242",
+  "title": "Professional Childproofing and Home Safety Blueprint",
+  "category": "Home Services",
+  "secondary": "Home Safety",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Varies",
+  "description": "Blueprint for a childproofing and home safety service that assesses homes, installs safety hardware and educates parents."
+ },
+ "GS-0089": {
+  "sku": "GS-0089",
+  "title": "Professional Companionship Blueprint",
+  "category": "Consumer Services",
+  "secondary": "Local Services",
+  "customer": "B2C",
+  "location": "HYBRID",
+  "budget": "Under $1K",
+  "description": "Offer scheduled, paid platonic conversation or event presence with clear scope, screening, booking, and safety boundaries. Not therapy, caregiving, personal care, transportation, dating, or crisis response; verify the rules for the exact service offered."
+ },
+ "GS-0182": {
+  "sku": "GS-0182",
+  "title": "Professional House and Pet Sitting Blueprint",
+  "category": "Consumer Services",
+  "secondary": "Pet and Home Care",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Blueprint for professional house and pet sitting."
+ },
+ "GS-0166": {
+  "sku": "GS-0166",
+  "title": "The Proof Operator Blueprint",
+  "category": "Inspection and Auditing",
+  "secondary": "B2B Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Build a bounded evidence-documentation service through assignment scope, field photographs, organized records, report writing, privacy, and quality control. Explore property, construction, vehicle, and completion-proof lanes without implying engineering, appraisal, claims authority, or expert-witness qualification."
+ },
+ "GS-0092": {
+  "sku": "GS-0092",
+  "title": "Propane Tank Cage and Exchange Business Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Equipment-Based Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$15K-$50K",
+  "description": "Compare three propane-exchange business models: retail hosting, recruiting host locations, and independent operation. Evaluate written supplier agreements, site duties, insurance, and compliance responsibilities before choosing a lane; independent operation is regulated hazardous-material distribution."
+ },
+ "GS-0093": {
+  "sku": "GS-0093",
+  "title": "Property Preservation Blueprint",
+  "category": "Property Services",
+  "secondary": "Commercial Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Work through property-preservation vendor networks on authorized vacant-property maintenance and securing assignments. Learn work-order selection, documentation, invoicing, and chargeback controls while verifying client requirements, entry authority, and permitted trade scope."
+ },
+ "GS-0091": {
+  "sku": "GS-0091",
+  "title": "Property Watch Blueprint",
+  "category": "Property Services",
+  "secondary": "Route Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Provide owner-authorized vacant-property visits with condition photographs, factual reports, and an agreed escalation process. A narrow observation service\u2014not property management, security, a professional home inspection, or an insurance-coverage guarantee."
+ },
+ "GS-0095": {
+  "sku": "GS-0095",
+  "title": "Rank and Rent Blueprint",
+  "category": "Online Businesses",
+  "secondary": "B2B Services",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Build owned local-service lead websites and rent exclusive lead access to qualified providers, using transparent call routing and useful content. Not a fake local-business identity strategy or a guarantee of rankings, traffic, or recurring renters."
+ },
+ "GS-0096": {
+  "sku": "GS-0096",
+  "title": "The Recoat Blueprint",
+  "category": "Home Services",
+  "secondary": "Property Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Evaluate a bathtub and surface-refinishing business through practice, surface screening, product controls, safe job readiness, customer communication, and property-manager relationships. Chemical coating work requires training and site-specific controls\u2014not a retail kit as permission for paid jobs."
+ },
+ "GS-0034": {
+  "sku": "GS-0034",
+  "title": "The Recovery Operator Blueprint",
+  "category": "Professional Services",
+  "secondary": "Online Businesses",
+  "customer": "BOTH",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Explore an overlooked-funds recovery operation through records research, claimant identification, outreach, intake, document tracking, and appropriate professional handoffs. Compare recovery lanes and verify jurisdiction-specific boundaries; not legal advice or authority to recover every claim."
+ },
+ "GS-0234": {
+  "sku": "GS-0234",
+  "title": "Referral Pipeline Agency Blueprint",
+  "category": "Business Services",
+  "secondary": "Referral Partnerships",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Agency blueprint for designing, recruiting, tracking, and reporting structured referral-partner pipelines for clients."
+ },
+ "GS-0099": {
+  "sku": "GS-0099",
+  "title": "Remote Bookkeeping Operator Blueprint",
+  "category": "Professional Services",
+  "secondary": "B2B Services",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Build a remote monthly bookkeeping practice around transaction records, reconciliations, cleanup, close support, and management reports. Escalate questions outside written scope; ordinary bookkeeping is not CPA, tax, payroll-filing, or attest service."
+ },
+ "GS-0237": {
+  "sku": "GS-0237",
+  "title": "Remote Care Technology Setup Desk Blueprint",
+  "category": "Health and Healthcare Services",
+  "secondary": "Remote Care Technology",
+  "customer": "BOTH",
+  "location": "HYBRID",
+  "budget": "Varies",
+  "description": "Operator blueprint for installing, connecting, training, and troubleshooting remote-care technology while maintaining clear non-clinical boundaries."
+ },
+ "GS-0101": {
+  "sku": "GS-0101",
+  "title": "Remote Mining Operations Controller Blueprint",
+  "category": "Education",
+  "secondary": "Career Entry",
+  "customer": "B2C",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Career guide for working as a remote mining operations controller."
+ },
+ "GS-0098": {
+  "sku": "GS-0098",
+  "title": "Remote Shelf Blueprint",
+  "category": "B2B Services",
+  "secondary": "Professional Services",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Build a remote operations-support service for contractors: front-desk workflows, quote follow-up, permit administration, vendor coordination, and documented credit queries. Work within written client authority and clear limits\u2014not trade, tax, legal, or claims advice."
+ },
+ "GS-0278": {
+  "sku": "GS-0278",
+  "title": "The Rental Property Operator Blueprint",
+  "category": "Property Services",
+  "secondary": "Rental Property",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$15K-$50K",
+  "description": "Blueprint for operating rental property."
+ },
+ "GS-0100": {
+  "sku": "GS-0100",
+  "title": "Rental Turnover Blueprint",
+  "category": "Property Services",
+  "secondary": "Cleaning",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Coordinate between-tenant rental turnover through condition-based quotes, cleaning, defined small repairs, and completion documentation. Build property-manager accounts with clear exclusions; major repairs and regulated trades require separately qualified providers."
+ },
+ "GS-0102": {
+  "sku": "GS-0102",
+  "title": "Reusable Moving Bin Rental Blueprint",
+  "category": "Equipment-Based Businesses",
+  "secondary": "Local Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Rent reusable moving bins through a reserve, deliver, collect, clean, and inspect cycle. Plan fleet capacity, route density, storage, contamination controls, deposits, and late returns. Bin rental\u2014not furniture moving or guaranteed fleet utilization."
+ },
+ "GS-0103": {
+  "sku": "GS-0103",
+  "title": "Road Shelf Blueprint",
+  "category": "Property Services",
+  "secondary": "Mobile Businesses",
+  "customer": "BOTH",
+  "location": "HYBRID",
+  "budget": "Under $1K",
+  "description": "Deliver structured property and project documentation: turnover condition records, vacant-site observations, proof visits, closeout capture, and warranty-window records. Organized photographs and factual deliverables\u2014not home-watch accreditation, lender preservation, or professional inspection certification."
+ },
+ "GS-0104": {
+  "sku": "GS-0104",
+  "title": "Roadside Assistance Blueprint",
+  "category": "Automotive",
+  "secondary": "Mobile Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Plan a non-tow roadside service through dispatch, customer communication, service selection, and job economics. Verify competence, site safety, insurance, and permitted scope before offering jump starts, tire changes, fuel delivery, or lockout work; no guaranteed response time or calls."
+ },
+ "GS-0167": {
+  "sku": "GS-0167",
+  "title": "The Route Board Blueprint",
+  "category": "B2B Services",
+  "secondary": "Route Businesses",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Package existing professional driving routes as local advertising placements through advertiser relationships, territory-based offers, vehicle permissions, reporting, and driver-network coordination. An active media-sales service\u2014not a guaranteed platform payout or promise that vehicle visibility produces customers."
+ },
+ "GS-0105": {
+  "sku": "GS-0105",
+  "title": "Route Revenue Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Route Revenue",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Blueprint for building revenue from a local service route."
+ },
+ "GS-0106": {
+  "sku": "GS-0106",
+  "title": "RX Pipeline Blueprint",
+  "category": "Consumer Services",
+  "secondary": "Health and Healthcare Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Build and maintain prescription-discount card distribution relationships with community organizations. Evaluate actual user savings and written affiliate terms, disclose commissions, and manage restocking. Active distribution\u2014not medical advice or guaranteed savings and commissions."
+ },
+ "GS-0107": {
+  "sku": "GS-0107",
+  "title": "Safety Training Authority Blueprint",
+  "category": "Education",
+  "secondary": "B2B Services",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Plan a training business within documented instructor and issuing-program authority: choose a credential lane, verify curriculum and venue requirements, organize classes, and maintain records. The blueprint does not confer teaching authority, certification, or regulatory compliance."
+ },
+ "GS-0109": {
+  "sku": "GS-0109",
+  "title": "The Screen Route Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Home Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Build a mobile window-screen and screen-door service around measuring, suitable materials, fabrication, installation, local routes, and customer communication. A practical repair-and-replacement operation\u2014not a guarantee of demand or qualification for unrelated window work."
+ },
+ "GS-0110": {
+  "sku": "GS-0110",
+  "title": "Seasonal Soap and Candle Gift Business Blueprint",
+  "category": "Online Businesses",
+  "secondary": "Local Services",
+  "customer": "BOTH",
+  "location": "HYBRID",
+  "budget": "$1K-$5K",
+  "description": "Build a seasonal gift-product operation with a focused soap and candle range, cost sheets, selling calendars, repeat customers, and wholesale opportunities. Manage inventory and verify product requirements; a manufacturing and sales business\u2014not a guaranteed profitable hobby."
+ },
+ "GS-0239": {
+  "sku": "GS-0239",
+  "title": "Secure Parcel Installation Operator Blueprint",
+  "category": "Home Services",
+  "secondary": "Secure Parcel Systems",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Operator blueprint for assessing sites, selecting secure parcel-receiving equipment, installing it, training customers, and providing maintenance."
+ },
+ "GS-0268": {
+  "sku": "GS-0268",
+  "title": "Self-Portrait Studio Blueprint",
+  "category": "Consumer Services",
+  "secondary": "Photography",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Blueprint for a self-portrait studio where customers photograph themselves."
+ },
+ "GS-0186": {
+  "sku": "GS-0186",
+  "title": "Senior Independence Home Modification Blueprint",
+  "category": "Home Services",
+  "secondary": "Accessibility",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Blueprint for home modifications that help seniors stay independent."
+ },
+ "GS-0111": {
+  "sku": "GS-0111",
+  "title": "Senior Tech Concierge Blueprint",
+  "category": "Consumer Services",
+  "secondary": "Home Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Provide patient, plain-language help with everyday devices, connectivity, photos, and online communication for older adults and families. A trust-based support service with clear access and privacy boundaries\u2014not a traditional repair shop or a security guarantee."
+ },
+ "GS-0151": {
+  "sku": "GS-0151",
+  "title": "The Shaded Story Studio Blueprint",
+  "category": "AI Businesses",
+  "secondary": "Professional Services",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Create a naming and brand-voice studio for beauty, fragrance, candles, and related products. Use AI for ideation while providing human curation, coherent creative directions, copy, and screening flags\u2014not legal trademark clearance or a guarantee that a name is available."
+ },
+ "GS-0253": {
+  "sku": "GS-0253",
+  "title": "Single-Serve Honey Packaging and Distribution Blueprint",
+  "category": "Food and Hospitality",
+  "secondary": "Packaged Food",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Varies",
+  "description": "Blueprint for packaging and distributing single-serve honey."
+ },
+ "GS-0238": {
+  "sku": "GS-0238",
+  "title": "Small Supplier Regulatory Data Wrangler Blueprint",
+  "category": "Professional Services",
+  "secondary": "Supplier Regulatory Data",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Varies",
+  "description": "Operator blueprint for running an outsourced supplier compliance-data desk that organizes evidence, answers questionnaires, and maintains reusable regulatory data."
+ },
+ "GS-0114": {
+  "sku": "GS-0114",
+  "title": "Specialized Interpreting Services Blueprint",
+  "category": "Professional Services",
+  "secondary": "Health and Healthcare Services",
+  "customer": "BOTH",
+  "location": "HYBRID",
+  "budget": "Under $1K",
+  "description": "Explore an ASL interpreting business through deliberate language and interpreting training, credential-path verification, event assignments, and corporate accounts. Conversational signing alone is not job readiness; professional scope depends on the setting and required qualifications."
+ },
+ "GS-0115": {
+  "sku": "GS-0115",
+  "title": "Specialty Detailing Business Blueprint",
+  "category": "Commercial Services",
+  "secondary": "Mobile Businesses",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Plan a B2B detailing service for marine assets, commercial coaches, or private aircraft, building relationships with facility and fleet gatekeepers. Each lane needs its own competence, facility permission, methods, and insurance\u2014not ordinary car washing or guaranteed anchor contracts."
+ },
+ "GS-0258": {
+  "sku": "GS-0258",
+  "title": "Specialty Equipment Marketplace to eBay Reselling Blueprint",
+  "category": "Reselling",
+  "secondary": "Online Marketplaces",
+  "customer": "B2C",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Blueprint for sourcing from specialty equipment marketplaces and reselling on eBay."
+ },
+ "GS-0116": {
+  "sku": "GS-0116",
+  "title": "Start a Tax Preparation Business Blueprint",
+  "category": "Professional Services",
+  "secondary": "Consumer Services",
+  "customer": "B2C",
+  "location": "HYBRID",
+  "budget": "$1K-$5K",
+  "description": "Explore tax-preparation business setup, client intake, security, quality control, seasonal operations, and referral limits. The current manuscript uses tax-year 2025 examples for returns filed in 2026; reverify annual rules before use. Not a credential or permission to prepare every return."
+ },
+ "GS-0150": {
+  "sku": "GS-0150",
+  "title": "The Stash Spot Blueprint",
+  "category": "Local Services",
+  "secondary": "B2B Services",
+  "customer": "B2B",
+  "location": "HYBRID",
+  "budget": "Under $1K",
+  "description": "Explore a luggage-storage host recruitment network: scout suitable businesses, evaluate platform policies, pitch locations, and negotiate permitted revenue-sharing arrangements. A relationship and network operation\u2014not storing bags yourself or assuming platforms authorize a recurring broker commission."
+ },
+ "GS-0118": {
+  "sku": "GS-0118",
+  "title": "Storefront Lettering and Window Painting Blueprint",
+  "category": "Commercial Services",
+  "secondary": "Route Businesses",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Build a local visual-merchandising service with seasonal window lettering, changing menu boards, and permitted painted signage. Develop craft skills, price materials and labor, and schedule repeat accounts\u2014not simply selling artwork or guaranteeing increased foot traffic."
+ },
+ "GS-0240": {
+  "sku": "GS-0240",
+  "title": "Substack Newsletter Blueprint",
+  "category": "Online Businesses",
+  "secondary": "Newsletter Publishing",
+  "customer": "BOTH",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Blueprint for selecting a newsletter niche, publishing consistently, growing subscribers, converting paid members, selling sponsorships, pricing tiers, and managing retention."
+ },
+ "GS-0121": {
+  "sku": "GS-0121",
+  "title": "Surface Shift Operator Blueprint",
+  "category": "Home Services",
+  "secondary": "Property Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Explore a concrete-resurfacing business focused on renewing suitable existing surfaces with decorative overlay systems. Evaluate customer needs, job scope, local requirements, and qualified execution\u2014not structural diagnosis, universal repair suitability, or technical trade training."
+ },
+ "GS-0123": {
+  "sku": "GS-0123",
+  "title": "Swap and Stay Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Equipment-Based Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$15K-$50K",
+  "description": "Plan a local equipment-rental operation with appliance delivery and swap workflows, inventory discipline, written customer terms, and lawful collections. A separately gated seasonal venue-comfort lane requires site-specific approval; not permission for unsafe installation or self-help recovery."
+ },
+ "GS-0126": {
+  "sku": "GS-0126",
+  "title": "Teach Tutor Coach Blueprint",
+  "category": "Education",
+  "secondary": "Online Businesses",
+  "customer": "B2C",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Package demonstrated knowledge into bounded teaching, tutoring, or coaching sessions through suitable platforms and networks. Prepare accurate profiles and repeatable sessions while verifying subject, learner-age, credential, and platform requirements\u2014not guaranteed approval or bookings."
+ },
+ "GS-0246": {
+  "sku": "GS-0246",
+  "title": "The Tech Career Entry Playbook Blueprint",
+  "category": "Education",
+  "secondary": "Career Entry",
+  "customer": "B2C",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Career entry playbook for getting started in technology work."
+ },
+ "GS-0153": {
+  "sku": "GS-0153",
+  "title": "The Textbook Arbitrage Route Blueprint",
+  "category": "Reselling",
+  "secondary": "Mobile Businesses",
+  "customer": "B2B",
+  "location": "HYBRID",
+  "budget": "Under $1K",
+  "description": "Run an ISBN-based sourcing and buyback workflow: compare current offers, verify edition, format, condition and terms, calculate the net spread, ship accepted stock, and track actual payouts. Disciplined inventory arbitrage\u2014not a locked-in quote or guaranteed profit before buyer inspection."
+ },
+ "GS-0157": {
+  "sku": "GS-0157",
+  "title": "Themed Content Studio Blueprint",
+  "category": "Commercial Services",
+  "secondary": "Local Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$15K-$50K",
+  "description": "Plan an hourly content-creation space through premises selection, themed sets, equipment, booking policies, pricing, marketing, cleaning, and room resets. A fixed-location hospitality and rental operation\u2014not a guarantee of bookings or an equipment purchase alone."
+ },
+ "GS-0272": {
+  "sku": "GS-0272",
+  "title": "The Trade Entry Playbook",
+  "category": "Education",
+  "secondary": "Career Entry",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Playbook for entering the skilled trades."
+ },
+ "GS-0165": {
+  "sku": "GS-0165",
+  "title": "The Trusted Caregiver",
+  "category": "Consumer Services",
+  "secondary": "Health and Healthcare Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Explore a care-service business through suitable platform opportunities, clear service boundaries, profiles, references, screening, family communication, scheduling, and repeat bookings. Real responsibility for people and property\u2014not guaranteed platform approval or qualification for clinical or regulated care."
+ },
+ "GS-0124": {
+  "sku": "GS-0124",
+  "title": "The UGC Content Studio Blueprint",
+  "category": "Professional Services",
+  "secondary": "Content Production",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Blueprint for a studio producing user-generated-style ad content for brands."
+ },
+ "GS-0152": {
+  "sku": "GS-0152",
+  "title": "The Unclaimed Baggage Reselling Blueprint",
+  "category": "Reselling",
+  "secondary": "Online Businesses",
+  "customer": "B2C",
+  "location": "HYBRID",
+  "budget": "$5K-$15K",
+  "description": "Evaluate authorized lost-property and surplus inventory sourcing, auction terms, bid limits, sorting, condition checks, pricing, and resale channels. Preserve source provenance and privacy, and screen restricted goods\u2014not permission to bypass device locks or resell unsafe or unlawfully transferred items."
+ },
+ "GS-0177": {
+  "sku": "GS-0177",
+  "title": "Unclaimed Cargo Blueprint",
+  "category": "Reselling",
+  "secondary": "Online Businesses",
+  "customer": "B2C",
+  "location": "HYBRID",
+  "budget": "$5K-$15K",
+  "description": "Evaluate authorized abandoned-cargo and surplus acquisition through seller authority, title and release records, product eligibility, freight and storage costs, and resale planning. Distinct sourcing channels retain their own rules\u2014not a manifest or auction listing as proof that any goods can be sold."
+ },
+ "GS-0168": {
+  "sku": "GS-0168",
+  "title": "Underground Utility Locating Blueprint",
+  "category": "Commercial Services",
+  "secondary": "B2B Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Compare employee and private-business paths in underground utility locating, including client requirements, equipment, documentation, pricing, and scope limits. Safety-critical field work requires verified training and authority; this guide does not establish excavation clearance or guarantee that every utility is found."
+ },
+ "GS-0169": {
+  "sku": "GS-0169",
+  "title": "Vehicle Inspection Blueprint",
+  "category": "Inspection and Auditing",
+  "secondary": "Automotive",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Practical operating instructions for a vehicle-inspection business, supported by field checklists, customer paperwork, and an inspection workflow."
+ },
+ "GS-0170": {
+  "sku": "GS-0170",
+  "title": "Vehicle Relocation Driver Blueprint",
+  "category": "Transportation",
+  "secondary": "Automotive",
+  "customer": "B2B",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Evaluate driveaway assignments through company screening, load selection, vehicle handoffs, route chaining, return travel, and true trip costs. Driving someone else's vehicle is active logistics work\u2014not a loaded-mile rate as guaranteed net income or automatic dispatch approval."
+ },
+ "GS-0172": {
+  "sku": "GS-0172",
+  "title": "Virtual Showcase Blueprint",
+  "category": "Online Businesses",
+  "secondary": "AI Businesses",
+  "customer": "BOTH",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Create client-authorized vacation-rental marketing videos from existing photographs using AI-supported production, review, and delivery. Verify image rights and property accuracy and disclose synthetic content appropriately\u2014not an actual filmed walkthrough or a promise of increased bookings."
+ },
+ "GS-0171": {
+  "sku": "GS-0171",
+  "title": "Voice Desk Blueprint",
+  "category": "Online Businesses",
+  "secondary": "B2B Services",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Produce business phone-system audio: discovery, approved scripts, pronunciation checks, recording, editing, phone-bandwidth quality checks, delivery, archiving, and updates. Compare voice-only gigs with a full production desk\u2014not a live receptionist or guaranteed recurring clients."
+ },
+ "GS-0164": {
+  "sku": "GS-0164",
+  "title": "Wall Surface Operator Blueprint",
+  "category": "Home Services",
+  "secondary": "Property Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Explore a drywall and interior-finish business around patching, texture, repair, restoration, estimating, customer relationships, and qualified crews. An operator-level roadmap\u2014not finishing instruction, hazardous-material remediation training, or authority to perform regulated construction."
+ },
+ "GS-0154": {
+  "sku": "GS-0154",
+  "title": "The Warranty Contractor Desk Blueprint",
+  "category": "Home Services",
+  "secondary": "B2B Services",
+  "customer": "BOTH",
+  "location": "HYBRID",
+  "budget": "$1K-$5K",
+  "description": "Explore a home-warranty vendor-of-record operation through network qualification, approved subcontractor relationships, assignment coordination, documentation, and quality control. Written contracts and trade requirements govern the work\u2014not automatic vendor approval or permission to subcontract any job."
+ },
+ "GS-0175": {
+  "sku": "GS-0175",
+  "title": "Website Flip Blueprint",
+  "category": "Online Businesses",
+  "secondary": "B2B Services",
+  "customer": "B2B",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "Run a demo-first local website service through prospect research, bounded sample sites, sales conversations, final customization, and ownership handoff. Use authorized content and disclose ongoing costs; not automatic sales, guaranteed income, or acquiring and reselling an established traffic asset."
+ },
+ "GS-0189": {
+  "sku": "GS-0189",
+  "title": "Wedding Officiant Blueprint",
+  "category": "Consumer Services",
+  "secondary": "Professional Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Build a ceremony service around verified solemnization authority, couple consultation, personalized scripts, preparation, reliable performance, paperwork, and referral relationships. The blueprint does not confer officiant authority or guarantee bookings; requirements depend on the ceremony's jurisdiction."
+ },
+ "GS-0174": {
+  "sku": "GS-0174",
+  "title": "Whole Home Water Treatment Operator Blueprint",
+  "category": "Home Services",
+  "secondary": "Local Services",
+  "customer": "B2C",
+  "location": "LOCAL",
+  "budget": "$5K-$15K",
+  "description": "Plan a residential water-treatment service through appropriate testing, documented product selection, qualified installation coordination, and ongoing maintenance. A business roadmap\u2014not potability certification, laboratory analysis, plumbing qualification, or an unsupported health-outcome promise."
+ },
+ "GS-0176": {
+  "sku": "GS-0176",
+  "title": "Windshield Chip Route Blueprint",
+  "category": "Automotive",
+  "secondary": "Mobile Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Plan a mobile windshield-chip service through written authorization, repairability screening, documented exclusions, qualified execution, and route relationships. Manufacturer and repair-system criteria govern each job\u2014not guaranteed invisibility, structural restoration, inspection passage, or insurance payment."
+ },
+ "GS-0178": {
+  "sku": "GS-0178",
+  "title": "Wood Pallet Removal and Resale Blueprint",
+  "category": "Route Businesses",
+  "secondary": "Reselling",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Build a commercial pallet pickup and resale route around documented ownership permission, buyer specifications, condition screening, load handling, and route costs. A supply-and-logistics operation\u2014not collecting any visible pallet or claiming used stock is certified and fit for every purpose."
+ },
+ "GS-0241": {
+  "sku": "GS-0241",
+  "title": "Workshop Day Operator Blueprint",
+  "category": "Professional Services",
+  "secondary": "Workshops / Facilitation",
+  "customer": "B2B",
+  "location": "HYBRID",
+  "budget": "$1K-$5K",
+  "description": "Blueprint for designing, pricing, selling, facilitating, and following up on premium workshop-day engagements."
+ },
+ "GS-0155": {
+  "sku": "GS-0155",
+  "title": "The Worm Farming Blueprint",
+  "category": "Local Services",
+  "secondary": "Route Businesses",
+  "customer": "BOTH",
+  "location": "HYBRID",
+  "budget": "Under $1K",
+  "description": "Plan a local worm-supply operation around recurring buyer needs, suitable species, controlled production, harvesting, inventory, and scheduled deliveries of worms and castings. A biological production and route business\u2014not effortless mail-order income or guaranteed reproduction and sales."
+ },
+ "GS-0179": {
+  "sku": "GS-0179",
+  "title": "Woven Furniture Repair and Restoration Blueprint",
+  "category": "Home Services",
+  "secondary": "Local Services",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "Under $1K",
+  "description": "Develop a skilled repair service for existing woven seating and furniture through material identification, customer intake, scoped estimates, approved methods, and completion records. Refer work beyond demonstrated competence; not antique authentication, conservation qualification, or guaranteed value preservation."
+ },
+ "GS-0181": {
+  "sku": "GS-0181",
+  "title": "Yard Cleanup and Snow Removal Route Blueprint",
+  "category": "Home Services",
+  "secondary": "Route Businesses",
+  "customer": "BOTH",
+  "location": "LOCAL",
+  "budget": "$1K-$5K",
+  "description": "Organize dense recurring outdoor-cleanup stops with defined disposal and access rules, seasonal customer handoffs, and route-cost tracking. Add separately scoped snow service where appropriate\u2014not a guarantee of bare pavement, fixed storm response, or year-round demand in every climate."
+ },
+ "GS-0156": {
+  "sku": "GS-0156",
+  "title": "The YouTube Trend Desk Blueprint",
+  "category": "Online Businesses",
+  "secondary": "Digital Products",
+  "customer": "B2C",
+  "location": "REMOTE",
+  "budget": "Under $1K",
+  "description": "A faceless YouTube channel business built around researching audience demand, producing original videos, scheduling releases, and improving content using channel analytics."
+ }
+}
