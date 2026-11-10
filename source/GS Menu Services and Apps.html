@@ -11,7 +11,9 @@
 .gs-nav .gs-dd__panel a:hover{background:rgba(91,155,255,.12)}
 .gs-menu__label{display:block;color:#9DB4CF;font:600 12px var(--gs-font-body,Inter,Arial,sans-serif);letter-spacing:.14em;text-transform:uppercase;padding:14px 12px 4px}
 .gs-menu__panel{max-height:calc(100vh - 90px);overflow-y:auto}
-@media(min-width:960px) and (max-width:1149px){header.gs-header .gs-nav{display:none!important}header.gs-header .gs-menu{display:block!important}}
+header.gs-header .gs-brand{flex-shrink:0}
+@media(min-width:960px) and (max-width:1179px){header.gs-header .gs-nav{display:none!important}header.gs-header .gs-menu{display:block!important}}
+@media(min-width:1180px){header.gs-header .gs-nav{gap:14px!important}header.gs-header .gs-nav a,header.gs-header .gs-dd>summary{font-size:14px!important}}
 @media(min-width:900px){.gs-footer__cols.gs-has-services{grid-template-columns:1.4fr repeat(5,1fr)!important}}
 </style>
 <script>
