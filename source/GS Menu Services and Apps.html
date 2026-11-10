@@ -34,11 +34,18 @@ function add(){
   document.addEventListener("click",function(e){if(!d.contains(e.target))d.removeAttribute("open")});
  }
  var mp=document.querySelector("header.gs-header .gs-menu__panel");
- if(mp&&!mp.querySelector(".gs-menu__label")){
-  var ref2=mp.querySelector('a[href="/about"]');
-  var lb=document.createElement("span");lb.className="gs-menu__label";lb.textContent="Services";mp.insertBefore(lb,ref2||null);
-  SV.forEach(function(v){mp.insertBefore(a(v[0],v[1],"services_"+v[0].slice(1)),ref2||null)});
-  mp.insertBefore(a(APPS,"Apps","apps"),ref2||null);
+ if(mp&&!mp.getAttribute("data-gs-built")){
+  /* Menu button panel: Home, Apps, then Business, Services and Company groups */
+  var MENU=[["/home","Home","home"],[APPS,"Apps","apps"],
+   "Business",["/find-your-path","Find Your Path","find_your_path"],["/fix-assessment","Find Your Fix","fix_my_business"],["/blueprints","Virtual Library","virtual_library"],["/90-day-challenge","90-Day Challenge","_day_challenge"],
+   "Services"].concat(SV.map(function(v){return [v[0],v[1],"services_"+v[0].slice(1)]})).concat([
+   "Company",["/about","About","about"],["/faq","FAQ","faq"],["/contact","Contact","contact"]]);
+  mp.innerHTML="";
+  MENU.forEach(function(m){
+   if(typeof m==="string"){var lb=document.createElement("span");lb.className="gs-menu__label";lb.textContent=m;mp.appendChild(lb)}
+   else{var l=a(m[0],m[1],m[2]);if(cur()===m[0])l.setAttribute("aria-current","page");mp.appendChild(l)}
+  });
+  mp.setAttribute("data-gs-built","1");
  }
  var fc=document.querySelector("footer.gs-footer .gs-footer__cols");
  if(fc&&!fc.classList.contains("gs-has-services")){
