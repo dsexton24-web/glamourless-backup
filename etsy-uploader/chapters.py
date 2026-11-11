@@ -70,7 +70,7 @@ def from_pdf_outline(r):
 def chapters(pdf_path, docx_path):
     r = pypdf.PdfReader(pdf_path)
     out = from_pdf_outline(r)
-    if not (6 <= len(out) <= 60) and docx_path:
+    if docx_path and (len(out) < 10 or len(out) > 60):
         d = from_docx(docx_path)
-        if d: out = d
+        if d and (len(out) < 6 or len(out) > 60 or len(d) > len(out)): out = d
     return len(r.pages), out
