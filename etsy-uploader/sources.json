@@ -1139,5 +1139,390 @@
   "docx": "Glamourless Systems Blueprints and Bundles/GS-0193 AI Agency Operator Blueprint/Blueprint/GS-0193 AI Agency Operator Blueprint.docx",
   "cover": "Glamourless Systems Blueprints and Bundles/GS-0193 AI Agency Operator Blueprint/CV-GS-0193 AI Agency Operator Blueprint Cover.png",
   "mockup": "Glamourless Systems Blueprints and Bundles/GS-0193 AI Agency Operator Blueprint/MK-GS-0193-01 AI Agency Operator Blueprint Mockup.png"
+ },
+ "GS-0195": {
+  "title": "Niche Directory Website Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0195 Niche Directory Website Blueprint/Blueprint/GS-0195 Niche Directory Website Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0195 Niche Directory Website Blueprint/Blueprint/GS-0195 Niche Directory Website Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0195 Niche Directory Website Blueprint/CV-GS-0195 The Niche Directory Website Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0195 Niche Directory Website Blueprint/MK-GS-0195-01 Niche Directory Website Blueprint Mockup.png"
+ },
+ "GS-0196": {
+  "title": "Contextual Collectible Vending Route Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0196 Contextual Collectible Vending Route Blueprint/Blueprint/GS-0196 Contextual Collectible Vending Route Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0196 Contextual Collectible Vending Route Blueprint/Blueprint/GS-0196 Contextual Collectible Vending Route Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0196 Contextual Collectible Vending Route Blueprint/CV-GS-0196 Contextual Collectible Vending Route Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0196 Contextual Collectible Vending Route Blueprint/MK-GS-0196-01 Contextual Collectible Vending Route Blueprint Mockup.png"
+ },
+ "GS-0228": {
+  "title": "Agentic Commerce Readiness and Testing Service Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0228 Agentic Commerce Readiness and Testing Service Blueprint/Blueprint/GS-0228 Agentic Commerce Readiness and Testing Service Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0228 Agentic Commerce Readiness and Testing Service Blueprint/Blueprint/GS-0228 Agentic Commerce Readiness and Testing Service Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0228 Agentic Commerce Readiness and Testing Service Blueprint/CV-GS-0228 Agentic Commerce Readiness and Testing Service Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0228 Agentic Commerce Readiness and Testing Service Blueprint/MK-GS-0228-01 Agentic Commerce Readiness and Testing Service Blueprint Mockup.png"
+ },
+ "GS-0229": {
+  "title": "Digital Access Continuity Service Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0229 Digital Access Continuity Service Blueprint/Blueprint/GS-0229 Digital Access Continuity Service Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0229 Digital Access Continuity Service Blueprint/Blueprint/GS-0229 Digital Access Continuity Service Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0229 Digital Access Continuity Service Blueprint/CV-GS-0229 Digital Access Continuity Service Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0229 Digital Access Continuity Service Blueprint/MK-GS-0229-01 Digital Access Continuity Service Blueprint Mockup.png"
+ },
+ "GS-0230": {
+  "title": "AI Agent Operations Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0230 AI Agent Operations Blueprint/Blueprint/GS-0230 AI Agent Operations Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0230 AI Agent Operations Blueprint/Blueprint/GS-0230 AI Agent Operations Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0230 AI Agent Operations Blueprint/CV-GS-0230 AI Agent Operations Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0230 AI Agent Operations Blueprint/MK-GS-0230-01 AI Agent Operations Blueprint Mockup.png"
+ },
+ "GS-0231": {
+  "title": "Digital Media Provenance Operator Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0231 Digital Media Provenance Operator Blueprint/Blueprint/GS-0231 Digital Media Provenance Operator Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0231 Digital Media Provenance Operator Blueprint/Blueprint/GS-0231 Digital Media Provenance Operator Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0231 Digital Media Provenance Operator Blueprint/CV-GS-0231 Digital Media Provenance Operator Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0231 Digital Media Provenance Operator Blueprint/MK-GS-0231-01 Digital Media Provenance Operator Blueprint Mockup.png"
+ },
+ "GS-0232": {
+  "title": "Digital Product Passport Operator Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0232 Digital Product Passport Operator Blueprint/Blueprint/GS-0232 Digital Product Passport Operator Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0232 Digital Product Passport Operator Blueprint/Blueprint/GS-0232 Digital Product Passport Operator Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0232 Digital Product Passport Operator Blueprint/CV-GS-0232 Digital Product Passport Operator Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0232 Digital Product Passport Operator Blueprint/MK-GS-0232-01 Digital Product Passport Operator Blueprint Mockup.png"
+ },
+ "GS-0233": {
+  "title": "High Ticket Offer Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0233 High Ticket Offer Blueprint/Blueprint/GS-0233 High Ticket Offer Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0233 High Ticket Offer Blueprint/Blueprint/GS-0233 High Ticket Offer Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0233 High Ticket Offer Blueprint/CV-GS-0233 High Ticket Offer Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0233 High Ticket Offer Blueprint/MK-GS-0233-01 High Ticket Offer Blueprint Mockup.png"
+ },
+ "GS-0234": {
+  "title": "Referral Pipeline Agency Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0234 Referral Pipeline Agency Blueprint/Blueprint/GS-0234 Referral Pipeline Agency Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0234 Referral Pipeline Agency Blueprint/Blueprint/GS-0234 Referral Pipeline Agency Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0234 Referral Pipeline Agency Blueprint/CV-GS-0234 Referral Pipeline Agency Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0234 Referral Pipeline Agency Blueprint/MK-GS-0234-01 Referral Pipeline Agency Blueprint Mockup.png"
+ },
+ "GS-0235": {
+  "title": "Podcast Launch Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0235 Podcast Launch Blueprint/Blueprint/GS-0235 Podcast Launch Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0235 Podcast Launch Blueprint/Blueprint/GS-0235 Podcast Launch Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0235 Podcast Launch Blueprint/CV-GS-0235 Podcast Launch Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0235 Podcast Launch Blueprint/MK-GS-0235-01 Podcast Launch Blueprint Mockup.png"
+ },
+ "GS-0236": {
+  "title": "Pinterest Profit Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0236 Pinterest Profit Blueprint/Blueprint/GS-0236 Pinterest Profit Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0236 Pinterest Profit Blueprint/Blueprint/GS-0236 Pinterest Profit Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0236 Pinterest Profit Blueprint/CV-GS-0236 Pinterest Profit Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0236 Pinterest Profit Blueprint/MK-GS-0236-01 Pinterest Profit Blueprint Mockup.png"
+ },
+ "GS-0237": {
+  "title": "Remote Care Technology Setup Desk Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0237 Remote Care Technology Setup Desk Blueprint/Blueprint/GS-0237 Remote Care Technology Setup Desk Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0237 Remote Care Technology Setup Desk Blueprint/Blueprint/GS-0237 Remote Care Technology Setup Desk Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0237 Remote Care Technology Setup Desk Blueprint/CV-GS-0237 Remote Care Technology Setup Desk Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0237 Remote Care Technology Setup Desk Blueprint/MK-GS-0237-01 Remote Care Technology Setup Desk Blueprint Mockup.png"
+ },
+ "GS-0238": {
+  "title": "Small Supplier Regulatory Data Wrangler Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0238 Small Supplier Regulatory Data Wrangler Blueprint/Blueprint/GS-0238 Small Supplier Regulatory Data Wrangler Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0238 Small Supplier Regulatory Data Wrangler Blueprint/Blueprint/GS-0238 Small Supplier Regulatory Data Wrangler Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0238 Small Supplier Regulatory Data Wrangler Blueprint/CV-GS-0238 Small Supplier Regulatory Data Wrangler Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0238 Small Supplier Regulatory Data Wrangler Blueprint/MK-GS-0238-01 Small Supplier Regulatory Data Wrangler Blueprint Mockup.png"
+ },
+ "GS-0239": {
+  "title": "Secure Parcel Installation Operator Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0239 Secure Parcel Installation Operator Blueprint/Blueprint/GS-0239 Secure Parcel Installation Operator Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0239 Secure Parcel Installation Operator Blueprint/Blueprint/GS-0239 Secure Parcel Installation Operator Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0239 Secure Parcel Installation Operator Blueprint/CV-GS-0239 Secure Parcel Installation Operator Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0239 Secure Parcel Installation Operator Blueprint/MK-GS-0239-01 Secure Parcel Installation Operator Blueprint Mockup.png"
+ },
+ "GS-0240": {
+  "title": "Substack Newsletter Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0240 Substack Newsletter Blueprint/Blueprint/GS-0240 Substack Newsletter Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0240 Substack Newsletter Blueprint/Blueprint/GS-0240 Substack Newsletter Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0240 Substack Newsletter Blueprint/CV-GS-0240 Substack Newsletter Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0240 Substack Newsletter Blueprint/MK-GS-0240-01 Substack Newsletter Blueprint Mockup.png"
+ },
+ "GS-0241": {
+  "title": "Workshop Day Operator Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0241 Workshop Day Operator Blueprint/Blueprint/GS-0241 Workshop Day Operator Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0241 Workshop Day Operator Blueprint/Blueprint/GS-0241 Workshop Day Operator Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0241 Workshop Day Operator Blueprint/CV-GS-0241 Workshop Day Operator Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0241 Workshop Day Operator Blueprint/MK-GS-0241-01 Workshop Day Operator Blueprint Mockup.png"
+ },
+ "GS-0242": {
+  "title": "Professional Childproofing and Home Safety Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0242 Professional Childproofing and Home Safety Blueprint/Blueprint/GS-0242 Professional Childproofing and Home Safety Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0242 Professional Childproofing and Home Safety Blueprint/Blueprint/GS-0242 Professional Childproofing and Home Safety Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0242 Professional Childproofing and Home Safety Blueprint/CV-GS-0242 Professional Childproofing and Home Safety Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0242 Professional Childproofing and Home Safety Blueprint/MK-GS-0242-01 Professional Childproofing and Home Safety Blueprint Mockup.jpg"
+ },
+ "GS-0245": {
+  "title": "The Helping-Hands Career Entry Guide Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0245 The Helping-Hands Career Entry Guide Blueprint/Blueprint/GS-0245 The Helping-Hands Career Entry Guide Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0245 The Helping-Hands Career Entry Guide Blueprint/Blueprint/GS-0245 The Helping-Hands Career Entry Guide Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0245 The Helping-Hands Career Entry Guide Blueprint/CV-GS-0245 The Helping-Hands Career Entry Guide Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0245 The Helping-Hands Career Entry Guide Blueprint/MK-GS-0245-01 The Helping-Hands Career Entry Guide Mockup.png"
+ },
+ "GS-0246": {
+  "title": "The Tech Career Entry Playbook Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0246 The Tech Career Entry Playbook Blueprint/Blueprint/GS-0246 The Tech Career Entry Playbook Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0246 The Tech Career Entry Playbook Blueprint/Blueprint/GS-0246 The Tech Career Entry Playbook Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0246 The Tech Career Entry Playbook Blueprint/CV-GS-0246 The Tech Career Entry Playbook Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0246 The Tech Career Entry Playbook Blueprint/MK-GS-0246-01 The Tech Career Entry Playbook Mockup.png"
+ },
+ "GS-0247": {
+  "title": "Live Shopping Business Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0247 Live Shopping Business Blueprint/Blueprint/GS-0247 Live Shopping Business.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0247 Live Shopping Business Blueprint/Blueprint/GS-0247 Live Shopping Business.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0247 Live Shopping Business Blueprint/CV-GS-0247 Live Shopping Business Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0247 Live Shopping Business Blueprint/MK-GS-0247-01 Live Shopping Business Mockup.png"
+ },
+ "GS-0248": {
+  "title": "Decorative Gravel Stabilization and Resin Surfaces Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0248 Decorative Gravel Stabilization and Resin Surfaces Blueprint/Blueprint/GS-0248 Decorative Gravel Stabilization and Resin Surfaces.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0248 Decorative Gravel Stabilization and Resin Surfaces Blueprint/Blueprint/GS-0248 Decorative Gravel Stabilization and Resin Surfaces.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0248 Decorative Gravel Stabilization and Resin Surfaces Blueprint/CV-GS-0248 Decorative Gravel Stabilization and Resin Surfaces Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0248 Decorative Gravel Stabilization and Resin Surfaces Blueprint/MK-GS-0248-01 Decorative Gravel Stabilization and Resin Surfaces Mockup.png"
+ },
+ "GS-0249": {
+  "title": "Artificial Skylight Installation Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0249 Artificial Skylight Installation Blueprint/Blueprint/GS-0249 Artificial Skylight Installation.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0249 Artificial Skylight Installation Blueprint/Blueprint/GS-0249 Artificial Skylight Installation.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0249 Artificial Skylight Installation Blueprint/CV-GS-0249 Artificial Skylight Installation Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0249 Artificial Skylight Installation Blueprint/MK-GS-0249-01 Artificial Skylight Installation Mockup.png"
+ },
+ "GS-0250": {
+  "title": "Automotive Laser Button Restoration Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0250 Automotive Laser Button Restoration Blueprint/Blueprint/GS-0250 Automotive Laser Button Restoration.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0250 Automotive Laser Button Restoration Blueprint/Blueprint/GS-0250 Automotive Laser Button Restoration.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0250 Automotive Laser Button Restoration Blueprint/CV-GS-0250 Automotive Laser Button Restoration Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0250 Automotive Laser Button Restoration Blueprint/MK-GS-0250-01 Automotive Laser Button Restoration Mockup.png"
+ },
+ "GS-0251": {
+  "title": "Custom 3D Chocolate Printing Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0251 Custom 3D Chocolate Printing Blueprint/Blueprint/GS-0251 Custom 3D Chocolate Printing.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0251 Custom 3D Chocolate Printing Blueprint/Blueprint/GS-0251 Custom 3D Chocolate Printing.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0251 Custom 3D Chocolate Printing Blueprint/CV-GS-0251 Custom 3D Chocolate Printing Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0251 Custom 3D Chocolate Printing Blueprint/MK-GS-0251-01 Custom 3D Chocolate Printing Mockup.png"
+ },
+ "GS-0252": {
+  "title": "Live Event Stick-Catching Games Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0252 Live Event Stick-Catching Games Blueprint/Blueprint/GS-0252 Live Event Stick-Catching Games.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0252 Live Event Stick-Catching Games Blueprint/Blueprint/GS-0252 Live Event Stick-Catching Games.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0252 Live Event Stick-Catching Games Blueprint/CV-GS-0252 Live Event Stick-Catching Games Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0252 Live Event Stick-Catching Games Blueprint/MK-GS-0252-01 Live Event Stick-Catching Games Mockup.png"
+ },
+ "GS-0253": {
+  "title": "Single-Serve Honey Packaging and Distribution Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0253 Single-Serve Honey Packaging and Distribution Blueprint/Blueprint/GS-0253 Single-Serve Honey Packaging and Distribution.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0253 Single-Serve Honey Packaging and Distribution Blueprint/Blueprint/GS-0253 Single-Serve Honey Packaging and Distribution.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0253 Single-Serve Honey Packaging and Distribution Blueprint/CV-GS-0253 Single-Serve Honey Packaging and Distribution Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0253 Single-Serve Honey Packaging and Distribution Blueprint/MK-GS-0253-01 Single-Serve Honey Packaging and Distribution Mockup.png"
+ },
+ "GS-0254": {
+  "title": "Golf Ball Recovery and Resale Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0254 Golf Ball Recovery and Resale Blueprint/Blueprint/GS-0254 Golf Ball Recovery and Resale.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0254 Golf Ball Recovery and Resale Blueprint/Blueprint/GS-0254 Golf Ball Recovery and Resale.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0254 Golf Ball Recovery and Resale Blueprint/CV-GS-0254 Golf Ball Recovery and Resale Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0254 Golf Ball Recovery and Resale Blueprint/MK-GS-0254-01 Golf Ball Recovery and Resale Mockup.png"
+ },
+ "GS-0255": {
+  "title": "Cemetery Memorial Vending Route Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0255 Cemetery Memorial Vending Route Blueprint/Blueprint/GS-0255 Cemetery Memorial Vending Route Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0255 Cemetery Memorial Vending Route Blueprint/Blueprint/GS-0255 Cemetery Memorial Vending Route Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0255 Cemetery Memorial Vending Route Blueprint/CV-GS-0255 Cemetery Memorial Vending Route Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0255 Cemetery Memorial Vending Route Blueprint/MK-GS-0255-01 Cemetery Memorial Vending Route Mockup.png"
+ },
+ "GS-0256": {
+  "title": "Laundromat Long-Dwell Media Network Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0256 Laundromat Long-Dwell Media Network Blueprint/Blueprint/GS-0256 Laundromat Long-Dwell Media Network Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0256 Laundromat Long-Dwell Media Network Blueprint/Blueprint/GS-0256 Laundromat Long-Dwell Media Network Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0256 Laundromat Long-Dwell Media Network Blueprint/CV-GS-0256 Laundromat Long-Dwell Media Network Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0256 Laundromat Long-Dwell Media Network Blueprint/MK-GS-0256-01 Laundromat Long-Dwell Media Network Mockup.png"
+ },
+ "GS-0257": {
+  "title": "Disc Golf Scorecard Sponsorship Network Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0257 Disc Golf Scorecard Sponsorship Network Blueprint/Blueprint/GS-0257 Disc Golf Scorecard Sponsorship Network Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0257 Disc Golf Scorecard Sponsorship Network Blueprint/Blueprint/GS-0257 Disc Golf Scorecard Sponsorship Network Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0257 Disc Golf Scorecard Sponsorship Network Blueprint/CV-GS-0257 Disc Golf Scorecard Sponsorship Network Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0257 Disc Golf Scorecard Sponsorship Network Blueprint/MK-GS-0257-01 Disc Golf Scorecard Sponsorship Network Mockup.png"
+ },
+ "GS-0258": {
+  "title": "Specialty Equipment Marketplace to eBay Reselling Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0258 Specialty Equipment Marketplace to eBay Reselling Blueprint/Blueprint/GS-0258 Specialty Equipment Marketplace to eBay Reselling Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0258 Specialty Equipment Marketplace to eBay Reselling Blueprint/Blueprint/GS-0258 Specialty Equipment Marketplace to eBay Reselling Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0258 Specialty Equipment Marketplace to eBay Reselling Blueprint/CV-GS-0258 Specialty Equipment Marketplace to eBay Reselling Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0258 Specialty Equipment Marketplace to eBay Reselling Blueprint/MK-GS-0258-01 Specialty Equipment Marketplace to eBay Reselling Mockup.png"
+ },
+ "GS-0266": {
+  "title": "3D Human and Pet Figurine Studio Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0266 3D Human and Pet Figurine Studio Blueprint/Blueprint/GS-0266 3D Human and Pet Figurine Studio Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0266 3D Human and Pet Figurine Studio Blueprint/Blueprint/GS-0266 3D Human and Pet Figurine Studio Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0266 3D Human and Pet Figurine Studio Blueprint/CV-GS-0266 3D Human and Pet Figurine Studio Cover approved.jpg",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0266 3D Human and Pet Figurine Studio Blueprint/MK-GS-0266-01 3D Human and Pet Figurine Studio Mockup approved.png"
+ },
+ "GS-0267": {
+  "title": "Outdoor Lighting Transformation Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0267 Outdoor Lighting Transformation Blueprint/Blueprint/GS-0267 Outdoor Lighting Transformation Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0267 Outdoor Lighting Transformation Blueprint/Blueprint/GS-0267 Outdoor Lighting Transformation Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0267 Outdoor Lighting Transformation Blueprint/CV-GS-0267 Outdoor Lighting Transformation Cover approved.jpg",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0267 Outdoor Lighting Transformation Blueprint/MK-GS-0267-01 Outdoor Lighting Transformation Mockup approved.png"
+ },
+ "GS-0268": {
+  "title": "Self-Portrait Studio Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0268 Self-Portrait Studio Blueprint/Blueprint/GS-0268 Self-Portrait Studio Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0268 Self-Portrait Studio Blueprint/Blueprint/GS-0268 Self-Portrait Studio Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0268 Self-Portrait Studio Blueprint/CV-GS-0268 Self-Portrait Studio Cover approved.jpg",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0268 Self-Portrait Studio Blueprint/MK-GS-0268-01 Self-Portrait Studio Mockup approved.png"
+ },
+ "GS-0269": {
+  "title": "Mobile Advertising Bicycle Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0269 Mobile Advertising Bicycle Blueprint/Blueprint/GS-0269 Mobile Advertising Bicycle Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0269 Mobile Advertising Bicycle Blueprint/Blueprint/GS-0269 Mobile Advertising Bicycle Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0269 Mobile Advertising Bicycle Blueprint/CV-GS-0269 Mobile Advertising Bicycle Cover approved.jpg",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0269 Mobile Advertising Bicycle Blueprint/MK-GS-0269-01 Mobile Advertising Bicycle Mockup approved.png"
+ },
+ "GS-0271": {
+  "title": "The Fractional Operator Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0271 The Fractional Operator Blueprint/Blueprint/GS-0271 The Fractional Operator Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0271 The Fractional Operator Blueprint/Blueprint/GS-0271 The Fractional Operator Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0271 The Fractional Operator Blueprint/CV-GS-0271 The Fractional Operator Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0271 The Fractional Operator Blueprint/MK-GS-0271-01 The Fractional Operator Mockup.png"
+ },
+ "GS-0272": {
+  "title": "The Trade Entry Playbook",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0272 The Trade Entry Playbook/Blueprint/GS-0272 The Trade Entry Playbook.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0272 The Trade Entry Playbook/Blueprint/GS-0272 The Trade Entry Playbook.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0272 The Trade Entry Playbook/CV-GS-0272 The Trade Entry Playbook Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0272 The Trade Entry Playbook/MK-GS-0272-01 The Trade Entry Playbook Mockup.png"
+ },
+ "GS-0273": {
+  "title": "The First Career Playbook",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0273 The First Career Playbook/Blueprint/GS-0273 The First Career Playbook.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0273 The First Career Playbook/Blueprint/GS-0273 The First Career Playbook.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0273 The First Career Playbook/CV-GS-0273 The First Career Playbook Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0273 The First Career Playbook/MK-GS-0273-01 The First Career Playbook Mockup.png"
+ },
+ "GS-0276": {
+  "title": "Buy the Business Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0276 Buy the Business Blueprint/Blueprint/GS-0276 Buy the Business Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0276 Buy the Business Blueprint/Blueprint/GS-0276 Buy the Business Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0276 Buy the Business Blueprint/CV-GS-0276 Buy the Business Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0276 Buy the Business Blueprint/MK-GS-0276-01 Buy the Business Mockup.png"
+ },
+ "GS-0277": {
+  "title": "The Online Store Operator Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0277 The Online Store Operator Blueprint/Blueprint/GS-0277 The Online Store Operator Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0277 The Online Store Operator Blueprint/Blueprint/GS-0277 The Online Store Operator Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0277 The Online Store Operator Blueprint/CV-GS-0277 The Online Store Operator Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0277 The Online Store Operator Blueprint/MK-GS-0277-01 The Online Store Operator Mockup.png"
+ },
+ "GS-0278": {
+  "title": "The Rental Property Operator Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0278 The Rental Property Operator Blueprint/Blueprint/GS-0278 The Rental Property Operator Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0278 The Rental Property Operator Blueprint/Blueprint/GS-0278 The Rental Property Operator Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0278 The Rental Property Operator Blueprint/CV-GS-0278 The Rental Property Operator Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0278 The Rental Property Operator Blueprint/MK-GS-0278-01 The Rental Property Operator Mockup.png"
+ },
+ "GS-0279": {
+  "title": "The Licensed Sales Professional Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0279 The Licensed Sales Professional Blueprint/Blueprint/GS-0279 The Licensed Sales Professional Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0279 The Licensed Sales Professional Blueprint/Blueprint/GS-0279 The Licensed Sales Professional Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0279 The Licensed Sales Professional Blueprint/CV-GS-0279 The Licensed Sales Professional Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0279 The Licensed Sales Professional Blueprint/MK-GS-0279-01 The Licensed Sales Professional Mockup.png"
+ },
+ "GS-0284": {
+  "title": "The Career Pivot Playbook Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0284 The Career Pivot Playbook Blueprint/Blueprint/GS-0284 The Career Pivot Playbook Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0284 The Career Pivot Playbook Blueprint/Blueprint/GS-0284 The Career Pivot Playbook Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0284 The Career Pivot Playbook Blueprint/CV-GS-0284 The Career Pivot Playbook Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0284 The Career Pivot Playbook Blueprint/MK-GS-0284-01 The Career Pivot Playbook Mockup.png"
+ },
+ "GS-0285": {
+  "title": "The Food Business Operator Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0285 The Food Business Operator Blueprint/Blueprint/GS-0285 The Food Business Operator Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0285 The Food Business Operator Blueprint/Blueprint/GS-0285 The Food Business Operator Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0285 The Food Business Operator Blueprint/CV-GS-0285 The Food Business Operator Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0285 The Food Business Operator Blueprint/MK-GS-0285-01 The Food Business Operator Mockup.png"
+ },
+ "GS-0289": {
+  "title": "Interior LED Cove Lighting Service Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0289 Interior LED Cove Lighting Service Blueprint/Blueprint/GS-0289 Interior LED Cove Lighting Service Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0289 Interior LED Cove Lighting Service Blueprint/Blueprint/GS-0289 Interior LED Cove Lighting Service Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0289 Interior LED Cove Lighting Service Blueprint/CV-GS-0289 Interior LED Cove Lighting Service Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0289 Interior LED Cove Lighting Service Blueprint/MK-GS-0289-01 Interior LED Cove Lighting Service Blueprint Mockup.png"
+ },
+ "GS-0290": {
+  "title": "Equipment Rental Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0290 Equipment Rental Blueprint/Blueprint/GS-0290 Equipment Rental Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0290 Equipment Rental Blueprint/Blueprint/GS-0290 Equipment Rental Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0290 Equipment Rental Blueprint/CV-GS-0290 Equipment Rental Blueprint Cover.png",
+  "mockup": ""
+ },
+ "GS-0291": {
+  "title": "Event Rental Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0291 Event Rental Blueprint/Blueprint/GS-0291 Event Rental Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0291 Event Rental Blueprint/Blueprint/GS-0291 Event Rental Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0291 Event Rental Blueprint/CV-GS-0291 Event Rental Blueprint Cover.png",
+  "mockup": ""
+ },
+ "GS-0292": {
+  "title": "Mobile Jewelry Operator Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0292 Mobile Jewelry Operator Blueprint/Blueprint/GS-0292 Mobile Jewelry Operator Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0292 Mobile Jewelry Operator Blueprint/Blueprint/GS-0292 Mobile Jewelry Operator Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0292 Mobile Jewelry Operator Blueprint/CV-GS-0292 Mobile Jewelry Operator Blueprint Cover.png",
+  "mockup": ""
+ },
+ "GS-0293": {
+  "title": "Screen Protector Business Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0293 Screen Protector Business Blueprint/Blueprint/GS-0293 Screen Protector Business Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0293 Screen Protector Business Blueprint/Blueprint/GS-0293 Screen Protector Business Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0293 Screen Protector Business Blueprint/CV-GS-0293 Screen Protector Business Cover.png",
+  "mockup": ""
+ },
+ "GS-0294": {
+  "title": "Day of Event Coordination Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0294 Day of Event Coordination Blueprint/Blueprint/GS-0294 Day of Event Coordination Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0294 Day of Event Coordination Blueprint/Blueprint/GS-0294 Day of Event Coordination Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0294 Day of Event Coordination Blueprint/CV-GS-0294 Day of Event Coordination Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0294 Day of Event Coordination Blueprint/MK-GS-0294-01 Day of Event Coordination Blueprint Mockup.png"
+ },
+ "GS-0295": {
+  "title": "Public Domain Publishing Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0295 Public Domain Publishing Blueprint/Blueprint/GS-0295 Public Domain Publishing Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0295 Public Domain Publishing Blueprint/Blueprint/GS-0295 Public Domain Publishing Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0295 Public Domain Publishing Blueprint/CV-GS-0295 Public Domain Publishing Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0295 Public Domain Publishing Blueprint/MK-GS-0295-01 Public Domain Publishing Blueprint Mockup.png"
+ },
+ "GS-0296": {
+  "title": "Ceiling Texture Modernization Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0296 Ceiling Texture Modernization Blueprint/Blueprint/GS-0296 Ceiling Texture Modernization Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0296 Ceiling Texture Modernization Blueprint/Blueprint/GS-0296 Ceiling Texture Modernization Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0296 Ceiling Texture Modernization Blueprint/CV-GS-0296 Ceiling Texture Modernization Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0296 Ceiling Texture Modernization Blueprint/MK-GS-0296-01 Ceiling Texture Modernization Blueprint Mockup.png"
+ },
+ "GS-0297": {
+  "title": "Custom Vendor Signage Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0297 Custom Vendor Signage Blueprint/Blueprint/GS-0297 Custom Vendor Signage Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0297 Custom Vendor Signage Blueprint/Blueprint/GS-0297 Custom Vendor Signage Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0297 Custom Vendor Signage Blueprint/CV-GS-0297 Custom Vendor Signage Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0297 Custom Vendor Signage Blueprint/MK-GS-0297-01 Custom Vendor Signage Blueprint Mockup.png"
+ },
+ "GS-0298": {
+  "title": "Mobile Basketball Trailer Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0298 Mobile Basketball Trailer Blueprint/Blueprint/GS-0298 Mobile Basketball Trailer Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0298 Mobile Basketball Trailer Blueprint/Blueprint/GS-0298 Mobile Basketball Trailer Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0298 Mobile Basketball Trailer Blueprint/CV-GS-0298 Mobile Basketball Trailer Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0298 Mobile Basketball Trailer Blueprint/MK-GS-0298-01 Mobile Basketball Trailer Blueprint Mockup.png"
+ },
+ "GS-0299": {
+  "title": "Custom Luxury Metal Card Business Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0299 Custom Luxury Metal Card Business Blueprint/Blueprint/GS-0299 Custom Luxury Metal Card Business Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0299 Custom Luxury Metal Card Business Blueprint/Blueprint/GS-0299 Custom Luxury Metal Card Business Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0299 Custom Luxury Metal Card Business Blueprint/CV-GS-0299 Custom Luxury Metal Card Business Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0299 Custom Luxury Metal Card Business Blueprint/MK-GS-0299-01 Custom Luxury Metal Card Business Blueprint Mockup.png"
  }
 }
