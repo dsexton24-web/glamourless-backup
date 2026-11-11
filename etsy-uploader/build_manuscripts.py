@@ -133,7 +133,7 @@ def build(path):
     if key0 == 'SD-GS-0197-04':
         D.insert(-4, 'The contract and agreement templates in this book are starting points. Have a local attorney review any contract before you use it.')
     return {'key': key, 'sku': key, 'kind': 'book', 'parent': key0[3:10], 'title': et, 'description': '\n'.join(D),
-            'price': 14.00 if pages >= 85 else 12.00, 'quantity': 999, 'tags': tags, 'images': imgs,
+            'price': 15.00, 'quantity': 999, 'tags': tags, 'images': imgs,
             'files': [f'{key}/{fname}'], 'pages': pages, 'chapters': len(chs)}
 
 def main():
