@@ -1,0 +1,1145 @@
+GS ETSY UPLOADER SOURCE CODE
+Updated 2026-11-11. Every file the Etsy uploader and packager uses, in full.
+
+==================================================================
+FILE: worker.js
+==================================================================
+// GS Etsy Uploader: Cloudflare Worker
+// Holds the Etsy key as secrets, connects to Doug's Etsy shop once with OAuth (PKCE),
+// and turns upload packages (picked from Doug's computer in the browser) into Etsy listings.
+//
+// Bindings required:
+//   KV namespace binding:  STORE
+//   Secrets:               ETSY_KEYSTRING, ETSY_SHARED_SECRET
+// Optional variable:       ALLOWED_USER_ID (locks the tool to one Etsy user; set automatically on first connect if empty)
+
+const ETSY_API = 'https://api.etsy.com/v3';
+const SCOPES = 'listings_r listings_w shops_r';
+
+export default {
+  async fetch(req, env) {
+    const url = new URL(req.url);
+    try {
+      if (url.pathname === '/') return html(PAGE);
+      if (url.pathname === '/connect') return connect(url, env);
+      if (url.pathname === '/callback') return callback(url, env);
+      if (url.pathname.startsWith('/api/')) {
+        const sess = await session(req, env);
+        if (!sess) return json({ error: 'not_connected' }, 401);
+        if (url.pathname === '/api/status') return json({ ok: true, shop_id: sess.shop_id, shop_name: sess.shop_name });
+        if (url.pathname === '/api/taxonomy') return taxonomy(url, env);
+        if (url.pathname === '/api/listing' && req.method === 'POST') return createListing(req, env, sess);
+        if (url.pathname === '/api/disconnect' && req.method === 'POST') {
+          await env.STORE.delete('tok');
+          return json({ ok: true }, 200, { 'Set-Cookie': 'gs_etsy=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax' });
+        }
+      }
+      return new Response('Not found', { status: 404 });
+    } catch (e) {
+      return json({ error: 'server_error', detail: String(e && e.message || e) }, 500);
+    }
+  }
+};
+
+// ---------- OAuth ----------
+function b64url(bytes) {
+  let s = btoa(String.fromCharCode(...new Uint8Array(bytes)));
+  return s.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+function randomString(n = 48) {
+  return b64url(crypto.getRandomValues(new Uint8Array(n)));
+}
+async function connect(url, env) {
+  const verifier = randomString(48);
+  const challenge = b64url(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier)));
+  const state = randomString(16);
+  await env.STORE.put('pkce:' + state, verifier, { expirationTtl: 900 });
+  const redirect = url.origin + '/callback';
+  const q = new URLSearchParams({
+    response_type: 'code', client_id: env.ETSY_KEYSTRING, redirect_uri: redirect,
+    scope: SCOPES, state, code_challenge: challenge, code_challenge_method: 'S256'
+  });
+  return Response.redirect('https://www.etsy.com/oauth/connect?' + q.toString(), 302);
+}
+async function callback(url, env) {
+  const state = url.searchParams.get('state') || '';
+  const code = url.searchParams.get('code');
+  const verifier = await env.STORE.get('pkce:' + state);
+  if (!code || !verifier) return html(msgPage('Connection did not finish. Go back and click Connect to Etsy again.'), 400);
+  await env.STORE.delete('pkce:' + state);
+  const r = await fetch(ETSY_API + '/public/oauth/token', {
+    method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ grant_type: 'authorization_code', client_id: env.ETSY_KEYSTRING,
+      redirect_uri: url.origin + '/callback', code, code_verifier: verifier })
+  });
+  const t = await r.json();
+  if (!r.ok) return html(msgPage('Etsy said no: ' + escapeHtml(JSON.stringify(t))), 400);
+  const userId = String(t.access_token).split('.')[0];
+  const owner = env.ALLOWED_USER_ID || await env.STORE.get('owner');
+  if (owner && owner !== userId) return html(msgPage('This uploader is locked to a different Etsy account.'), 403);
+  if (!owner) await env.STORE.put('owner', userId);
+  // Find the shop for this user
+  const shops = await etsyFetch(env, t.access_token, '/application/users/' + userId + '/shops');
+  const shop = await shops.json();
+  if (!shops.ok || !shop.shop_id) return html(msgPage('Connected, but no Etsy shop was found on this account.'), 400);
+  const sid = randomString(32);
+  await env.STORE.put('tok', JSON.stringify({
+    access: t.access_token, refresh: t.refresh_token, exp: Date.now() + (t.expires_in - 120) * 1000,
+    user_id: userId, shop_id: shop.shop_id, shop_name: shop.shop_name, sid
+  }));
+  return new Response(null, { status: 302, headers: {
+    Location: '/', 'Set-Cookie': `gs_etsy=${sid}; Path=/; Max-Age=2592000; HttpOnly; Secure; SameSite=Lax` } });
+}
+async function session(req, env) {
+  const cookie = req.headers.get('Cookie') || '';
+  const m = cookie.match(/gs_etsy=([A-Za-z0-9_-]+)/);
+  if (!m) return null;
+  const raw = await env.STORE.get('tok');
+  if (!raw) return null;
+  const tok = JSON.parse(raw);
+  if (tok.sid !== m[1]) return null;
+  if (Date.now() > tok.exp) {
+    const r = await fetch(ETSY_API + '/public/oauth/token', {
+      method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ grant_type: 'refresh_token', client_id: env.ETSY_KEYSTRING, refresh_token: tok.refresh })
+    });
+    const t = await r.json();
+    if (!r.ok) { await env.STORE.delete('tok'); return null; }
+    tok.access = t.access_token; tok.refresh = t.refresh_token || tok.refresh;
+    tok.exp = Date.now() + (t.expires_in - 120) * 1000;
+    await env.STORE.put('tok', JSON.stringify(tok));
+  }
+  return tok;
+}
+function etsyFetch(env, access, path, init = {}) {
+  const headers = Object.assign({ 'x-api-key': env.ETSY_KEYSTRING + ':' + env.ETSY_SHARED_SECRET }, init.headers || {});
+  if (access) headers['Authorization'] = 'Bearer ' + access;
+  return fetch(ETSY_API + path, Object.assign({}, init, { headers }));
+}
+
+// ---------- Taxonomy search ----------
+let TAX_CACHE = null;
+async function taxonomy(url, env) {
+  if (!TAX_CACHE) {
+    const r = await etsyFetch(env, null, '/application/seller-taxonomy/nodes');
+    const d = await r.json();
+    const flat = [];
+    (function walk(nodes, path) {
+      for (const n of nodes || []) {
+        const p = path.concat(n.name);
+        flat.push({ id: n.id, path: p.join(' > ') });
+        walk(n.children, p);
+      }
+    })(d.results, []);
+    TAX_CACHE = flat;
+  }
+  const q = (url.searchParams.get('q') || '').toLowerCase();
+  return json({ results: TAX_CACHE.filter(n => n.path.toLowerCase().includes(q)).slice(0, 60) });
+}
+
+// ---------- Create one listing ----------
+// multipart form: meta (JSON), image0..image9 (files), file0..file4 (files)
+async function createListing(req, env, sess) {
+  const form = await req.formData();
+  const meta = JSON.parse(form.get('meta'));
+  const shop = sess.shop_id;
+  const steps = [];
+
+  // 1. Draft listing
+  const body = new URLSearchParams();
+  body.set('quantity', String(meta.quantity || 999));
+  body.set('title', meta.title);
+  body.set('description', meta.description);
+  body.set('price', Number(meta.price).toFixed(2));
+  body.set('who_made', 'i_did');
+  body.set('when_made', meta.when_made || '2020_2026');
+  body.set('is_supply', 'false');
+  body.set('taxonomy_id', String(meta.taxonomy_id));
+  body.set('type', 'download');
+  body.set('should_auto_renew', 'false');
+  body.set('is_taxable', 'true');
+  (meta.tags || []).slice(0, 13).forEach(t => body.append('tags[]', t));
+  if (meta.shop_section_id) body.set('shop_section_id', String(meta.shop_section_id));
+  let r = await etsyFetch(env, sess.access, `/application/shops/${shop}/listings`, {
+    method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+  let d = await r.json();
+  if (!r.ok) return json({ ok: false, step: 'create', status: r.status, error: d }, 400);
+  const listingId = d.listing_id;
+  steps.push('draft ' + listingId);
+
+  // 2. Images
+  for (let i = 0; i < 10; i++) {
+    const img = form.get('image' + i);
+    if (!img) continue;
+    const fd = new FormData();
+    fd.append('image', img, img.name);
+    fd.append('rank', String(i + 1));
+    r = await etsyFetch(env, sess.access, `/application/shops/${shop}/listings/${listingId}/images`, { method: 'POST', body: fd });
+    if (!r.ok) return json({ ok: false, listing_id: listingId, step: 'image' + i, status: r.status, error: await r.text() }, 400);
+    steps.push('image ' + (i + 1));
+  }
+
+  // 3. Digital files
+  for (let i = 0; i < 5; i++) {
+    const f = form.get('file' + i);
+    if (!f) continue;
+    const fd = new FormData();
+    fd.append('file', f, f.name);
+    fd.append('name', f.name);
+    fd.append('rank', String(i + 1));
+    r = await etsyFetch(env, sess.access, `/application/shops/${shop}/listings/${listingId}/files`, { method: 'POST', body: fd });
+    if (!r.ok) return json({ ok: false, listing_id: listingId, step: 'file' + i, status: r.status, error: await r.text() }, 400);
+    steps.push('file ' + (i + 1));
+  }
+
+  // 4. Make sure it is a download listing, auto-renew off, and publish if asked
+  const upd = new URLSearchParams({ type: 'download', should_auto_renew: 'false' });
+  if (meta.publish) upd.set('state', 'active');
+  r = await etsyFetch(env, sess.access, `/application/shops/${shop}/listings/${listingId}`, {
+    method: 'PATCH', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: upd });
+  if (!r.ok) return json({ ok: false, listing_id: listingId, step: 'update', status: r.status, error: await r.text() }, 400);
+  steps.push(meta.publish ? 'published' : 'left as draft');
+  return json({ ok: true, listing_id: listingId, sku: meta.sku, steps });
+}
+
+// ---------- helpers ----------
+function json(o, status = 200, extra = {}) {
+  return new Response(JSON.stringify(o), { status, headers: Object.assign({ 'Content-Type': 'application/json' }, extra) });
+}
+function html(s, status = 200) {
+  return new Response(s, { status, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+}
+function escapeHtml(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+function msgPage(m) { return `<!doctype html><meta name=viewport content="width=device-width,initial-scale=1"><body style="font:17px system-ui;padding:30px;max-width:640px;margin:auto"><h2>GS Etsy Uploader</h2><p>${m}</p><p><a href="/">Back</a></p></body>`; }
+
+const PAGE = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GS Etsy Uploader</title>
+<style>
+:root{--bg:#0d1326;--panel:#151d38;--line:#2a3663;--text:#e8ecf8;--muted:#9aa6c8;--accent:#8fb4ff;--ok:#3ddc97;--bad:#ff7a7a}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.w{max-width:820px;margin:0 auto;padding:24px 16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0}
+h1{font-size:1.5rem;margin:0 0 4px} h2{font-size:1.1rem;margin:0 0 8px}
+.muted{color:var(--muted)} .btn{display:inline-block;background:linear-gradient(135deg,#8fb4ff,#b79cff);color:#0d1326;border:0;border-radius:10px;padding:11px 18px;font-weight:700;cursor:pointer;text-decoration:none}
+.btn.ghost{background:#1b2546;color:var(--text);border:1px solid var(--line)} .btn:disabled{opacity:.5;cursor:default}
+input[type=text]{width:100%;box-sizing:border-box;background:#0d1326;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:9px}
+label{display:block;margin:10px 0 4px;font-weight:600}
+#log{background:#0a0f1f;border:1px solid var(--line);border-radius:10px;padding:10px;max-height:340px;overflow:auto;font:13px/1.45 ui-monospace,Consolas,monospace;white-space:pre-wrap}
+.ok{color:var(--ok)} .bad{color:var(--bad)} .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+</style></head><body><div class="w">
+<h1>GS Etsy Uploader</h1><p class="muted">Turns Glamourless Systems upload packages into Etsy listings. Auto-renew is always off.</p>
+<div class="card" id="conn"><h2>Step 1. Connect your Etsy shop</h2><p id="connText" class="muted">Checking...</p>
+<a class="btn" id="connectBtn" href="/connect" style="display:none">Connect to Etsy</a></div>
+<div class="card"><h2>Step 2. Pick the upload folder</h2>
+<p class="muted">Click the button. Go to the G: drive, open My Drive, and choose the folder named <b>Glamourless Systems Main</b>. Then click Upload when the browser asks. Nothing is sent until you press an upload button below.</p>
+<input type="file" id="folder" webkitdirectory directory multiple style="display:none">
+<button class="btn ghost" id="pick">Choose folder</button> <span id="picked" class="muted"></span></div>
+<div class="card"><h2>Step 3. Upload</h2>
+<label>Etsy category ID</label><input type="text" id="tax" placeholder="Filled in by Claude">
+<div class="row" style="margin-top:12px">
+<button class="btn" id="test" disabled>Test: first 3 as drafts</button>
+<button class="btn ghost" id="all" disabled>Upload all as drafts</button>
+<button class="btn ghost" id="pub" disabled>Upload all and publish</button></div>
+<p class="muted" style="margin-top:10px">Already-uploaded items are skipped automatically, so you can stop and start again safely.</p></div>
+<div class="card"><h2>Progress</h2><div id="log">Nothing yet.</div>
+<div class="row" style="margin-top:10px"><button class="btn ghost" id="save">Save results file</button></div></div>
+</div>
+<script>
+var files=[],manifest=null,results=[],logEl=document.getElementById('log');
+function log(t,c){if(logEl.textContent==='Nothing yet.')logEl.textContent='';var s=document.createElement('div');if(c)s.className=c;s.textContent=t;logEl.appendChild(s);logEl.scrollTop=1e9}
+var done={};try{done=JSON.parse(localStorage.getItem('gs_etsy_done')||'{}')}catch(e){}
+try{var tx=localStorage.getItem('gs_etsy_tax');if(tx)document.getElementById('tax').value=tx}catch(e){}
+fetch('/api/status').then(r=>r.json()).then(s=>{var t=document.getElementById('connText');if(s.ok){t.innerHTML='Connected to <b>'+s.shop_name+'</b>.';t.className='ok'}else{t.textContent='Not connected yet.';document.getElementById('connectBtn').style.display='inline-block'}});
+document.getElementById('pick').onclick=()=>document.getElementById('folder').click();
+document.getElementById('folder').onchange=async e=>{files=[...e.target.files];var m=files.find(f=>/GS Etsy Upload Packages\\/manifest\\.json$/i.test((f.webkitRelativePath||'').replace(/\\\\/g,'/')));if(!m){document.getElementById('picked').textContent='No manifest.json in that folder.';return}
+manifest=JSON.parse(await m.text());document.getElementById('picked').textContent=manifest.items.length+' listings found ('+Object.keys(done).length+' already uploaded)';
+if(manifest.taxonomy_id&&!document.getElementById('tax').value)document.getElementById('tax').value=manifest.taxonomy_id;
+['test','all','pub'].forEach(id=>document.getElementById(id).disabled=false)};
+function fileFor(rel){return files.find(f=>(f.webkitRelativePath||f.name).replace(/\\\\/g,'/').endsWith('/'+rel))}
+async function run(limit,publish){var tax=document.getElementById('tax').value.trim();if(!tax){alert('Category ID is empty.');return}try{localStorage.setItem('gs_etsy_tax',tax)}catch(e){}
+['test','all','pub'].forEach(id=>document.getElementById(id).disabled=true);var n=0;
+for(const it of manifest.items){if(done[it.key])continue;if(limit&&n>=limit)break;n++;
+log('Uploading '+it.key+' '+it.title.slice(0,60)+' ...');var fd=new FormData();
+fd.append('meta',JSON.stringify(Object.assign({},it,{taxonomy_id:+tax,publish:!!publish})));
+var missing=null;(it.images||[]).forEach((p,i)=>{var f=fileFor(p);if(f)fd.append('image'+i,f,f.name);else missing=p});
+(it.files||[]).forEach((p,i)=>{var f=fileFor(p);if(f)fd.append('file'+i,f,f.name);else missing=p});
+if(missing){log('  Missing file: '+missing+'. Skipped.','bad');results.push({key:it.key,ok:false,error:'missing '+missing});continue}
+try{var r=await fetch('/api/listing',{method:'POST',body:fd});var d=await r.json();results.push(Object.assign({key:it.key},d));
+if(d.ok){done[it.key]=d.listing_id;try{localStorage.setItem('gs_etsy_done',JSON.stringify(done))}catch(e){};log('  Done: listing '+d.listing_id+' ('+d.steps.join(', ')+')','ok')}
+else{log('  Problem at '+d.step+': '+JSON.stringify(d.error).slice(0,300),'bad');if(r.status===401){log('Connection expired. Click Connect to Etsy again.','bad');break}}}
+catch(e){log('  Network problem: '+e.message,'bad');results.push({key:it.key,ok:false,error:e.message})}}
+log('Finished this run.');['test','all','pub'].forEach(id=>document.getElementById(id).disabled=false)}
+document.getElementById('test').onclick=()=>run(3,false);
+document.getElementById('all').onclick=()=>run(0,false);
+document.getElementById('pub').onclick=()=>{if(confirm('Publish every remaining listing live on Etsy? Each one costs 20 cents.'))run(0,true)};
+document.getElementById('save').onclick=()=>{var b=new Blob([JSON.stringify({done,results},null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='GS Etsy Upload Results.json';a.click()};
+</script></body></html>`;
+
+==================================================================
+FILE: build_packages.py
+==================================================================
+"""GS Etsy package builder.
+
+For each eligible blueprint SKU it writes, into  out/GS Etsy Upload Packages/<SKU>/ :
+  - "<SKU> Start Here.pdf"    the one-page guide that goes in every download (brings buyers back to GS)
+  - "<SKU> Whats Inside.png"  a listing photo with the page and chapter count and chapter names
+and one manifest.json listing every Etsy item, with file paths relative to the
+"Glamourless Systems Main" Drive folder that Doug picks in the uploader page.
+
+Inputs:
+  catalog.json   SKU metadata from the website library (title, category, description ...)
+  sources.json   per SKU: {dir, pdf, docx, cover, mockup}  (paths relative to Glamourless Systems Main)
+  pdf files      staged copies of each Print Edition PDF (for page count and chapter list)
+"""
+import json, shutil, os, re, sys, textwrap
+import pypdf
+from chapters import chapters as chapter_list
+from PIL import Image, ImageDraw, ImageFont
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfgen import canvas
+
+STAGE = '/mnt/user-data/uploads/Glamourless Systems Main/'
+OUT = 'out/GS Etsy Upload Packages/'
+PKG_REL = 'GS Etsy Upload Packages/'
+PRICE_BLUEPRINT = 27.00
+
+pdfmetrics.registerFont(TTFont('DV', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'))
+pdfmetrics.registerFont(TTFont('DVB', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'))
+FONT = '/usr/share/fonts/opentype/inter/Inter-Regular.otf'
+FONTB = '/usr/share/fonts/opentype/inter/Inter-Bold.otf'
+
+NAVY, NAVY2, STEEL, WHITE, ACCENT = '#061529', '#0E2A52', '#9DB4CF', '#FFFFFF', '#5B9BFF'
+
+
+def safe_file_name(name):
+    # Etsy digital file names: 3 to 70 characters, letters, numbers, spaces, hyphens, underscores, periods
+    base, ext = os.path.splitext(name)
+    base = re.sub(r"[^A-Za-z0-9 ._-]", "", base)
+    base = re.sub(r"\s+", " ", base).strip()
+    return base[:70 - len(ext)].rstrip() + ext
+
+
+def clean_title(t):
+    t = re.sub(r'\s+', ' ', t).strip()
+    return t
+
+
+def short_name(title):
+    n = re.sub(r'\bBlueprint\b', '', title)
+    n = re.sub(r'^The\s+', '', n.strip())
+    return re.sub(r'\s+', ' ', n).strip(' -')
+
+
+def chapters_of(pdf_path):
+    r = pypdf.PdfReader(pdf_path)
+    out = []
+    for x in r.outline:
+        if isinstance(x, list):
+            continue
+        t = re.sub(r'\s+', ' ', x.title).strip()
+        t = re.sub(r'^Chapter\s+\d+\s*[:.-]\s*', '', t)
+        if not t or re.match(r'(?i)^(disclaimer|how to use this book|current platform sources|sources|the last word|closing)', t):
+            continue
+        out.append(t)
+    return len(r.pages), out
+
+
+def first_paragraph(pdf_path):
+    r = pypdf.PdfReader(pdf_path)
+    for i in range(2, min(6, len(r.pages))):
+        txt = r.pages[i].extract_text() or ''
+        if 'DISCLAIMER' in txt.upper()[:200]:
+            continue
+        lines = [l.strip() for l in txt.split('\n')[2:] if l.strip()]
+        para = ' '.join(lines)
+        para = re.sub(r'\s+', ' ', para)
+        sents = re.split(r'(?<=[.!?])\s+', para)
+        s = ' '.join(sents[:2]).strip()
+        if len(s) > 60:
+            return s
+    return ''
+
+
+def etsy_title(title):
+    base = short_name(title)
+    base = re.sub(r'\s+Business$', '', base)
+    t = f'{base} Business Blueprint, Step by Step Startup Plan, Printable PDF and Editable Word Guide'
+    if len(t) > 140:
+        t = f'{base} Business Blueprint, Startup Plan, PDF and Editable Word'
+    if len(t) > 140:
+        t = f'{base} Business Blueprint PDF'[:140]
+    for ch in '%:&+':  # Etsy allows each of these once at most
+        if t.count(ch) > 1:
+            t = t.replace(ch, ' ')
+    return re.sub(r'\s+', ' ', t).strip()
+
+
+def tags_for(meta):
+    base = short_name(meta['title']).lower()
+    cand = []
+    words = [w for w in re.findall(r"[a-z0-9']+", base) if w not in {'the', 'and', 'a', 'of', 'to', 'for', 'on', 'in', 'your'}]
+    if len(base) <= 20:
+        cand.append(base)
+    for two in ([' '.join(words[:2]), ' '.join(words[-2:])] if len(words) > 2 else []):
+        if len(two) <= 20:
+            cand.append(two)
+    for w in (meta.get('secondary', ''), meta.get('category', '')):
+        w = re.sub(r"[^a-z0-9 '-]", '', w.lower()).strip()
+        if w and len(w) <= 20:
+            cand.append(w)
+    cand += ['business plan', 'startup guide', 'small business', 'side hustle', 'business blueprint',
+             'start a business', 'business template', 'entrepreneur gift', 'digital download']
+    out = []
+    for c in cand:
+        c = re.sub(r'\s+', ' ', c).strip()
+        if c and c not in out and len(c) <= 20:
+            out.append(c)
+    return out[:13]
+
+
+def unit(ch, pages=999):
+    return 'chapters' if len(ch) <= 40 and len(ch) <= pages * 0.75 else 'sections'
+
+
+def description(meta, pages, chapters, opener):
+    name = clean_title(meta['title'])
+    lead = meta.get('description') or opener
+    if opener and len(lead) < 120:
+        lead = (lead.rstrip('.') + '. ' + opener).strip()
+    who = []
+    if meta.get('customer') == 'B2B':
+        who.append('Built for people who want to sell a service to other businesses.')
+    elif meta.get('customer') == 'B2C':
+        who.append('Built for people who want to serve households and everyday customers.')
+    if meta.get('location') == 'REMOTE':
+        who.append('You can run it from home or online.')
+    elif meta.get('location') == 'LOCAL':
+        who.append('You run it as a local business in your own area.')
+    if meta.get('budget'):
+        who.append('Starting budget: ' + meta['budget'].replace('Under ', 'under ') + '.')
+    show = chapters[:14]
+    more = len(chapters) - len(show)
+    lines = [
+        lead,
+        '',
+        f'{name} is a complete written business plan you can follow step by step. It is {pages} pages long and walks through {len(chapters)} {unit(chapters, pages)}, from the first decision to steady customers.',
+        '',
+        "WHAT'S INSIDE",
+    ] + ['- ' + c for c in show] + ([f'- plus {more} more {unit(chapters, pages)}'] if more > 0 else []) + [
+        '',
+        'WHAT YOU GET',
+        '- The full blueprint as a printable PDF',
+        '- The same blueprint as an editable Word document, so you can make it your own',
+        '- A one-page Start Here guide',
+        '',
+    ]
+    if who:
+        lines += ['WHO IT IS FOR', ' '.join(who), '']
+    lines += [
+        'HOW IT WORKS',
+        'This is a digital download. Nothing is shipped. After you buy, Etsy gives you the download right away on the Purchases page. The PDF opens on any phone, tablet or computer. The Word file opens in Microsoft Word, Google Docs or any free word processor.',
+        '',
+        'GOOD TO KNOW',
+        'This blueprint is for education and planning. It does not promise any income or results, and it is not legal, tax or financial advice. Check current rules and costs where you live before you start.',
+        'Written by Wayne Thomas for Glamourless Systems, with help from AI writing tools.',
+        '',
+        'Because this is a digital file, all sales are final. If something is wrong with your download, message us and we will make it right.',
+    ]
+    return '\n'.join(lines)
+
+
+def start_here_pdf(path, meta, whole='business', thing='blueprint'):
+    c = canvas.Canvas(path, pagesize=letter)
+    W, H = letter
+    c.setFillColor(NAVY); c.rect(0, H - 120, W, 120, fill=1, stroke=0)
+    c.setFillColor(WHITE); c.setFont('DVB', 22); c.drawString(54, H - 70, 'Start Here')
+    c.setFont('DV', 12); c.drawString(54, H - 95, clean_title(meta['title']))
+    y = H - 160
+    c.setFillColor('#111111')
+
+    def para(head, body):
+        nonlocal y
+        c.setFont('DVB', 13); c.drawString(54, y, head); y -= 20
+        c.setFont('DV', 11.5)
+        for line in textwrap.wrap(body, 88):
+            c.drawString(54, y, line); y -= 16
+        y -= 12
+
+    para('Thank you for your purchase.', f'Your download has two files: the {thing} as a printable PDF and the same {thing} as an editable Word document. Open the PDF to read it on any device. Open the Word file to type in your own notes and numbers.')
+    para('How to use it', f'Read it once from start to finish so you see the whole {whole}. Then go back and work through it chapter by chapter. Keep the Word version as your working copy and update it as you go.')
+    para('Your next step', ('This blueprint is one part of a complete system. Glamourless Systems also makes the supporting documents, worksheets, a step-by-step course and calculators that go with it. To see which pieces fit where you are right now, take the free assessment at glamourlesssystems.com. It takes about five minutes.' if thing == 'blueprint' else 'Glamourless Systems makes plain step-by-step guides, worksheets and calculators for people building income and skills they control. See what else fits where you are right now at glamourlesssystems.com.'))
+    para('Need help?', 'If anything is wrong with your files, send us a message on Etsy and we will fix it.')
+    c.setFont('DV', 9); c.setFillColor('#555555')
+    c.drawString(54, 54, 'Glamourless Systems | Build Your Profit Scaffold for Your Future.')
+    c.save()
+
+
+def whats_inside_png(path, meta, pages, chapters):
+    S = 2000
+    im = Image.new('RGB', (S, S), NAVY)
+    d = ImageDraw.Draw(im)
+    d.rectangle([0, 0, S, 360], fill=NAVY2)
+    fb = ImageFont.truetype(FONTB, 96); fr = ImageFont.truetype(FONT, 52); fs = ImageFont.truetype(FONT, 46); fbs = ImageFont.truetype(FONTB, 60)
+    d.text((110, 90), "WHAT'S INSIDE", font=fb, fill=WHITE)
+    name = short_name(meta['title'])
+    d.text((110, 230), (name[:52] + '...') if len(name) > 55 else name, font=fr, fill=STEEL)
+    stats = [(str(pages), 'pages'), (str(len(chapters)), unit(chapters, pages)), ('PDF + Word', 'instant download')]
+    x = 110
+    for big, small in stats:
+        d.text((x, 440), big, font=fbs, fill=ACCENT)
+        d.text((x, 520), small, font=fs, fill=STEEL)
+        x += 620
+    y = 660
+    show = chapters[:13]
+    for ch in show:
+        line = ch if len(ch) <= 62 else ch[:60].rstrip() + '...'
+        d.ellipse([110, y + 20, 130, y + 40], fill=ACCENT)
+        d.text((160, y), line, font=fs, fill=WHITE)
+        y += 82
+    if len(chapters) > len(show):
+        d.text((160, y), f'plus {len(chapters) - len(show)} more {unit(chapters, pages)}', font=fs, fill=STEEL)
+    d.text((110, S - 110), 'GLAMOURLESS SYSTEMS', font=fs, fill=STEEL)
+    im.save(path, optimize=True)
+
+
+def main(skus):
+    cat = json.load(open('catalog.json'))
+    src = json.load(open('sources.json'))
+    os.makedirs(OUT, exist_ok=True)
+    mpath = OUT + 'manifest.json'
+    manifest = json.load(open(mpath)) if os.path.exists(mpath) else {'items': []}
+    have = {i['key']: i for i in manifest['items']}
+    for sku in skus:
+        s = src[sku]
+        pdf_local = STAGE + s['pdf']
+        pages, chapters = chapter_list(pdf_local, STAGE + s['docx'] if s.get('docx') else None)
+        chapters = [c for i, c in enumerate(chapters) if not (i < 3 and ('blueprint' in c.lower() or c.lower().startswith('solving')))]
+        opener = first_paragraph(pdf_local)
+        meta = cat.get(sku) or {'sku': sku, 'title': s['title']}
+        meta['title'] = s['title'] if not cat.get(sku) else meta['title']
+        d = OUT + sku + '/'
+        os.makedirs(d, exist_ok=True)
+        start = f'{sku} Start Here.pdf'
+        inside = f'{sku} Whats Inside.png'
+        start_here_pdf(d + start, meta)
+        whats_inside_png(d + inside, meta, pages, chapters)
+        # copy sources into the package folder so it is self-contained, with clean file names
+        base_nm = short_name(clean_title(meta['title']))
+        while len(f"{sku} {base_nm} Blueprint") > 64 and ' ' in base_nm:
+            base_nm = base_nm.rsplit(' ', 1)[0]
+        nice = safe_file_name(f"{sku} {base_nm} Blueprint")
+        imgs, files = [], []
+        for k in ('cover', 'mockup'):
+            if s.get(k):
+                fn = os.path.basename(s[k])
+                if len(fn) > 70:
+                    stem, ext = os.path.splitext(fn)
+                    stem = stem.replace(' The ', ' ').replace(' Blueprint', '')
+                    fn = (stem[:70 - len(ext)].rstrip() + ext)
+                shutil.copyfile(STAGE + s[k], d + fn); imgs.append(sku + '/' + fn)
+        for k in ('pdf', 'docx'):
+            if s.get(k):
+                fn = nice + '.' + k; shutil.copyfile(STAGE + s[k], d + fn); files.append(sku + '/' + fn)
+        item = {
+            'key': sku + '-blueprint', 'sku': sku, 'kind': 'blueprint',
+            'title': etsy_title(meta['title']),
+            'description': description(meta, pages, chapters, opener),
+            'price': PRICE_BLUEPRINT, 'quantity': 999,
+            'tags': tags_for(meta),
+            'images': imgs + [sku + '/' + inside],
+            'files': files + [sku + '/' + start],
+            'pages': pages, 'chapters': len(chapters),
+        }
+        have[item['key']] = item
+        print(sku, pages, 'pages', len(chapters), 'chapters', '|', item['title'])
+    manifest['items'] = sorted(have.values(), key=lambda i: i['key'])
+    json.dump(manifest, open(mpath, 'w'), indent=1)
+
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
+
+==================================================================
+FILE: chapters.py
+==================================================================
+import re, docx, pypdf
+SKIP = re.compile(r'(?i)^(glamourless systems$|build your profit scaffold|20\d\d .*(update|gate)|vendor lock-in|important notice|disclaimer|how to use this|current (platform )?sources|sources|the last word|closing|a final word|table of contents|contents|about the author|copyright|legal|notice|appendix|glossary|index|references)')
+NUMS = 'one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twenty-one twenty-two twenty-three twenty-four twenty-five twenty-six twenty-seven twenty-eight twenty-nine thirty'.split()
+WORDS = '(?:' + '|'.join(sorted(NUMS, key=len, reverse=True)) + ')'
+def _num(x):
+    return int(x) if x.isdigit() else NUMS.index(x.lower()) + 1
+def _clean(t):
+    t = re.sub(r'\s+', ' ', t).strip()
+    t = re.sub(r'^(?:chapter|part|section)\s+(?:\d+[A-Za-z]?|' + WORDS + r')\b\s*[:.\-–—]?\s*', '', t, flags=re.I).strip(' :.-–—')
+    t = re.sub(r'\s+\d{1,3}$', '', t).strip()
+    if t.isupper():
+        t = t.title().replace("'S ", "'s ").replace("'T ", "'t ")
+        t = re.sub(r'(?<=\s)(And|Or|Of|The|To|In|On|For|A|An|At|By|With|Vs|From|Into)(?=\s)', lambda m: m.group(1).lower(), t)
+    return t
+def _ok(t): return t and 4 <= len(t) <= 90 and not SKIP.match(t)
+def from_docx(path):
+    d = docx.Document(path)
+    def sty(p):
+        try:
+            return p.style.name if p.style is not None else ''
+        except Exception:
+            return ''
+    paras = [(sty(p), p.text.strip()) for p in d.paragraphs if p.text.strip()]
+    found = {}
+    for st, t in paras:
+        m = re.match(r'^chapter\s+(\d{1,2}|' + WORDS + r')\b\s*[:.\-–—]?\s*(.*)$', t, re.I)
+        if m and len(t) < 120:
+            n = _num(m.group(1))
+            if n not in found and _ok(_clean(m.group(2))): found[n] = _clean(m.group(2))
+    if len(found) >= 5:
+        return [found[k] for k in sorted(found)]
+    # table of contents lines like 'TITLE<tab>12'
+    toc = []
+    for st, t in paras:
+        m = re.match(r'^(.{4,100}?)\t+\s*\d{1,3}\s*$', t)
+        if m:
+            c = _clean(m.group(1))
+            if _ok(c): toc.append(c)
+    toc = list(dict.fromkeys(toc))
+    if 6 <= len(toc) <= 80:
+        return toc
+    for lvl in ('Heading 1', 'Heading 2'):
+        hs = [_clean(t) for st, t in paras if st == lvl]
+        hs = [h for h in hs if _ok(h)]
+        hs = list(dict.fromkeys(hs))
+        if 6 <= len(hs) <= 60:
+            return hs
+    # last resort: short all-bold paragraphs
+    bold = []
+    for p in d.paragraphs:
+        t = p.text.strip()
+        try:
+            rs = [r for r in p.runs if r.text.strip()]
+        except Exception:
+            rs = []
+        if rs and len(t) < 85 and all(r.bold for r in rs) and not t.endswith(('.', ':')):
+            c = _clean(t)
+            if _ok(c): bold.append(c)
+    bold = list(dict.fromkeys(bold))[1:]
+    return bold if len(bold) >= 6 else []
+def from_pdf_outline(r):
+    out = []
+    try: ol = r.outline
+    except Exception: ol = []
+    for x in ol:
+        if isinstance(x, list): continue
+        t = _clean(x.title)
+        if _ok(t): out.append(t)
+    return out
+def chapters(pdf_path, docx_path):
+    r = pypdf.PdfReader(pdf_path)
+    out = from_pdf_outline(r)
+    if docx_path and (len(out) < 10 or len(out) > 60):
+        d = from_docx(docx_path)
+        if d and (len(out) < 6 or len(out) > 60 or len(d) > len(out)): out = d
+    return len(r.pages), out
+
+==================================================================
+FILE: addsrc.py
+==================================================================
+import json,sys
+# usage: addsrc.py "SKU|dir|pdf|docx|cover|mockup" ...
+B='Glamourless Systems Blueprints and Bundles/'
+src=json.load(open('sources.json'))
+for a in sys.argv[1:]:
+    sku,d,pdf,docx,cv,mk=a.split('|')
+    title=d.split(' ',1)[1]
+    src[sku]=dict(title=title,pdf=B+d+'/Blueprint/'+pdf,docx=B+d+'/Blueprint/'+docx,cover=B+d+'/'+cv if cv!='-' else '',mockup=B+d+'/'+mk if mk!='-' else '')
+json.dump(src,open('sources.json','w'),indent=1)
+print(len(src))
+
+==================================================================
+FILE: prep.py
+==================================================================
+import json,sys
+s=json.load(open('/home/claude/etsy/sources.json'))
+B='G:\\My Drive\\Glamourless Systems Main\\'
+p=[B+s[k][f].replace('/','\\') for k in sys.argv[1:] for f in ('pdf','docx','cover','mockup') if s[k][f]]
+print(json.dumps(p))
+
+==================================================================
+FILE: verify.py
+==================================================================
+import json,re,os,sys
+O='/home/claude/etsy/out/GS Etsy Upload Packages/'
+m=json.load(open(O+'manifest.json'));lo,hi=sys.argv[1],sys.argv[2]
+for i in m['items']:
+    if i['kind']!='blueprint' or not (lo<=i['sku']<=hi): continue
+    bad=[f for f in i['images']+i['files'] if not os.path.exists(O+f) or not re.fullmatch(r'[A-Za-z0-9 ._-]{3,70}',f.split('/')[1])]
+    flag='BAD' if bad or len(i['title'])>140 or 'Business Business' in i['title'] or any(len(t)>20 for t in i['tags']) or i['chapters']<6 else 'ok'
+    print(i['sku'],i['pages'],i['chapters'],len(i['images']),flag,bad,i['title'][:70])
+
+==================================================================
+FILE: commitlist.py
+==================================================================
+import json,os,sys,shutil
+lo,hi=sys.argv[1],sys.argv[2]
+OUT='out/GS Etsy Upload Packages/'; ST='/mnt/user-data/outputs/GS Etsy Upload Packages/'
+D='G:\\My Drive\\Glamourless Systems Main\\GS Etsy Upload Packages\\'
+items=[]
+for sku in sorted(os.listdir(OUT)):
+    if lo<=sku<=hi and os.path.isdir(OUT+sku):
+        os.makedirs(ST+sku,exist_ok=True)
+        for f in sorted(os.listdir(OUT+sku)):
+            shutil.copyfile(OUT+sku+'/'+f, ST+sku+'/'+f)
+            items.append({'stagedPath':ST+sku+'/'+f,'devicePath':D+sku+'\\'+f})
+shutil.copyfile(OUT+'manifest.json',ST+'manifest.json')
+items.append({'stagedPath':ST+'manifest.json','devicePath':D+'manifest.json'})
+for n in range(0,len(items),50):
+    json.dump(items[n:n+50],open(f'/tmp/claude-0/c{n//50}.json','w'))
+print(len(items))
+
+==================================================================
+FILE: fixcareer.py
+==================================================================
+# Career guides are not business plans. Run after build_packages.py to correct their listing text.
+import json,re
+P='out/GS Etsy Upload Packages/manifest.json'
+m=json.load(open(P))
+C={
+'GS-0245':('Helping Hands Career Entry Guide, Step by Step Plan to Start a Care Career, Printable PDF and Editable Word Guide','A plain career entry guide for people who want to start work in helping and care roles. Pay and licensing figures change and vary by state, so verify current numbers with the Bureau of Labor Statistics and your state before you decide.',['care career','caregiver career','helping careers']),
+'GS-0246':('Tech Career Entry Playbook, Step by Step Plan to Break Into Tech, Printable PDF and Editable Word Guide','A plain career entry playbook for getting started in technology work. Pay and certification prices change, so verify with current job postings, the vendor and the Bureau of Labor Statistics before you budget.',['tech career','break into tech','it career guide']),
+'GS-0272':('Trade Entry Playbook, Step by Step Plan to Start a Skilled Trade Career, Printable PDF and Editable Word Guide','A plain playbook for entering the skilled trades. Licensing rules, program terms and requirements differ by place and change over time, so check your local rules before you commit.',['skilled trades','trade career','apprenticeship']),
+'GS-0273':('First Career Playbook, Step by Step Plan to Choose and Start a First Career, Printable PDF and Editable Word Guide','A plain playbook for people choosing and starting their first career, from how entry level hiring works to a twelve month get hired and get promoted plan.',['first career','first job guide','graduation gift']),
+'GS-0284':('Career Pivot Playbook, Step by Step Plan to Change Careers, Printable PDF and Editable Word Guide','A plain playbook for moving from one career to another. It is a project plan, not a pep talk. Work it in order: the audit and the lanes come before the resume, the resume before the search, the search before the negotiation.',['career change','career pivot','change careers']),
+}
+WHO={'GS-0245':'Built for people who want paid work helping others and need a clear way in, with or without a degree.','GS-0246':'Built for beginners and career changers who want a first job in tech without wasting money on the wrong course.','GS-0272':'Built for people who want to earn while they learn in a skilled trade instead of taking on college debt.','GS-0273':'Built for young adults, recent graduates and the parents helping them pick a first career and get hired.','GS-0284':'Built for working adults who want to move into a different career without starting from zero.'}
+COMMON=['career guide','career planning','job search guide','career playbook','resume help','interview prep','career workbook','printable guide','editable word doc','digital download']
+for it in m['items']:
+    c=C.get(it.get('sku'))
+    if not c or it.get('kind','blueprint')!='blueprint': continue
+    t,lead,tg=c
+    assert len(t)<=140,(it['sku'],len(t))
+    it['title']=t
+    d=it['description']; rest=d.split('\n\n',1)[1]
+    rest=rest.replace('is a complete written business plan you can follow step by step','is a complete written career plan you can follow step by step').replace('from the first decision to steady customers','from the first decision to the job offer')
+    rest=re.sub(r'WHO IT IS FOR\n.*?\n\n','WHO IT IS FOR\n'+WHO[it['sku']]+'\n\n',rest,flags=re.S)
+    rest=rest.replace('How Hiring Actually Works at 18 to\n','How Hiring Actually Works at 18 to 22\n')
+    it['description']=lead+'\n\n'+rest
+    tags=[x for x in tg+COMMON if len(x)<=20][:13]; assert len(tags)==13
+    it['tags']=tags
+    print(it['sku'],len(t),'business' in it['description'].lower(), 'customer' in it['description'].lower())
+
+import build_packages as bp
+D='out/GS Etsy Upload Packages/'
+by={i['sku']:i for i in m['items'] if i.get('kind','blueprint')!='tool'}
+# career guides: Start Here page should not talk about a business
+for sku in C:
+    bp.start_here_pdf(D+sku+'/'+sku+' Start Here.pdf',{'title':by[sku]['title'].split(',')[0]},whole='plan',thing='guide')
+# GS-0113 is a boat builder's manual, not a business plan
+it=by['GS-0113']
+it['title']='ShoreHaul 78 Micro Skiff Concept Manual, Ultralight Stitch and Glue Boat Build Guide, Printable PDF and Editable Word'
+d=it['description']
+d=d.replace('ShoreHaul 78 Concept Manual is a complete written business plan you can follow step by step.','The ShoreHaul 78 Concept Manual is a complete written build guide you can follow step by step.').replace(', from the first decision to steady customers.',', from tools and materials through the build.')
+d=d.replace('- The full blueprint as a printable PDF','- The full manual as a printable PDF').replace('- The same blueprint as an editable Word document, so you can make it your own','- The same manual as an editable Word document, so you can add your own notes')
+d=d.replace('This blueprint is for education and planning. It does not promise any income or results, and it is not legal, tax or financial advice. Check current rules and costs where you live before you start.','This is a concept manual for education and planning. Boat building and boating carry real risk. You are responsible for your own build, materials, testing and safety on the water, and for following the boating rules where you live. Check current material prices before you budget.')
+it['description']=d
+it['tags']=['micro skiff','boat building','stitch and glue','diy boat','small boat','skiff build','boat build guide','epoxy fiberglass','woodworking project','diy project','shorehaul 78','printable guide','digital download']
+bp.start_here_pdf(D+'GS-0113/GS-0113 Start Here.pdf',{'title':'ShoreHaul 78 Concept Manual'},whole='build',thing='manual')
+# GS-0089: make the platonic scope obvious in the title
+it=by['GS-0089']
+it['title']='Platonic Companionship Service Business Blueprint, Step by Step Startup Plan, Printable PDF and Editable Word Guide'
+it['tags']=(['companion service','platonic companion']+[t for t in it['tags'] if t not in('companion service','platonic companion')])[:13]
+for s in ('GS-0113','GS-0089'):
+    assert len(by[s]['title'])<=140 and len(by[s]['tags'])==13 and all(len(t)<=20 for t in by[s]['tags']),s
+    print(s,len(by[s]['title']),by[s]['title'])
+json.dump(m,open(P,'w'),indent=1)
+
+==================================================================
+FILE: build_tools.py
+==================================================================
+#!/usr/bin/env python3
+"""Build Etsy draft packages for the central GS HTML tools.
+
+For each tool in tools.json:
+  HT <Name>/HT <Name> Cover.png        branded cover with a framed screenshot
+  HT <Name>/HT <Name> Screen One.png   real screenshot of the tool
+  HT <Name>/HT <Name> Screen Two.png   second screenshot (when the page is tall enough)
+  HT <Name>/HT <Name> Features.png     what's inside + how it works card
+  HT <Name>/<Name>.zip                 the tool html + Read Me First.txt
+Adds one manifest item per tool (key 'HT-<slug>', kind 'tool') to the shared manifest.json.
+"""
+import json, os, re, shutil, zipfile
+from PIL import Image, ImageDraw, ImageFont
+
+SRC = '/mnt/user-data/uploads/Glamourless Systems Main/Glamourless Systems Engines/Gs-HTML Tools/'
+OUT = '/home/claude/etsy/out/GS Etsy Upload Packages/'
+SHOTS = '/home/claude/etsy/toolshots/'
+FONT = '/usr/share/fonts/opentype/inter/Inter-Regular.otf'
+FONTB = '/usr/share/fonts/opentype/inter/Inter-Bold.otf'
+NAVY, NAVY2, STEEL, WHITE, ACCENT = '#061529', '#0E2A52', '#9DB4CF', '#FFFFFF', '#5B9BFF'
+PRICE_CALC, PRICE_SYSTEM = 12.00, 19.00
+
+INTRO = {
+ 'Asset Label Barcode and QR System': 'Track every tool, machine and asset you own, then design and print barcode and QR labels for them.',
+ 'Audit and Inspection Field App': 'Run inspections from templates, record findings, assign corrective actions and produce clean reports.',
+ 'Before and After Job Documentation System': 'Pair before and after photos by job and turn them into a customer-ready report.',
+ 'Build My Service Offer Wizard': 'A guided wizard that turns what you do into a clear service offer, with an internal sheet and a customer sheet.',
+ 'Business Document Builder': 'Build business documents from guided templates using your saved business profile.',
+ 'Business Performance Dashboard': 'See revenue, pipeline, job margin and route performance in one dashboard built from your own numbers.',
+ 'Business Scenario Simulator': 'Model your business, then test scenarios side by side to see what changes the outcome most.',
+ 'Business Tracker Suite': 'Nine trackers in one app: leads, mileage, job profit, equipment, recurring customers, inspections, referrals, sales activity and launch progress.',
+ 'Cash Flow Planner': 'Forecast cash in and out, set reserve rules and run what-if scenarios before a shortfall happens.',
+ 'Client Intake and Job Scope Builder': 'Collect customer details and build a clear job scope from reusable intake templates.',
+ 'Commission and Compensation Manager': 'Set up pay plans, log transactions and calculate commissions and payouts with statements.',
+ 'Contractor Price Book System': 'Build a price book of services, assemblies, labor, materials and equipment with your own pricing rules.',
+ 'Customer Service Configurator and Estimate Builder': 'Let customers configure a service and see an estimate, with an operator setup side for your pricing.',
+ 'Data Migration and Format Conversion Utility': 'Map, transform and validate data from one format to another before you move it into a new system.',
+ 'Deterministic Business Document Generators': 'Generate business documents from facts you enter and fixed templates. It never invents pricing, legal or customer details.',
+ 'Dispatch and Capacity Manager': 'Schedule jobs to workers, crews and vehicles and catch capacity conflicts before they happen.',
+ 'Evidence and Audit Packet Builder': 'Organize evidence, findings and corrective actions into a complete audit packet.',
+ 'GS Campaign Challenge and Lead Experience Builder': 'Build interactive challenge campaigns that capture leads, then review the lead records and results.',
+ 'GS Community Challenge and League Platform': 'Run seasons, challenges, score entry and leaderboards for a community, club or league.',
+ 'GS Daily Challenge Publisher': 'Plan a bank of daily challenges, schedule them on a calendar and track scores.',
+ 'GS Game and Simulation Economy Balancer': 'Model resources, progression and upgrades in a game economy and run simulations to balance it.',
+ 'GS Interactive Experience Analytics Console': 'Import event data from interactive experiences and explore funnels, distributions and data quality.',
+ 'GS Interactive Localization and Content Pack Manager': 'Manage strings, translations and content packs for an interactive project and export a bundle.',
+ 'GS Interactive Product Finder and Merchandising Game Builder': 'Build a product finder quiz from your catalog that recommends products and captures leads.',
+ 'GS Multi Portal Web Game Adapter Kit': 'Plan and validate builds of a web game for multiple game portals from one project.',
+ 'GS Playable Promotion and Branded Mini Game Builder': 'Configure a branded mini game promotion with prize entry, testing and closeout.',
+ 'GS Realistic Job Preview Builder': 'Build a realistic job preview so candidates see the real work before they apply.',
+ 'GS Scenario Content Authoring Studio': 'Author branching scenarios with nodes, choices and variables, then playtest and export them.',
+ 'GS White Label Interactive Experience Packager': 'Package interactive tools for clients with branding, licensing, hosting plans and handoff checklists.',
+ 'GS-0169 Vehicle Inspection Field App': 'Run vehicle inspections from templates, record findings and produce inspection reports.',
+ 'Interactive Assessments and Certifications': 'Run lessons, practice scenarios and a final assessment, with completion records per learner.',
+ 'Interactive Sales Presentation Builder': 'Run guided sales presentations with discovery questions, packages, comparisons and objection answers.',
+ 'Interactive Workbooks': 'A step by step business launch workbook: foundation, customer, offer, startup costs, pricing and break-even.',
+ 'Inventory and Equipment Managers': 'Track equipment, supplies, stock movements, maintenance and replacement in one place.',
+ 'Job and Project Kanban Board': 'Move jobs through a kanban board with tasks, checklists and due dates.',
+ 'Local CSV Data Cleanup and Reconciliation Utility': 'Import a CSV, find missing values and duplicates, standardize fields, reconcile and export clean data.',
+ 'Offline Digital Catalog Builder': 'Build a searchable visual catalog of your services, packages and products.',
+ 'Offline Field Manual and Knowledge Base': 'Load your procedures and reference material into a searchable offline field manual.',
+ 'Photo Documentation System': 'Organize job photos by customer, job and location and build documentation reports.',
+ 'Punch List and Closeout System': 'Track punch list items through verification and evidence to a documented closeout.',
+ 'Quote and Proposal Builder': 'Build quotes and proposals from your service catalog and track them as pipeline.',
+ 'Route and Territory Manager': 'Manage customers, stops, routes, territories and recurring service in one place.',
+ 'Solo Operator Business OS': 'Run a one-person business: customers, pipeline, estimates, jobs, invoices, payments, expenses and tasks.',
+ 'Solo Operator CRM': 'Track contacts, pipeline, follow-ups, tasks and revenue without a monthly CRM bill.',
+ 'SOP Execution System': 'Build SOPs, run them as live workflows and catch QA exceptions as work happens.',
+ 'Visual Damage and Site Inspection Mapper': 'Mark damage and findings on images and site plans, then build a findings schedule and report.',
+ 'Warranty and Claims Manager': 'Track warranty and claim cases with evidence, deadlines, follow-ups and case packets.',
+ 'Work Order Manager': 'Create, schedule and track work orders with labor, materials and equipment.',
+ 'Batch Document Factory': 'Turn a list of records and one template into many individual documents or labels at once.',
+ 'Business Troubleshooter and Decision Tree Engine': 'Walk through guided troubleshooters like "Why am I not profitable?" and build your own decision trees.',
+}
+
+def cut(s, n):
+    if len(s) <= n: return s
+    return s[:n].rsplit(' ', 1)[0].rstrip()
+
+def clean_name(n):
+    n = re.sub(r'^GS-\d+\s+', '', n)
+    n = re.sub(r'^GS\s+', '', n)
+    return n
+
+def slug(n):
+    return re.sub(r'[^A-Za-z0-9]+', '-', clean_name(n)).strip('-')
+
+def is_calc(n, nav):
+    return nav == ['Inputs'] or nav[:1] == ['Inputs'] or re.search(r'Calculator|Planner|Reality Check|Fit Finder|Diagnostic|Quote Builder|Bid', n) is not None
+
+def wrap(d, text, font, width):
+    words, lines, cur = text.split(), [], ''
+    for w in words:
+        t = (cur + ' ' + w).strip()
+        if d.textlength(t, font=font) <= width: cur = t
+        else: lines.append(cur); cur = w
+    if cur: lines.append(cur)
+    return lines
+
+def cover(path, name, shot, calc):
+    W, H = 2000, 1600
+    im = Image.new('RGB', (W, H), NAVY); d = ImageDraw.Draw(im)
+    fb = ImageFont.truetype(FONTB, 88); fs = ImageFont.truetype(FONT, 46); ft = ImageFont.truetype(FONTB, 40)
+    lines = wrap(d, name, fb, 1780)[:2]
+    y = 90
+    for ln in lines:
+        d.text((110, y), ln, font=fb, fill=WHITE); y += 108
+    d.text((110, y + 20), ('Interactive calculator' if calc else 'Offline business app') + '  ·  Runs in your browser  ·  No subscription', font=fs, fill=STEEL)
+    top = y + 120
+    s = Image.open(shot).convert('RGB')
+    bw = 1780; bh = H - top - 150
+    s = s.resize((bw, int(s.height * bw / s.width)))
+    s = s.crop((0, 0, bw, min(bh, s.height)))
+    d.rectangle([104, top - 6, 110 + s.width + 6, top + s.height + 6], fill=ACCENT)
+    im.paste(s, (110, top))
+    d.text((110, H - 100), 'GLAMOURLESS SYSTEMS', font=ft, fill=STEEL)
+    d.text((W - 110 - d.textlength('INSTANT DOWNLOAD', font=ft), H - 100), 'INSTANT DOWNLOAD', font=ft, fill=ACCENT)
+    im.save(path, optimize=True)
+
+def features(path, name, nav, intro):
+    W, H = 2000, 1600
+    im = Image.new('RGB', (W, H), NAVY); d = ImageDraw.Draw(im)
+    d.rectangle([0, 0, W, 300], fill=NAVY2)
+    fb = ImageFont.truetype(FONTB, 84); fr = ImageFont.truetype(FONT, 46); fs = ImageFont.truetype(FONT, 42); fh = ImageFont.truetype(FONTB, 50)
+    d.text((110, 70), "WHAT'S INSIDE", font=fb, fill=WHITE)
+    nm = clean_name(name); nm = nm if len(nm) <= 60 else nm[:58] + '...'
+    d.text((110, 190), nm, font=fr, fill=STEEL)
+    items = [n for n in nav if n.lower() not in ('help', 'help / about')][:12] if len(nav) > 1 else []
+    y = 370
+    if items:
+        col = 0
+        for i, it in enumerate(items):
+            x = 110 if i < 6 else 1000
+            yy = 370 + (i % 6) * 84
+            d.ellipse([x, yy + 18, x + 20, yy + 38], fill=ACCENT)
+            t = it if len(it) <= 30 else it[:28] + '...'
+            d.text((x + 45, yy), t, font=fs, fill=WHITE)
+        y = 370 + 6 * 84 + 30
+    else:
+        for ln in wrap(d, intro, fs, 1780)[:5]:
+            d.text((110, y), ln, font=fs, fill=WHITE); y += 62
+        y += 40
+    d.text((110, y), 'HOW IT WORKS', font=fh, fill=ACCENT); y += 90
+    for step in ['Download the zip and unzip it', 'Double-click the file to open it in your browser',
+                 'Your data saves on your own device, no account needed', 'Use Backup to export your data any time']:
+        d.ellipse([110, y + 16, 130, y + 36], fill=ACCENT)
+        d.text((160, y), step, font=fs, fill=WHITE); y += 76
+    d.text((110, H - 100), 'GLAMOURLESS SYSTEMS', font=ImageFont.truetype(FONTB, 40), fill=STEEL)
+    im.save(path, optimize=True)
+
+README = """{name}
+Glamourless Systems
+
+HOW TO OPEN IT
+1. Unzip this download (on Windows, right-click the zip and choose Extract All).
+2. Double-click "{file}". It opens in your web browser (Chrome, Edge, Firefox or Safari).
+3. That's it. No install, no account, no subscription, no internet needed after download.
+
+WHERE YOUR DATA GOES
+Everything you enter is saved in your browser on this device only. Nothing is sent anywhere.
+Clearing your browser's site data will erase it, so use the Backup or Export option regularly
+and keep the backup file somewhere safe. Use the same browser each time.
+
+TIPS
+- Bookmark the file after you open it so it's one click away.
+- Works best on a computer. You can copy the file to another device and restore your backup there.
+- Print / Save as PDF uses your browser's print window.
+
+LICENSE
+For use in your own business. Please do not resell or redistribute the file.
+
+Questions: reply to your Etsy order message and we'll help.
+"""
+
+def description(name, nav, intro, calc):
+    nm = clean_name(name)
+    parts = [f"{nm}: {intro}", '',
+             'This is a self-contained app that runs in your web browser. No install, no account, no monthly fee, and it works offline. Your data stays on your own device.', '']
+    items = [n.replace('\n', ' ') for n in nav if n.lower() not in ('help', 'help / about')]
+    if len(items) > 1:
+        parts.append("WHAT'S INSIDE")
+        parts += ['- ' + re.sub(r'\s+\d+%$', '', i) for i in items[:16]]
+        parts.append('')
+    parts += ['WHAT YOU GET',
+              f'- {nm} (one HTML file, inside a zip)',
+              '- Read Me First guide with simple setup steps', '',
+              'HOW IT WORKS',
+              '1. Download and unzip the file.',
+              '2. Double-click it. It opens in Chrome, Edge, Firefox or Safari.',
+              '3. Start entering your numbers. Everything saves on your device.',
+              '4. Use Backup / Export to keep a copy of your data.', '',
+              'GOOD TO KNOW',
+              '- Digital download only. Nothing is shipped.',
+              '- Works best on a laptop or desktop computer.',
+              '- Built for small business owners, solo operators and service businesses.',
+              '- For use in your own business. Not for resale.', '',
+              'Made by Glamourless Systems. We build practical tools that help ordinary people run a business they control.']
+    return '\n'.join(parts)
+
+GENERIC = ['small business tool', 'offline app', 'business template', 'digital download', 'service business',
+           'html app', 'solo business', 'no subscription', 'contractor tools', 'business planner', 'side hustle']
+
+def tags_for(name, calc):
+    nm = clean_name(name).lower().replace('&', 'and')
+    t = []
+    words = [w for w in re.findall(r'[a-z0-9]+', nm) if w not in ('and', 'the', 'my', 'do', 'i', 'to', 'this', 'of')]
+    if len(nm) <= 20: t.append(nm)
+    for i in range(len(words) - 1):
+        p = words[i] + ' ' + words[i + 1]
+        if len(p) <= 20 and p not in t: t.append(p)
+    if calc: t += ['business calculator', 'pricing calculator']
+    for g in GENERIC:
+        if len(t) >= 13: break
+        if g not in t: t.append(g)
+    return [x for x in t if 3 <= len(x) <= 20][:13]
+
+def etsy_title(name, calc):
+    nm = clean_name(name)
+    tail = ' | Business Calculator, Offline Browser App, No Subscription, Instant Download' if calc else ' | Small Business App, Works Offline in Your Browser, No Subscription, Instant Download'
+    t = nm + tail
+    return t if len(t) <= 140 else (nm + ' | Offline Browser App, No Subscription, Instant Download')[:140]
+
+def main():
+    names = json.load(open('/home/claude/etsy/tools.json'))
+    info = json.load(open('/home/claude/etsy/toolinfo.json'))
+    shots = {}
+    for l in open('/home/claude/etsy/shots.jsonl'):
+        try: d = json.loads(l); shots[d['n']] = d
+        except Exception: pass
+    mpath = OUT + 'manifest.json'
+    manifest = json.load(open(mpath))
+    have = {i['key']: i for i in manifest['items']}
+    for n in names:
+        nm = clean_name(n)
+        nav = [x.replace('\n', ' ') for x in info[n]['nav']]
+        intro = INTRO.get(n) or (info[n]['ps'][0] if info[n]['ps'] else f'A practical {nm.lower()} for small business owners.')
+        calc = is_calc(n, info[n]['nav'])
+        folder = 'HT ' + nm
+        folder = folder if len(folder) <= 60 else folder[:60].rstrip()
+        d = OUT + folder + '/'; os.makedirs(d, exist_ok=True)
+        short = cut(nm, 50)
+        imgs = []
+        f1 = f'HT {short} Cover.png'; cover(d + f1, nm, SHOTS + n + ' A.png', calc); imgs.append(f1)
+        f2 = f'HT {short} Screen One.png'; shutil.copyfile(SHOTS + n + ' A.png', d + f2); imgs.append(f2)
+        if shots.get(n, {}).get('h', 0) > 1000:
+            f3 = f'HT {short} Screen Two.png'; shutil.copyfile(SHOTS + n + ' B.png', d + f3); imgs.append(f3)
+        f4 = f'HT {short} Features.png'; features(d + f4, n, nav, intro); imgs.append(f4)
+        zname = cut(nm, 66) + '.zip'
+        htmlname = nm + '.html'
+        with zipfile.ZipFile(d + zname, 'w', zipfile.ZIP_DEFLATED) as z:
+            z.write(SRC + n + '.html', htmlname)
+            z.writestr('Read Me First.txt', README.format(name=nm, file=htmlname))
+        item = {'key': 'HT-' + slug(n), 'sku': 'HT-' + slug(n), 'kind': 'tool',
+                'title': etsy_title(n, calc), 'description': description(n, nav, intro, calc),
+                'price': PRICE_CALC if calc else PRICE_SYSTEM, 'quantity': 999,
+                'tags': tags_for(n, calc),
+                'images': [folder + '/' + i for i in imgs], 'files': [folder + '/' + zname]}
+        have[item['key']] = item
+        print(item['key'], item['price'], len(item['title']), len(item['tags']), len(imgs))
+    manifest['items'] = sorted(have.values(), key=lambda i: i['key'])
+    json.dump(manifest, open(mpath, 'w'), indent=1)
+
+if __name__ == '__main__':
+    main()
+
+==================================================================
+FILE: shoot.js
+==================================================================
+const { chromium } = require('playwright');
+const fs=require('fs'),path=require('path');
+const SRC='/mnt/user-data/uploads/Glamourless Systems Main/Glamourless Systems Engines/Gs-HTML Tools/';
+const names=JSON.parse(fs.readFileSync('tools.json'));
+(async()=>{
+ const b=await chromium.launch();
+ for(const n of names){
+  const p=await b.newPage({viewport:{width:1000,height:800},deviceScaleFactor:2});
+  const errs=[];p.on('pageerror',e=>errs.push(e.message));
+  await p.goto('file://'+SRC+n+'.html');await p.waitForTimeout(700);
+  await p.screenshot({path:`toolshots/${n} A.png`});
+  const h=await p.evaluate(()=>document.documentElement.scrollHeight);
+  await p.evaluate(()=>window.scrollTo(0,Math.min(700,document.documentElement.scrollHeight)));await p.waitForTimeout(200);
+  await p.screenshot({path:`toolshots/${n} B.png`});
+  const txt=await p.evaluate(()=>document.body.innerText.slice(0,600).replace(/\s+/g,' '));
+  console.log(JSON.stringify({n,h,errs:errs.length,txt}));
+  await p.close();
+ }
+ await b.close();
+})();
+
+==================================================================
+FILE: probe.js
+==================================================================
+const { chromium } = require('playwright');const fs=require('fs');
+const SRC='/mnt/user-data/uploads/Glamourless Systems Main/Glamourless Systems Engines/Gs-HTML Tools/';
+const names=JSON.parse(fs.readFileSync('tools.json'));
+(async()=>{const b=await chromium.launch();const out={};
+for(const n of names){const p=await b.newPage();await p.goto('file://'+SRC+n+'.html');await p.waitForTimeout(400);
+out[n]=await p.evaluate(()=>{const nav=[...document.querySelectorAll('nav button, nav a, aside button, aside a, [role=tab]')].map(e=>e.innerText.trim()).filter(t=>t&&t.length<45&&!/skip/i.test(t));
+const ps=[...document.querySelectorAll('main p, p')].map(e=>e.innerText.trim()).filter(t=>t.length>40).slice(0,3);
+const h=[...document.querySelectorAll('main h2, main h3, h2')].map(e=>e.innerText.trim()).filter(Boolean).slice(0,12);
+return {nav:[...new Set(nav)].slice(0,16),ps,h}});await p.close()}
+fs.writeFileSync('toolinfo.json',JSON.stringify(out,null,1));await b.close()})();
+
+==================================================================
+FILE: GS Etsy Supporting Docs Picker.ps1
+==================================================================
+# GS Etsy Supporting Docs Picker
+# COPIES (never moves or deletes) everything Etsy needs out of the SKU folders:
+#   1. ALL supporting documents  -> GS Etsy Supporting Docs\<SKU folder>\   (log scores each one for Etsy value)
+#   2. ALL HTML courses          -> GS Etsy Courses\<SKU folder>\
+#   3. Manuscripts from GS-0119 Survive AI Shift and GS-0197 Business Accelerator Pack -> GS Etsy Manuscripts\<SKU folder>\
+# Lead magnets and Fix Something lane SKUs are left out (only the eligible list below is used).
+# Handles file paths longer than 260 characters (uses the \\?\ long path prefix).
+# Skips old backup copies (Archive, Buyer Appeal Recovery, "before" edits) and Google Docs shortcut files.
+
+$Root  = 'G:\My Drive\Glamourless Systems Main\Glamourless Systems Blueprints and Bundles'
+$Base  = 'G:\My Drive\Glamourless Systems Main'
+$OutSD = Join-Path $Base 'GS Etsy Supporting Docs'
+$OutIC = Join-Path $Base 'GS Etsy Courses'
+$OutMS = Join-Path $Base 'GS Etsy Manuscripts'
+$ManuscriptPacks = @('GS-0119','GS-0197')
+$Eligible = @('GS-0001','GS-0002','GS-0003','GS-0004','GS-0005','GS-0006','GS-0007','GS-0008','GS-0009','GS-0010','GS-0011','GS-0012','GS-0013','GS-0014','GS-0015','GS-0016','GS-0017','GS-0018','GS-0019','GS-0021','GS-0022','GS-0023','GS-0024','GS-0027','GS-0028','GS-0029','GS-0030','GS-0031','GS-0032','GS-0033','GS-0034','GS-0035','GS-0036','GS-0037','GS-0038','GS-0039','GS-0040','GS-0041','GS-0043','GS-0044','GS-0045','GS-0047','GS-0048','GS-0049','GS-0051','GS-0052','GS-0055','GS-0056','GS-0057','GS-0058','GS-0059','GS-0060','GS-0061','GS-0062','GS-0063','GS-0064','GS-0065','GS-0066','GS-0067','GS-0068','GS-0070','GS-0071','GS-0072','GS-0079','GS-0080','GS-0081','GS-0082','GS-0083','GS-0084','GS-0085','GS-0086','GS-0087','GS-0088','GS-0089','GS-0091','GS-0092','GS-0093','GS-0095','GS-0096','GS-0098','GS-0099','GS-0100','GS-0101','GS-0102','GS-0103','GS-0104','GS-0105','GS-0106','GS-0107','GS-0109','GS-0110','GS-0111','GS-0113','GS-0114','GS-0115','GS-0116','GS-0118','GS-0120','GS-0121','GS-0123','GS-0124','GS-0125','GS-0126','GS-0128','GS-0129','GS-0130','GS-0131','GS-0132','GS-0133','GS-0134','GS-0135','GS-0136','GS-0137','GS-0138','GS-0139','GS-0141','GS-0142','GS-0143','GS-0144','GS-0145','GS-0146','GS-0147','GS-0148','GS-0150','GS-0151','GS-0152','GS-0153','GS-0154','GS-0155','GS-0156','GS-0157','GS-0158','GS-0159','GS-0161','GS-0162','GS-0164','GS-0165','GS-0166','GS-0167','GS-0168','GS-0169','GS-0170','GS-0171','GS-0172','GS-0173','GS-0174','GS-0175','GS-0176','GS-0177','GS-0178','GS-0179','GS-0181','GS-0182','GS-0183','GS-0184','GS-0185','GS-0186','GS-0187','GS-0188','GS-0189','GS-0190','GS-0191','GS-0193','GS-0194','GS-0195','GS-0196','GS-0228','GS-0229','GS-0230','GS-0231','GS-0232','GS-0233','GS-0234','GS-0235','GS-0236','GS-0237','GS-0238','GS-0239','GS-0240','GS-0241','GS-0242','GS-0245','GS-0246','GS-0247','GS-0248','GS-0249','GS-0250','GS-0251','GS-0252','GS-0253','GS-0254','GS-0255','GS-0256','GS-0257','GS-0258','GS-0266','GS-0267','GS-0268','GS-0269','GS-0271','GS-0272','GS-0273','GS-0276','GS-0277','GS-0278','GS-0279','GS-0284','GS-0285','GS-0289','GS-0290','GS-0291','GS-0292','GS-0293','GS-0294','GS-0295','GS-0296','GS-0297','GS-0298','GS-0299') + $ManuscriptPacks
+
+function Score-Doc($f) {
+  $n = $f.BaseName; $s = 0
+  if ($f.Extension -eq '.xlsx') { $s += 30 }
+  if ($n -match 'Tracker|Dashboard|Calculator|Estimator|Spreadsheet|Workbook') { $s += 25 }
+  if ($n -match 'Pricing|Price|Quote|Estimat|Bid') { $s += 20 }
+  if ($n -match 'Contract|Forms|Agreement|Template|Intake|Proposal') { $s += 20 }
+  if ($n -match 'Checklist|Inspection|Log') { $s += 15 }
+  if ($n -match 'Script|Outreach|Sales|Pitch') { $s += 12 }
+  if ($n -match 'Operations Manual|SOP|Playbook') { $s += 8 }
+  if ($n -match 'Starter Kit|Launch Guide') { $s += 3 }
+  if ($n -match 'Compliance|Legal|Regulat|Matrix|Escalation|UPL|Requirements') { $s -= 10 }
+  $s += [math]::Min([math]::Round($f.Length / 10KB), 15)
+  return $s
+}
+
+$LP = '\\?\'
+function Long($p) { if ($p.StartsWith($LP)) { $p } else { $LP + $p } }
+function Short($p) { $p.Replace($LP,'') }
+
+foreach ($p in @($OutSD,$OutIC,$OutMS)) { New-Item -ItemType Directory -Force -Path $p | Out-Null }
+$log = @(); $problems = @(); $nSD = 0; $nIC = 0; $nMS = 0
+$skuDirs = Get-ChildItem -LiteralPath $Root -Directory | Where-Object { $_.Name -match '^(GS-\d{4})' -and $Eligible -contains $Matches[1] } | Sort-Object Name
+foreach ($d in $skuDirs) {
+  $sku = $d.Name.Substring(0,7)
+  $errs = @()
+  $all = Get-ChildItem -LiteralPath (Long $d.FullName) -Recurse -File -ErrorAction SilentlyContinue -ErrorVariable errs |
+         Where-Object { (Short $_.FullName) -notmatch '\\(Blueprint|Archive|Old|Backup)\\|Buyer Appeal Recovery|before buyer-appeal' }
+  foreach ($e in $errs) { $problems += "$sku  could not read: $($e.TargetObject)" }
+
+  # Courses: IC- html files, or any html inside an Interactive Course or IC- folder
+  $courses = $all | Where-Object { $_.Extension -eq '.html' -and ($_.Name -match '^IC-' -or (Short $_.FullName) -match '\\(IC-[^\\]*|Interactive Course[^\\]*)\\') }
+  if ($courses) {
+    $cdest = Join-Path $OutIC $d.Name
+    New-Item -ItemType Directory -Force -Path (Long $cdest) | Out-Null
+    foreach ($c in $courses) {
+      try { Copy-Item -LiteralPath $c.FullName -Destination (Long $cdest) -Force -ErrorAction Stop; $nIC++ }
+      catch { $problems += "$sku  course copy failed: $($c.Name)" }
+    }
+  }
+
+  # Supporting docs (or manuscripts for the two collection packs)
+  $docs = @($all | Where-Object { $_.Extension -in '.docx','.xlsx','.pdf' -and $_.Name -notmatch '^(CV|MK|IC|HT)-' })
+  $gdocs = @($all | Where-Object { $_.Extension -in '.gdoc','.gsheet' })
+  if ($gdocs.Count) { $problems += "$sku  $($gdocs.Count) Google Docs or Sheets skipped (export them as Word or Excel to include them)" }
+  if (-not $docs.Count) { Write-Host "$sku  no supporting docs found" -ForegroundColor Yellow; continue }
+  if ($ManuscriptPacks -contains $sku) { $dest = Join-Path $OutMS $d.Name } else { $dest = Join-Path $OutSD $d.Name }
+  New-Item -ItemType Directory -Force -Path (Long $dest) | Out-Null
+  $ok = 0
+  foreach ($f in $docs) {
+    try {
+      Copy-Item -LiteralPath $f.FullName -Destination (Long $dest) -Force -ErrorAction Stop; $ok++
+      if ($ManuscriptPacks -contains $sku) { $nMS++ } else { $nSD++ }
+      $log += [pscustomobject]@{ SKU = $sku; Folder = $d.Name; Document = $f.Name; Score = (Score-Doc $f); SizeKB = [math]::Round($f.Length/1KB) }
+    } catch { $problems += "$sku  copy failed: $($f.Name)" }
+  }
+  Write-Host "$sku  copied $ok of $($docs.Count) docs, $($courses.Count) course files" -ForegroundColor Green
+}
+$log | Sort-Object Score -Descending | Export-Csv -LiteralPath (Join-Path $OutSD 'Supporting Docs Score Log.csv') -NoTypeInformation
+$problems | Set-Content -LiteralPath (Join-Path $OutSD 'Supporting Docs Problems.txt')
+Write-Host ""
+Write-Host "Done. Supporting docs: $nSD   Courses: $nIC   Manuscripts: $nMS   Problems: $($problems.Count)" -ForegroundColor Cyan
+if ($problems.Count) { Write-Host "Problems are listed in: $OutSD\Supporting Docs Problems.txt" -ForegroundColor Yellow }
+Read-Host "Press Enter to close"
+

@@ -208,7 +208,7 @@ def tags_for(name, calc):
     for i in range(len(words) - 1):
         p = words[i] + ' ' + words[i + 1]
         if len(p) <= 20 and p not in t: t.append(p)
-    if calc: t += ['business calculator', 'pricing calculator']
+    if calc: t += [x for x in ['business calculator', 'pricing calculator'] if x not in t]
     for g in GENERIC:
         if len(t) >= 13: break
         if g not in t: t.append(g)
