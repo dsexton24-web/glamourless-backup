@@ -11,8 +11,9 @@ Inputs:
   sources.json   per SKU: {dir, pdf, docx, cover, mockup}  (paths relative to Glamourless Systems Main)
   pdf files      staged copies of each Print Edition PDF (for page count and chapter list)
 """
-import json, os, re, sys, textwrap
+import json, shutil, os, re, sys, textwrap
 import pypdf
+from chapters import chapters as chapter_list
 from PIL import Image, ImageDraw, ImageFont
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfbase import pdfmetrics
@@ -30,6 +31,14 @@ FONT = '/usr/share/fonts/opentype/inter/Inter-Regular.otf'
 FONTB = '/usr/share/fonts/opentype/inter/Inter-Bold.otf'
 
 NAVY, NAVY2, STEEL, WHITE, ACCENT = '#061529', '#0E2A52', '#9DB4CF', '#FFFFFF', '#5B9BFF'
+
+
+def safe_file_name(name):
+    # Etsy digital file names: 3 to 70 characters, letters, numbers, spaces, hyphens, underscores, periods
+    base, ext = os.path.splitext(name)
+    base = re.sub(r"[^A-Za-z0-9 ._-]", "", base)
+    base = re.sub(r"\s+", " ", base).strip()
+    return base[:70 - len(ext)].rstrip() + ext
 
 
 def clean_title(t):
@@ -109,6 +118,10 @@ def tags_for(meta):
     return out[:13]
 
 
+def unit(ch, pages=999):
+    return 'chapters' if len(ch) <= 40 and len(ch) <= pages * 0.75 else 'sections'
+
+
 def description(meta, pages, chapters, opener):
     name = clean_title(meta['title'])
     lead = meta.get('description') or opener
@@ -130,10 +143,10 @@ def description(meta, pages, chapters, opener):
     lines = [
         lead,
         '',
-        f'{name} is a complete written business plan you can follow step by step. It is {pages} pages long and walks through {len(chapters)} chapters, from the first decision to steady customers.',
+        f'{name} is a complete written business plan you can follow step by step. It is {pages} pages long and walks through {len(chapters)} {unit(chapters, pages)}, from the first decision to steady customers.',
         '',
         "WHAT'S INSIDE",
-    ] + ['- ' + c for c in show] + ([f'- plus {more} more chapters'] if more > 0 else []) + [
+    ] + ['- ' + c for c in show] + ([f'- plus {more} more {unit(chapters, pages)}'] if more > 0 else []) + [
         '',
         'WHAT YOU GET',
         '- The full blueprint as a printable PDF',
@@ -191,7 +204,7 @@ def whats_inside_png(path, meta, pages, chapters):
     d.text((110, 90), "WHAT'S INSIDE", font=fb, fill=WHITE)
     name = short_name(meta['title'])
     d.text((110, 230), (name[:52] + '...') if len(name) > 55 else name, font=fr, fill=STEEL)
-    stats = [(str(pages), 'pages'), (str(len(chapters)), 'chapters'), ('PDF + Word', 'instant download')]
+    stats = [(str(pages), 'pages'), (str(len(chapters)), unit(chapters, pages)), ('PDF + Word', 'instant download')]
     x = 110
     for big, small in stats:
         d.text((x, 440), big, font=fbs, fill=ACCENT)
@@ -205,7 +218,7 @@ def whats_inside_png(path, meta, pages, chapters):
         d.text((160, y), line, font=fs, fill=WHITE)
         y += 82
     if len(chapters) > len(show):
-        d.text((160, y), f'plus {len(chapters) - len(show)} more chapters', font=fs, fill=STEEL)
+        d.text((160, y), f'plus {len(chapters) - len(show)} more {unit(chapters, pages)}', font=fs, fill=STEEL)
     d.text((110, S - 110), 'GLAMOURLESS SYSTEMS', font=fs, fill=STEEL)
     im.save(path, optimize=True)
 
@@ -220,7 +233,8 @@ def main(skus):
     for sku in skus:
         s = src[sku]
         pdf_local = STAGE + s['pdf']
-        pages, chapters = chapters_of(pdf_local)
+        pages, chapters = chapter_list(pdf_local, STAGE + s['docx'] if s.get('docx') else None)
+        chapters = [c for i, c in enumerate(chapters) if not (i < 3 and ('blueprint' in c.lower() or c.lower().startswith('solving')))]
         opener = first_paragraph(pdf_local)
         meta = cat.get(sku) or {'sku': sku, 'title': s['title']}
         meta['title'] = s['title'] if not cat.get(sku) else meta['title']
@@ -230,14 +244,23 @@ def main(skus):
         inside = f'{sku} Whats Inside.png'
         start_here_pdf(d + start, meta)
         whats_inside_png(d + inside, meta, pages, chapters)
+        # copy sources into the package folder so it is self-contained, with clean file names
+        nice = safe_file_name(f"{sku} {short_name(clean_title(meta['title']))} Blueprint")
+        imgs, files = [], []
+        for k in ('cover', 'mockup'):
+            if s.get(k):
+                fn = os.path.basename(s[k]); shutil.copyfile(STAGE + s[k], d + fn); imgs.append(sku + '/' + fn)
+        for k in ('pdf', 'docx'):
+            if s.get(k):
+                fn = nice + '.' + k; shutil.copyfile(STAGE + s[k], d + fn); files.append(sku + '/' + fn)
         item = {
             'key': sku + '-blueprint', 'sku': sku, 'kind': 'blueprint',
             'title': etsy_title(meta['title']),
             'description': description(meta, pages, chapters, opener),
             'price': PRICE_BLUEPRINT, 'quantity': 999,
             'tags': tags_for(meta),
-            'images': [p for p in [s.get('cover'), s.get('mockup'), PKG_REL + sku + '/' + inside] if p],
-            'files': [s['pdf'], s['docx'], PKG_REL + sku + '/' + start],
+            'images': imgs + [sku + '/' + inside],
+            'files': files + [sku + '/' + start],
             'pages': pages, 'chapters': len(chapters),
         }
         have[item['key']] = item
