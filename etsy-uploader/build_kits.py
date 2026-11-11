@@ -15,7 +15,7 @@ SRC = bd.SRC
 OUT = bd.OUT
 LOG = SRC + 'Supporting Docs Score Log.csv'
 WORK = '/home/claude/etsy/kitwork/'
-PRICE = 19.00
+PRICE = 30.00
 NAVY, NAVY2, STEEL, WHITE, ACCENT, PAPER = bd.NAVY, bd.NAVY2, bd.STEEL, bd.WHITE, bd.ACCENT, bd.PAPER
 F = lambda b, s: ImageFont.truetype(bd.FONTB if b else bd.FONT, s)
 
