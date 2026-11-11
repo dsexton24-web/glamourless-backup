@@ -170,7 +170,7 @@ def description(meta, pages, chapters, opener):
     return '\n'.join(lines)
 
 
-def start_here_pdf(path, meta):
+def start_here_pdf(path, meta, whole='business', thing='blueprint'):
     c = canvas.Canvas(path, pagesize=letter)
     W, H = letter
     c.setFillColor(NAVY); c.rect(0, H - 120, W, 120, fill=1, stroke=0)
@@ -187,9 +187,9 @@ def start_here_pdf(path, meta):
             c.drawString(54, y, line); y -= 16
         y -= 12
 
-    para('Thank you for your purchase.', 'Your download has two files: the blueprint as a printable PDF and the same blueprint as an editable Word document. Open the PDF to read it on any device. Open the Word file to type in your own notes and numbers.')
-    para('How to use it', 'Read it once from start to finish so you see the whole business. Then go back and work through it chapter by chapter. Keep the Word version as your working copy and update it as you go.')
-    para('Your next step', 'This blueprint is one part of a complete system. Glamourless Systems also makes the supporting documents, worksheets, a step-by-step course and calculators that go with it. To see which pieces fit where you are right now, take the free assessment at glamourlesssystems.com. It takes about five minutes.')
+    para('Thank you for your purchase.', f'Your download has two files: the {thing} as a printable PDF and the same {thing} as an editable Word document. Open the PDF to read it on any device. Open the Word file to type in your own notes and numbers.')
+    para('How to use it', f'Read it once from start to finish so you see the whole {whole}. Then go back and work through it chapter by chapter. Keep the Word version as your working copy and update it as you go.')
+    para('Your next step', ('This blueprint is one part of a complete system. Glamourless Systems also makes the supporting documents, worksheets, a step-by-step course and calculators that go with it. To see which pieces fit where you are right now, take the free assessment at glamourlesssystems.com. It takes about five minutes.' if thing == 'blueprint' else 'Glamourless Systems makes plain step-by-step guides, worksheets and calculators for people building income and skills they control. See what else fits where you are right now at glamourlesssystems.com.'))
     para('Need help?', 'If anything is wrong with your files, send us a message on Etsy and we will fix it.')
     c.setFont('DV', 9); c.setFillColor('#555555')
     c.drawString(54, 54, 'Glamourless Systems | Build Your Profit Scaffold for Your Future.')

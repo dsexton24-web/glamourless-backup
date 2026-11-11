@@ -1,7 +1,11 @@
 # GS Etsy Supporting Docs Picker
 # COPIES (never moves or deletes) everything Etsy needs out of the SKU folders:
 #   1. ALL supporting documents  -> GS Etsy Supporting Docs\<SKU folder>\   (log scores each one for Etsy value)
-#   2. ALL HTML courses (IC-)    -> GS Etsy Courses#   3. Manuscripts from GS-0119 Survive AI Shift and GS-0197 Business Accelerator Pack -> GS Etsy Manuscripts# Lead magnets and Fix Something lane SKUs are left out (only the eligible list below is used).
+#   2. ALL HTML courses          -> GS Etsy Courses\<SKU folder>\
+#   3. Manuscripts from GS-0119 Survive AI Shift and GS-0197 Business Accelerator Pack -> GS Etsy Manuscripts\<SKU folder>\
+# Lead magnets and Fix Something lane SKUs are left out (only the eligible list below is used).
+# Handles file paths longer than 260 characters (uses the \\?\ long path prefix).
+# Skips old backup copies (Archive, Buyer Appeal Recovery, "before" edits) and Google Docs shortcut files.
 
 $Root  = 'G:\My Drive\Glamourless Systems Main\Glamourless Systems Blueprints and Bundles'
 $Base  = 'G:\My Drive\Glamourless Systems Main'
@@ -26,31 +30,51 @@ function Score-Doc($f) {
   return $s
 }
 
+$LP = '\\?\'
+function Long($p) { if ($p.StartsWith($LP)) { $p } else { $LP + $p } }
+function Short($p) { $p.Replace($LP,'') }
+
 foreach ($p in @($OutSD,$OutIC,$OutMS)) { New-Item -ItemType Directory -Force -Path $p | Out-Null }
-$log = @(); $nSD = 0; $nIC = 0; $nMS = 0
-$skuDirs = Get-ChildItem -Path $Root -Directory | Where-Object { $_.Name -match '^(GS-\d{4})' -and $Eligible -contains $Matches[1] } | Sort-Object Name
+$log = @(); $problems = @(); $nSD = 0; $nIC = 0; $nMS = 0
+$skuDirs = Get-ChildItem -LiteralPath $Root -Directory | Where-Object { $_.Name -match '^(GS-\d{4})' -and $Eligible -contains $Matches[1] } | Sort-Object Name
 foreach ($d in $skuDirs) {
   $sku = $d.Name.Substring(0,7)
-  $all = Get-ChildItem -Path $d.FullName -Recurse -File | Where-Object { $_.FullName -notmatch '\\(Blueprint|Archive)\\' }
+  $errs = @()
+  $all = Get-ChildItem -LiteralPath (Long $d.FullName) -Recurse -File -ErrorAction SilentlyContinue -ErrorVariable errs |
+         Where-Object { (Short $_.FullName) -notmatch '\\(Blueprint|Archive|Old|Backup)\\|Buyer Appeal Recovery|before buyer-appeal' }
+  foreach ($e in $errs) { $problems += "$sku  could not read: $($e.TargetObject)" }
 
-  # Courses
-  foreach ($c in ($all | Where-Object { $_.Name -match '^IC-' -and $_.Extension -eq '.html' })) {
-    Copy-Item -LiteralPath $c.FullName -Destination $OutIC -Force; $nIC++
+  # Courses: IC- html files, or any html inside an Interactive Course or IC- folder
+  $courses = $all | Where-Object { $_.Extension -eq '.html' -and ($_.Name -match '^IC-' -or (Short $_.FullName) -match '\\(IC-[^\\]*|Interactive Course[^\\]*)\\') }
+  if ($courses) {
+    $cdest = Join-Path $OutIC $d.Name
+    New-Item -ItemType Directory -Force -Path (Long $cdest) | Out-Null
+    foreach ($c in $courses) {
+      try { Copy-Item -LiteralPath $c.FullName -Destination (Long $cdest) -Force -ErrorAction Stop; $nIC++ }
+      catch { $problems += "$sku  course copy failed: $($c.Name)" }
+    }
   }
 
   # Supporting docs (or manuscripts for the two collection packs)
-  $docs = $all | Where-Object { $_.Extension -in '.docx','.xlsx','.pdf' -and $_.Name -notmatch '^(CV|MK|IC|HT)-' }
-  if (-not $docs) { Write-Host "$sku  no supporting docs found" -ForegroundColor Yellow; continue }
+  $docs = @($all | Where-Object { $_.Extension -in '.docx','.xlsx','.pdf' -and $_.Name -notmatch '^(CV|MK|IC|HT)-' })
+  $gdocs = @($all | Where-Object { $_.Extension -in '.gdoc','.gsheet' })
+  if ($gdocs.Count) { $problems += "$sku  $($gdocs.Count) Google Docs or Sheets skipped (export them as Word or Excel to include them)" }
+  if (-not $docs.Count) { Write-Host "$sku  no supporting docs found" -ForegroundColor Yellow; continue }
   if ($ManuscriptPacks -contains $sku) { $dest = Join-Path $OutMS $d.Name } else { $dest = Join-Path $OutSD $d.Name }
-  New-Item -ItemType Directory -Force -Path $dest | Out-Null
+  New-Item -ItemType Directory -Force -Path (Long $dest) | Out-Null
+  $ok = 0
   foreach ($f in $docs) {
-    Copy-Item -LiteralPath $f.FullName -Destination $dest -Force
-    if ($ManuscriptPacks -contains $sku) { $nMS++ } else { $nSD++ }
-    $log += [pscustomobject]@{ SKU = $sku; Folder = $d.Name; Document = $f.Name; Score = (Score-Doc $f); SizeKB = [math]::Round($f.Length/1KB) }
+    try {
+      Copy-Item -LiteralPath $f.FullName -Destination (Long $dest) -Force -ErrorAction Stop; $ok++
+      if ($ManuscriptPacks -contains $sku) { $nMS++ } else { $nSD++ }
+      $log += [pscustomobject]@{ SKU = $sku; Folder = $d.Name; Document = $f.Name; Score = (Score-Doc $f); SizeKB = [math]::Round($f.Length/1KB) }
+    } catch { $problems += "$sku  copy failed: $($f.Name)" }
   }
-  Write-Host "$sku  copied $($docs.Count) docs" -ForegroundColor Green
+  Write-Host "$sku  copied $ok of $($docs.Count) docs, $($courses.Count) course files" -ForegroundColor Green
 }
-$log | Sort-Object Score -Descending | Export-Csv -Path (Join-Path $OutSD 'Supporting Docs Score Log.csv') -NoTypeInformation
+$log | Sort-Object Score -Descending | Export-Csv -LiteralPath (Join-Path $OutSD 'Supporting Docs Score Log.csv') -NoTypeInformation
+$problems | Set-Content -LiteralPath (Join-Path $OutSD 'Supporting Docs Problems.txt')
 Write-Host ""
-Write-Host "Done. Supporting docs: $nSD   Courses: $nIC   Manuscripts: $nMS" -ForegroundColor Cyan
+Write-Host "Done. Supporting docs: $nSD   Courses: $nIC   Manuscripts: $nMS   Problems: $($problems.Count)" -ForegroundColor Cyan
+if ($problems.Count) { Write-Host "Problems are listed in: $OutSD\Supporting Docs Problems.txt" -ForegroundColor Yellow }
 Read-Host "Press Enter to close"

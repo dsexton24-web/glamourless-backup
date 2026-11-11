@@ -25,4 +25,28 @@ for it in m['items']:
     tags=[x for x in tg+COMMON if len(x)<=20][:13]; assert len(tags)==13
     it['tags']=tags
     print(it['sku'],len(t),'business' in it['description'].lower(), 'customer' in it['description'].lower())
+
+import build_packages as bp
+D='out/GS Etsy Upload Packages/'
+by={i['sku']:i for i in m['items'] if i.get('kind','blueprint')!='tool'}
+# career guides: Start Here page should not talk about a business
+for sku in C:
+    bp.start_here_pdf(D+sku+'/'+sku+' Start Here.pdf',{'title':by[sku]['title'].split(',')[0]},whole='plan',thing='guide')
+# GS-0113 is a boat builder's manual, not a business plan
+it=by['GS-0113']
+it['title']='ShoreHaul 78 Micro Skiff Concept Manual, Ultralight Stitch and Glue Boat Build Guide, Printable PDF and Editable Word'
+d=it['description']
+d=d.replace('ShoreHaul 78 Concept Manual is a complete written business plan you can follow step by step.','The ShoreHaul 78 Concept Manual is a complete written build guide you can follow step by step.').replace(', from the first decision to steady customers.',', from tools and materials through the build.')
+d=d.replace('- The full blueprint as a printable PDF','- The full manual as a printable PDF').replace('- The same blueprint as an editable Word document, so you can make it your own','- The same manual as an editable Word document, so you can add your own notes')
+d=d.replace('This blueprint is for education and planning. It does not promise any income or results, and it is not legal, tax or financial advice. Check current rules and costs where you live before you start.','This is a concept manual for education and planning. Boat building and boating carry real risk. You are responsible for your own build, materials, testing and safety on the water, and for following the boating rules where you live. Check current material prices before you budget.')
+it['description']=d
+it['tags']=['micro skiff','boat building','stitch and glue','diy boat','small boat','skiff build','boat build guide','epoxy fiberglass','woodworking project','diy project','shorehaul 78','printable guide','digital download']
+bp.start_here_pdf(D+'GS-0113/GS-0113 Start Here.pdf',{'title':'ShoreHaul 78 Concept Manual'},whole='build',thing='manual')
+# GS-0089: make the platonic scope obvious in the title
+it=by['GS-0089']
+it['title']='Platonic Companionship Service Business Blueprint, Step by Step Startup Plan, Printable PDF and Editable Word Guide'
+it['tags']=(['companion service','platonic companion']+[t for t in it['tags'] if t not in('companion service','platonic companion')])[:13]
+for s in ('GS-0113','GS-0089'):
+    assert len(by[s]['title'])<=140 and len(by[s]['tags'])==13 and all(len(t)<=20 for t in by[s]['tags']),s
+    print(s,len(by[s]['title']),by[s]['title'])
 json.dump(m,open(P,'w'),indent=1)
