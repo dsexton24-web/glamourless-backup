@@ -246,7 +246,10 @@ def main(skus):
         start_here_pdf(d + start, meta)
         whats_inside_png(d + inside, meta, pages, chapters)
         # copy sources into the package folder so it is self-contained, with clean file names
-        nice = safe_file_name(f"{sku} {short_name(clean_title(meta['title']))} Blueprint")
+        base_nm = short_name(clean_title(meta['title']))
+        while len(f"{sku} {base_nm} Blueprint") > 64 and ' ' in base_nm:
+            base_nm = base_nm.rsplit(' ', 1)[0]
+        nice = safe_file_name(f"{sku} {base_nm} Blueprint")
         imgs, files = [], []
         for k in ('cover', 'mockup'):
             if s.get(k):
