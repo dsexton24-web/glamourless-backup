@@ -18,7 +18,7 @@ SHOTS = '/home/claude/etsy/toolshots/'
 FONT = '/usr/share/fonts/opentype/inter/Inter-Regular.otf'
 FONTB = '/usr/share/fonts/opentype/inter/Inter-Bold.otf'
 NAVY, NAVY2, STEEL, WHITE, ACCENT = '#061529', '#0E2A52', '#9DB4CF', '#FFFFFF', '#5B9BFF'
-PRICE_CALC, PRICE_SYSTEM = 12.00, 19.00
+PRICE_CALC, PRICE_SYSTEM = 13.00, 13.00
 
 INTRO = {
  'Asset Label Barcode and QR System': 'Track every tool, machine and asset you own, then design and print barcode and QR labels for them.',
