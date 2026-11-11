@@ -84,6 +84,7 @@ def first_paragraph(pdf_path):
 
 def etsy_title(title):
     base = short_name(title)
+    base = re.sub(r'\s+Business$', '', base)
     t = f'{base} Business Blueprint, Step by Step Startup Plan, Printable PDF and Editable Word Guide'
     if len(t) > 140:
         t = f'{base} Business Blueprint, Startup Plan, PDF and Editable Word'
