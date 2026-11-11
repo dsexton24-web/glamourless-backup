@@ -803,5 +803,89 @@
   "docx": "Glamourless Systems Blueprints and Bundles/GS-0139 The Legal Support Runner Blueprint/Blueprint/GS-0139 The Legal Support Runner Blueprint.docx",
   "cover": "Glamourless Systems Blueprints and Bundles/GS-0139 The Legal Support Runner Blueprint/CV-GS-0139 The Legal Support Runner Blueprint Cover.png",
   "mockup": "Glamourless Systems Blueprints and Bundles/GS-0139 The Legal Support Runner Blueprint/MK-GS-0139-01 The Legal Support Runner Blueprint Mockup.png"
+ },
+ "GS-0141": {
+  "title": "The Marine Cargo Salvage Desk Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0141 The Marine Cargo Salvage Desk Blueprint/Blueprint/GS-0141 The Marine Cargo Salvage Desk Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0141 The Marine Cargo Salvage Desk Blueprint/Blueprint/GS-0141 The Marine Cargo Salvage Desk Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0141 The Marine Cargo Salvage Desk Blueprint/CV-GS-0141 The Marine Cargo Salvage Desk Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0141 The Marine Cargo Salvage Desk Blueprint/MK-GS-0141-01 The Marine Cargo Salvage Desk Blueprint Mockup.png"
+ },
+ "GS-0142": {
+  "title": "Mobile Notary Route Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0142 Mobile Notary Route Blueprint/Blueprint/GS-0142 Mobile Notary Route Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0142 Mobile Notary Route Blueprint/Blueprint/GS-0142 Mobile Notary Route Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0142 Mobile Notary Route Blueprint/CV-GS-0142 Mobile Notary Route Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0142 Mobile Notary Route Blueprint/MK-GS-0142-01 Mobile Notary Route Blueprint Mockup.png"
+ },
+ "GS-0143": {
+  "title": "The Mobile Sharpening Route Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0143 The Mobile Sharpening Route Blueprint/Blueprint/GS-0143 The Mobile Sharpening Route Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0143 The Mobile Sharpening Route Blueprint/Blueprint/GS-0143 The Mobile Sharpening Route Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0143 The Mobile Sharpening Route Blueprint/CV-GS-0143 The Mobile Sharpening Route Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0143 The Mobile Sharpening Route Blueprint/MK-GS-0143-01 The Mobile Sharpening Route Blueprint Mockup.png"
+ },
+ "GS-0144": {
+  "title": "The Escape Ladder Specialist",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0144 The Escape Ladder Specialist/Blueprint/GS-0144 The Escape Ladder Specialist Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0144 The Escape Ladder Specialist/Blueprint/GS-0144 The Escape Ladder Specialist Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0144 The Escape Ladder Specialist/CV-GS-0144 The Escape Ladder Specialist Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0144 The Escape Ladder Specialist/MK-GS-0144-01 mockup.png"
+ },
+ "GS-0145": {
+  "title": "The Mobility Equipment Cleaning Route Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0145 The Mobility Equipment Cleaning Route Blueprint/Blueprint/GS-0145 The Mobility Equipment Cleaning Route Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0145 The Mobility Equipment Cleaning Route Blueprint/Blueprint/GS-0145 The Mobility Equipment Cleaning Route Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0145 The Mobility Equipment Cleaning Route Blueprint/CV-GS-0145 The Mobility Equipment Cleaning Route Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0145 The Mobility Equipment Cleaning Route Blueprint/MK-GS-0145-01 The Mobility Equipment Cleaning Route Blueprint Mockup.png"
+ },
+ "GS-0146": {
+  "title": "The Parking Lot Maintenance Route Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0146 The Parking Lot Maintenance Route Blueprint/Blueprint/GS-0146 The Parking Lot Maintenance Route Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0146 The Parking Lot Maintenance Route Blueprint/Blueprint/GS-0146 The Parking Lot Maintenance Route Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0146 The Parking Lot Maintenance Route Blueprint/CV-GS-0146 The Parking Lot Maintenance Route Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0146 The Parking Lot Maintenance Route Blueprint/MK-GS-0146-01 The Parking Lot Maintenance Route Blueprint Mockup.png"
+ },
+ "GS-0147": {
+  "title": "CRM Operator Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0147 CRM Operator Blueprint/Blueprint/GS-0147 CRM Operator Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0147 CRM Operator Blueprint/Blueprint/GS-0147 CRM Operator Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0147 CRM Operator Blueprint/CV-GS-0147 CRM Operator Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0147 CRM Operator Blueprint/MK-GS-0147-01 CRM Operator Blueprint Mockup.png"
+ },
+ "GS-0148": {
+  "title": "The Pickup and Fold Laundry Route Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0148 The Pickup and Fold Laundry Route Blueprint/Blueprint/GS-0148 The Pickup and Fold Laundry Route Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0148 The Pickup and Fold Laundry Route Blueprint/Blueprint/GS-0148 The Pickup and Fold Laundry Route Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0148 The Pickup and Fold Laundry Route Blueprint/CV-GS-0148 The Pickup and Fold Laundry Route Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0148 The Pickup and Fold Laundry Route Blueprint/MK-GS-0148-01 The Pickup and Fold Laundry Route Blueprint Mockup.png"
+ },
+ "GS-0150": {
+  "title": "The Stash Spot Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0150 The Stash Spot Blueprint/Blueprint/GS-0150 The Stash Spot Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0150 The Stash Spot Blueprint/Blueprint/GS-0150 The Stash Spot Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0150 The Stash Spot Blueprint/CV-GS-0150 The Stash Spot Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0150 The Stash Spot Blueprint/MK-GS-0150-01 The Stash Spot Blueprint Mockup.png"
+ },
+ "GS-0151": {
+  "title": "The Shaded Story Studio Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0151 The Shaded Story Studio Blueprint/Blueprint/GS-0151 The Shaded Story Studio Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0151 The Shaded Story Studio Blueprint/Blueprint/GS-0151 The Shaded Story Studio Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0151 The Shaded Story Studio Blueprint/CV-GS-0151 The Shaded Story Studio Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0151 The Shaded Story Studio Blueprint/MK-GS-0151-01 The Shaded Story Studio Blueprint Mockup.png"
+ },
+ "GS-0152": {
+  "title": "The Unclaimed Baggage Reselling Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0152 The Unclaimed Baggage Reselling Blueprint/Blueprint/GS-0152 Unclaimed Baggage Reselling Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0152 The Unclaimed Baggage Reselling Blueprint/Blueprint/GS-0152 Unclaimed Baggage Reselling Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0152 The Unclaimed Baggage Reselling Blueprint/CV-GS-0152 The Unclaimed Baggage Reselling Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0152 The Unclaimed Baggage Reselling Blueprint/MK-GS-0152-01 The Unclaimed Baggage Reselling Blueprint Mockup.png"
+ },
+ "GS-0153": {
+  "title": "The Textbook Arbitrage Route Blueprint",
+  "pdf": "Glamourless Systems Blueprints and Bundles/GS-0153 The Textbook Arbitrage Route Blueprint/Blueprint/GS-0153 Textbook Arbitrage Blueprint.pdf",
+  "docx": "Glamourless Systems Blueprints and Bundles/GS-0153 The Textbook Arbitrage Route Blueprint/Blueprint/GS-0153 Textbook Arbitrage Blueprint.docx",
+  "cover": "Glamourless Systems Blueprints and Bundles/GS-0153 The Textbook Arbitrage Route Blueprint/CV-GS-0153 The Textbook Arbitrage Route Blueprint Cover.png",
+  "mockup": "Glamourless Systems Blueprints and Bundles/GS-0153 The Textbook Arbitrage Route Blueprint/MK-GS-0153-01 The Textbook Arbitrage Route Blueprint Mockup.png"
  }
 }

@@ -250,7 +250,12 @@ def main(skus):
         imgs, files = [], []
         for k in ('cover', 'mockup'):
             if s.get(k):
-                fn = os.path.basename(s[k]); shutil.copyfile(STAGE + s[k], d + fn); imgs.append(sku + '/' + fn)
+                fn = os.path.basename(s[k])
+                if len(fn) > 70:
+                    stem, ext = os.path.splitext(fn)
+                    stem = stem.replace(' The ', ' ').replace(' Blueprint', '')
+                    fn = (stem[:70 - len(ext)].rstrip() + ext)
+                shutil.copyfile(STAGE + s[k], d + fn); imgs.append(sku + '/' + fn)
         for k in ('pdf', 'docx'):
             if s.get(k):
                 fn = nice + '.' + k; shutil.copyfile(STAGE + s[k], d + fn); files.append(sku + '/' + fn)
