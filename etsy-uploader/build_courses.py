@@ -193,7 +193,7 @@ def build(sku, bp):
           'Written by Wayne Thomas for Glamourless Systems, with help from AI writing tools.', '',
           'Because this is a digital file, all sales are final. If something is wrong with your download, message us and we will make it right.']
     return {'key': key, 'sku': key, 'kind': 'course', 'parent': sku, 'title': title, 'description': '\n'.join(D),
-            'price': 30.00, 'quantity': 999, 'tags': tags_for(short, mini), 'images': imgs,
+            'price': 19.00 if mini else 30.00, 'quantity': 999, 'tags': tags_for(short, mini), 'images': imgs,
             'files': [f'{key}/{zname}'], 'modules': len(mods), 'words': words, 'needs_bundle': needs_bundle}
 
 def main(only):
