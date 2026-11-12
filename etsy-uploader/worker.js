@@ -23,6 +23,7 @@ export default {
         if (url.pathname === '/api/status') return json({ ok: true, shop_id: sess.shop_id, shop_name: sess.shop_name });
         if (url.pathname === '/api/taxonomy') return taxonomy(url, env);
         if (url.pathname === '/api/listing' && req.method === 'POST') return createListing(req, env, sess);
+        if (url.pathname === '/api/replace-files' && req.method === 'POST') return replaceFiles(req, env, sess);
         if (url.pathname === '/api/disconnect' && req.method === 'POST') {
           await env.STORE.delete('tok');
           return json({ ok: true }, 200, { 'Set-Cookie': 'gs_etsy=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax' });
@@ -196,6 +197,43 @@ async function createListing(req, env, sess) {
   return json({ ok: true, listing_id: listingId, sku: meta.sku, steps });
 }
 
+// Replace the digital files on an EXISTING listing (draft or active). Never changes state, price, text or photos.
+// Order: read current files, delete them, upload the new ones (Etsy allows 5 files, so delete comes first).
+async function replaceFiles(req, env, sess) {
+  const form = await req.formData();
+  const listingId = String(form.get('listing_id') || '').replace(/[^0-9]/g, '');
+  if (!listingId) return json({ ok: false, step: 'input', error: 'listing_id missing' }, 400);
+  const shop = sess.shop_id;
+  const steps = [];
+  const news = [];
+  for (let i = 0; i < 5; i++) { const f = form.get('file' + i); if (f) news.push(f); }
+  if (!news.length) return json({ ok: false, step: 'input', error: 'no files sent' }, 400);
+  let r = await etsyFetch(env, sess.access, `/application/listings/${listingId}`);
+  let d = await r.json();
+  if (!r.ok) return json({ ok: false, listing_id: listingId, step: 'read', status: r.status, error: d }, 400);
+  if (String(d.shop_id) !== String(shop)) return json({ ok: false, listing_id: listingId, step: 'read', error: 'listing is not in this shop' }, 400);
+  steps.push('state ' + d.state);
+  r = await etsyFetch(env, sess.access, `/application/shops/${shop}/listings/${listingId}/files`);
+  d = await r.json();
+  if (!r.ok) return json({ ok: false, listing_id: listingId, step: 'list', status: r.status, error: d }, 400);
+  for (const old of (d.results || [])) {
+    r = await etsyFetch(env, sess.access, `/application/shops/${shop}/listings/${listingId}/files/${old.listing_file_id}`, { method: 'DELETE' });
+    if (!r.ok && r.status !== 404) return json({ ok: false, listing_id: listingId, step: 'delete ' + old.filename, status: r.status, error: await r.text() }, 400);
+    steps.push('removed ' + old.filename);
+  }
+  for (let i = 0; i < news.length; i++) {
+    const f = news[i];
+    const fd = new FormData();
+    fd.append('file', f, f.name);
+    fd.append('name', f.name);
+    fd.append('rank', String(i + 1));
+    r = await etsyFetch(env, sess.access, `/application/shops/${shop}/listings/${listingId}/files`, { method: 'POST', body: fd });
+    if (!r.ok) return json({ ok: false, listing_id: listingId, step: 'upload ' + f.name, status: r.status, error: await r.text() }, 400);
+    steps.push('added ' + f.name);
+  }
+  return json({ ok: true, listing_id: listingId, steps });
+}
+
 // ---------- helpers ----------
 function json(o, status = 200, extra = {}) {
   return new Response(JSON.stringify(o), { status, headers: Object.assign({ 'Content-Type': 'application/json' }, extra) });
@@ -236,6 +274,9 @@ label{display:block;margin:10px 0 4px;font-weight:600}
 <button class="btn ghost" id="all" disabled>Upload all as drafts</button>
 <button class="btn ghost" id="pub" disabled>Upload all and publish</button></div>
 <p class="muted" style="margin-top:10px">Already-uploaded items are skipped automatically, so you can stop and start again safely.</p></div>
+<div class="card"><h2>Step 4. Replace fixed files</h2>
+<p class="muted">Swaps in corrected files on listings that were already uploaded. It only changes the download files. Prices, titles, photos and draft or live status stay exactly as they are.</p>
+<button class="btn ghost" id="repl" disabled>Replace fixed files</button> <span id="replInfo" class="muted"></span></div>
 <div class="card"><h2>Progress</h2><div id="log">Nothing yet.</div>
 <div class="row" style="margin-top:10px"><button class="btn ghost" id="save">Save results file</button></div></div>
 </div>
@@ -249,7 +290,24 @@ document.getElementById('pick').onclick=()=>document.getElementById('folder').cl
 document.getElementById('folder').onchange=async e=>{files=[...e.target.files];var m=files.find(f=>/GS Etsy Upload Packages\\/manifest\\.json$/i.test((f.webkitRelativePath||'').replace(/\\\\/g,'/')));if(!m){document.getElementById('picked').textContent='No manifest.json in that folder.';return}
 manifest=JSON.parse(await m.text());document.getElementById('picked').textContent=manifest.items.length+' listings found ('+Object.keys(done).length+' already uploaded)';
 if(manifest.taxonomy_id&&!document.getElementById('tax').value)document.getElementById('tax').value=manifest.taxonomy_id;
-['test','all','pub'].forEach(id=>document.getElementById(id).disabled=false)};
+['test','all','pub'].forEach(id=>document.getElementById(id).disabled=false);
+var rl=manifest.replace_files||[],rv=manifest.replace_version||'';var todo=rl.filter(k=>replaced[k]!==rv);
+document.getElementById('replInfo').textContent=rl.length?(todo.length+' of '+rl.length+' listings need new files'):'Nothing to replace';
+document.getElementById('repl').disabled=!todo.length};
+var replaced={};try{replaced=JSON.parse(localStorage.getItem('gs_etsy_replaced')||'{}')}catch(e){}
+async function replaceRun(){var rl=manifest.replace_files||[],rv=manifest.replace_version||'';document.getElementById('repl').disabled=true;
+for(const key of rl){if(replaced[key]===rv)continue;var it=manifest.items.find(x=>x.key===key);var lid=done[key];
+if(!it){log('Replace '+key+': not in manifest. Skipped.','bad');continue}
+if(!lid){log('Replace '+key+': never uploaded, so nothing to replace. Skipped.','bad');continue}
+log('Replacing files on '+key+' (listing '+lid+') ...');var fd=new FormData();fd.append('listing_id',String(lid));var missing=null;
+(it.files||[]).forEach((p,i)=>{var f=fileFor(p);if(f)fd.append('file'+i,f,f.name);else missing=p});
+if(missing){log('  Missing file: '+missing+'. Skipped.','bad');continue}
+try{var r=await fetch('/api/replace-files',{method:'POST',body:fd});var d=await r.json();results.push(Object.assign({key:key,replace:true},d));
+if(d.ok){replaced[key]=rv;try{localStorage.setItem('gs_etsy_replaced',JSON.stringify(replaced))}catch(e){};log('  Done ('+d.steps.join(', ')+')','ok')}
+else{log('  Problem at '+d.step+': '+JSON.stringify(d.error).slice(0,300),'bad');if(r.status===401){log('Connection expired. Click Connect to Etsy again.','bad');break}}}
+catch(e){log('  Network problem: '+e.message,'bad')}}
+log('Finished replacing files.');document.getElementById('repl').disabled=false}
+document.getElementById('repl').onclick=()=>replaceRun();
 function fileFor(rel){return files.find(f=>(f.webkitRelativePath||f.name).replace(/\\\\/g,'/').endsWith('/'+rel))}
 async function run(limit,publish){var tax=document.getElementById('tax').value.trim();if(!tax){alert('Category ID is empty.');return}try{localStorage.setItem('gs_etsy_tax',tax)}catch(e){}
 ['test','all','pub'].forEach(id=>document.getElementById(id).disabled=true);var n=0;

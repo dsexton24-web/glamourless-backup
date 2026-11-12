@@ -26231,5 +26231,17 @@
    "needs_bundle": false
   }
  ],
- "taxonomy_id": 343
+ "taxonomy_id": 343,
+ "replace_files": [
+  "GS-0250-blueprint",
+  "GS-0296-blueprint",
+  "GS-0297-blueprint",
+  "GS-0298-blueprint",
+  "KIT-GS-0250",
+  "KIT-GS-0296",
+  "KIT-GS-0298",
+  "CRS-GS-0296",
+  "CRS-GS-0298"
+ ],
+ "replace_version": "held-sku-fix-20261112"
 }
