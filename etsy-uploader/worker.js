@@ -107,10 +107,17 @@ async function session(req, env) {
   }
   return tok;
 }
-function etsyFetch(env, access, path, init = {}) {
+// Waits and retries when Etsy says "too many requests per second", so a step never stops halfway.
+async function etsyFetch(env, access, path, init = {}) {
   const headers = Object.assign({ 'x-api-key': env.ETSY_KEYSTRING + ':' + env.ETSY_SHARED_SECRET }, init.headers || {});
   if (access) headers['Authorization'] = 'Bearer ' + access;
-  return fetch(ETSY_API + path, Object.assign({}, init, { headers }));
+  let r;
+  for (let a = 0; a < 6; a++) {
+    r = await fetch(ETSY_API + path, Object.assign({}, init, { headers }));
+    if (r.status !== 429) return r;
+    await new Promise(res => setTimeout(res, 1200 * (a + 1)));
+  }
+  return r;
 }
 
 // ---------- Taxonomy search ----------
@@ -285,7 +292,7 @@ label{display:block;margin:10px 0 4px;font-weight:600}
 <div class="card" id="conn"><h2>Step 1. Connect your Etsy shop</h2><p id="connText" class="muted">Checking...</p>
 <a class="btn" id="connectBtn" href="/connect" style="display:none">Connect to Etsy</a></div>
 <div class="card"><h2>Step 2. Pick the upload folder</h2>
-<p class="muted">Click the button. Go to the G: drive, open My Drive, and choose the folder named <b>Glamourless Systems Main</b>. Then click Upload when the browser asks. Nothing is sent until you press an upload button below.</p>
+<p class="muted">Click the button. Go to the G: drive, open My Drive, and open Glamourless Systems Main, and choose the folder named <b>GS Etsy Upload Packages</b> (not the whole Glamourless Systems Main folder, which is far too big). Then click Upload when the browser asks. Nothing is sent until you press an upload button below.</p>
 <input type="file" id="folder" webkitdirectory directory multiple style="display:none">
 <button class="btn ghost" id="pick">Choose folder</button> <span id="picked" class="muted"></span></div>
 <div class="card"><h2>Step 3. Upload</h2>
