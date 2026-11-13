@@ -49,6 +49,21 @@ log = []
 for it in items:
     k = it['kind']; old = list(it['tags'])
     tags = [t for t in old if t not in DROP]
+    sku0 = (it.get('parent') or it['sku'])[3:]
+    if k in ('kit', 'blueprint', 'course') and sku0 in NICHE:
+        # Rebuild the topic part: drop the old auto tags cut from the product name (e.g. "clutter to", "damage to course"),
+        # keep the general category tags, and lead with real search phrases for that business.
+        tw = set(topic(it).split()) - STOP - GENERIC - {'business', 'route', 'operator'}
+        keep = [t for t in tags if not (set(t.split()) & tw)]
+        lead = []
+        for n in NICHE[sku0]:
+            if n not in lead: lead.append(n)
+        for n in NICHE[sku0]:
+            for sfx in SUFFIX[k][:2]:
+                c = clean(n + sfx)
+                if len(c) <= 20 and c not in lead and c not in keep: lead.append(c)
+        lead = lead[:5]
+        tags = (lead + [t for t in keep if t not in lead])[:13]
     have = set(tags)
     def add(t):
         t = clean(t)
@@ -72,11 +87,12 @@ for it in items:
     for e in EXTRA[k]: add(e)
     it['tags'] = tags
     if tags != old: log.append((it['key'], old, tags))
-man['tags_version'] = 'tags-20261113'
+man['tags_version'] = 'tags-20261113b'
 man['update_tags'] = [k for k, _, _ in log]
 json.dump(man, open(OUT, 'w'), indent=1)
 print(len(log), 'listings get new tags')
 print('short of 13:', sum(1 for i in items if len(i['tags']) < 13), ' with digital download:', sum('digital download' in i['tags'] for i in items),
       ' over 20 chars:', sum(any(len(t) > 20 for t in i['tags']) for i in items))
 import random; random.seed(3)
+log = log or [('none', [], [])]
 for key, o, n in random.sample(log, 8): print(key, '\n  -', [x for x in o if x not in n], '\n  +', [x for x in n if x not in o])
