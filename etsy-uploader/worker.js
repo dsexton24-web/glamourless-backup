@@ -25,6 +25,8 @@ export default {
         if (url.pathname === '/api/listing' && req.method === 'POST') return createListing(req, env, sess);
         if (url.pathname === '/api/replace-files' && req.method === 'POST') return replaceFiles(req, env, sess);
         if (url.pathname === '/api/update-tags' && req.method === 'POST') return updateTags(req, env, sess);
+        if (url.pathname === '/api/update-text' && req.method === 'POST') return updateText(req, env, sess);
+        if (url.pathname === '/api/publish' && req.method === 'POST') return publishDraft(req, env, sess);
         if (url.pathname === '/api/disconnect' && req.method === 'POST') {
           await env.STORE.delete('tok');
           return json({ ok: true }, 200, { 'Set-Cookie': 'gs_etsy=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax' });
@@ -262,6 +264,42 @@ async function updateTags(req, env, sess) {
   return json({ ok: true, listing_id: listingId, state: d.state, before, after: d.tags });
 }
 
+async function ownListing(env, sess, listingId) {
+  const r = await etsyFetch(env, sess.access, `/application/listings/${listingId}`);
+  const d = await r.json();
+  if (!r.ok) return { err: json({ ok: false, listing_id: listingId, step: 'read', status: r.status, error: d }, 400) };
+  if (String(d.shop_id) !== String(sess.shop_id)) return { err: json({ ok: false, listing_id: listingId, step: 'read', error: 'listing is not in this shop' }, 400) };
+  return { d };
+}
+
+// Change ONLY the description on an EXISTING listing. Never creates a listing.
+async function updateText(req, env, sess) {
+  const body = await req.json();
+  const listingId = String(body.listing_id || '').replace(/[^0-9]/g, '');
+  const desc = String(body.description || '');
+  if (!listingId || desc.length < 50) return json({ ok: false, step: 'input', error: 'listing_id or description missing' }, 400);
+  const o = await ownListing(env, sess, listingId); if (o.err) return o.err;
+  const r = await etsyFetch(env, sess.access, `/application/shops/${sess.shop_id}/listings/${listingId}`, {
+    method: 'PATCH', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ description: desc }) });
+  const d = await r.json();
+  if (!r.ok) return json({ ok: false, listing_id: listingId, step: 'update', status: r.status, error: d }, 400);
+  return json({ ok: true, listing_id: listingId, state: d.state });
+}
+
+// Switch an EXISTING draft to active (live). Never creates a listing. Skips anything that is not a draft.
+async function publishDraft(req, env, sess) {
+  const body = await req.json();
+  const listingId = String(body.listing_id || '').replace(/[^0-9]/g, '');
+  if (!listingId) return json({ ok: false, step: 'input', error: 'listing_id missing' }, 400);
+  const o = await ownListing(env, sess, listingId); if (o.err) return o.err;
+  if (o.d.state !== 'draft') return json({ ok: true, listing_id: listingId, skipped: 'already ' + o.d.state });
+  const r = await etsyFetch(env, sess.access, `/application/shops/${sess.shop_id}/listings/${listingId}`, {
+    method: 'PATCH', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ state: 'active' }) });
+  const d = await r.json();
+  if (!r.ok) return json({ ok: false, listing_id: listingId, step: 'publish', status: r.status, error: d }, 400);
+  return json({ ok: true, listing_id: listingId, state: d.state });
+}
+
 // ---------- helpers ----------
 function json(o, status = 200, extra = {}) {
   return new Response(JSON.stringify(o), { status, headers: Object.assign({ 'Content-Type': 'application/json' }, extra) });
@@ -308,6 +346,12 @@ label{display:block;margin:10px 0 4px;font-weight:600}
 <div class="card"><h2>Step 5. Update tags</h2>
 <p class="muted">Changes only the 13 search tags on listings that already exist. It never creates a listing, so no duplicates.</p>
 <button class="btn ghost" id="tagb" disabled>Update tags</button> <span id="tagInfo" class="muted"></span></div>
+<div class="card"><h2>Step 6. Fix descriptions</h2>
+<p class="muted">Changes only the description text on listings that already exist. Never creates a listing.</p>
+<button class="btn ghost" id="txtb" disabled>Fix descriptions</button> <span id="txtInfo" class="muted"></span></div>
+<div class="card"><h2>Step 7. Publish all drafts</h2>
+<p class="muted">Turns your existing drafts live in one click. Never creates a listing. Listings on hold are skipped. Etsy charges 20 cents per listing to the card on your Etsy billing.</p>
+<button class="btn" id="pubd" disabled>Publish all drafts</button> <span id="pubInfo" class="muted"></span></div>
 <div class="card"><h2>Progress</h2><div id="log">Nothing yet.</div>
 <div class="row" style="margin-top:10px"><button class="btn ghost" id="save">Save results file</button></div></div>
 </div>
@@ -327,7 +371,13 @@ document.getElementById('replInfo').textContent=rl.length?(todo.length+' of '+rl
 document.getElementById('repl').disabled=!todo.length;
 var tl=manifest.update_tags||[],tv=manifest.tags_version||'';var tt=tl.filter(k=>tagged[k]!==tv);
 document.getElementById('tagInfo').textContent=tl.length?(tt.length+' of '+tl.length+' listings need new tags'):'No tag changes';
-document.getElementById('tagb').disabled=!tt.length};
+document.getElementById('tagb').disabled=!tt.length;
+var xl=manifest.update_text||[],xv=manifest.text_version||'';var xt=xl.filter(k=>texted[k]!==xv);
+document.getElementById('txtInfo').textContent=xl.length?(xt.length+' of '+xl.length+' descriptions need fixing'):'No description changes';
+document.getElementById('txtb').disabled=!xt.length;
+var hold=manifest.publish_hold||[];var pc=manifest.items.filter(x=>done[x.key]&&hold.indexOf(x.key)<0).length;
+document.getElementById('pubInfo').textContent=pc+' listings can go live, '+hold.length+' on hold';
+document.getElementById('pubd').disabled=!pc};
 var replaced={};try{replaced=JSON.parse(localStorage.getItem('gs_etsy_replaced')||'{}')}catch(e){}
 async function replaceRun(){var rl=manifest.replace_files||[],rv=manifest.replace_version||'';document.getElementById('repl').disabled=true;
 for(const key of rl){if(replaced[key]===rv)continue;var it=manifest.items.find(x=>x.key===key);var lid=done[key];
@@ -352,6 +402,25 @@ else{log('Tags '+key+': problem at '+d.step+': '+JSON.stringify(d.error).slice(0
 catch(e){log('Tags '+key+': network problem: '+e.message,'bad')}}
 log('Finished updating tags: '+n+' listings.');document.getElementById('tagb').disabled=false}
 document.getElementById('tagb').onclick=()=>tagRun();
+var texted={};try{texted=JSON.parse(localStorage.getItem('gs_etsy_texted')||'{}')}catch(e){}
+async function txtRun(){var xl=manifest.update_text||[],xv=manifest.text_version||'';document.getElementById('txtb').disabled=true;var n=0;
+for(const key of xl){if(texted[key]===xv)continue;var it=manifest.items.find(x=>x.key===key);var lid=done[key];
+if(!it||!lid){log('Description '+key+': no existing listing. Skipped.','bad');continue}
+try{var r=await fetch('/api/update-text',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({listing_id:lid,description:it.description})});var d=await r.json();results.push(Object.assign({key:key,text:true},d));
+if(d.ok){texted[key]=xv;n++;try{localStorage.setItem('gs_etsy_texted',JSON.stringify(texted))}catch(e){}}
+else{log('Description '+key+': problem at '+d.step+': '+JSON.stringify(d.error).slice(0,200),'bad');if(r.status===401){log('Connection expired. Click Connect to Etsy again.','bad');break}}}
+catch(e){log('Description '+key+': network problem: '+e.message,'bad')}}
+log('Finished fixing descriptions: '+n+'.');document.getElementById('txtb').disabled=false}
+document.getElementById('txtb').onclick=()=>txtRun();
+async function pubRun(){var hold=manifest.publish_hold||[];var list=manifest.items.filter(x=>done[x.key]&&hold.indexOf(x.key)<0);
+if(!confirm('Publish '+list.length+' drafts live on Etsy now? Etsy charges about $'+(list.length*0.2).toFixed(2)+' in listing fees to the card on your Etsy billing. '+hold.length+' listings on hold stay as drafts.'))return;
+document.getElementById('pubd').disabled=true;var n=0,sk=0,bad=0;log('Publishing '+list.length+' drafts ...');
+for(const it of list){try{var r=await fetch('/api/publish',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({listing_id:done[it.key]})});var d=await r.json();results.push(Object.assign({key:it.key,publish:true},d));
+if(d.ok&&d.skipped)sk++;else if(d.ok){n++;if(n%50===0)log('  '+n+' live so far ...','ok')}
+else{bad++;log('Publish '+it.key+': problem at '+d.step+': '+JSON.stringify(d.error).slice(0,200),'bad');if(r.status===401){log('Connection expired. Click Connect to Etsy again.','bad');break}}}
+catch(e){bad++;log('Publish '+it.key+': network problem: '+e.message,'bad')}await new Promise(s=>setTimeout(s,300))}
+log('Finished publishing: '+n+' now live, '+sk+' were already live, '+bad+' problems.',bad?'bad':'ok');document.getElementById('pubd').disabled=false}
+document.getElementById('pubd').onclick=()=>pubRun();
 function fileFor(rel){return files.find(f=>(f.webkitRelativePath||f.name).replace(/\\\\/g,'/').endsWith('/'+rel))}
 async function run(limit,publish){var tax=document.getElementById('tax').value.trim();if(!tax){alert('Category ID is empty.');return}try{localStorage.setItem('gs_etsy_tax',tax)}catch(e){}
 ['test','all','pub'].forEach(id=>document.getElementById(id).disabled=true);var n=0;
