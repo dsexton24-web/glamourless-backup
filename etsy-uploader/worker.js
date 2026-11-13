@@ -24,6 +24,7 @@ export default {
         if (url.pathname === '/api/taxonomy') return taxonomy(url, env);
         if (url.pathname === '/api/listing' && req.method === 'POST') return createListing(req, env, sess);
         if (url.pathname === '/api/replace-files' && req.method === 'POST') return replaceFiles(req, env, sess);
+        if (url.pathname === '/api/update-tags' && req.method === 'POST') return updateTags(req, env, sess);
         if (url.pathname === '/api/disconnect' && req.method === 'POST') {
           await env.STORE.delete('tok');
           return json({ ok: true }, 200, { 'Set-Cookie': 'gs_etsy=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax' });
@@ -234,6 +235,26 @@ async function replaceFiles(req, env, sess) {
   return json({ ok: true, listing_id: listingId, steps });
 }
 
+// Change ONLY the tags on an EXISTING listing. Never creates a listing, never changes state, price, text, photos or files.
+async function updateTags(req, env, sess) {
+  const body = await req.json();
+  const listingId = String(body.listing_id || '').replace(/[^0-9]/g, '');
+  const tags = (body.tags || []).map(t => String(t).trim().toLowerCase()).filter(Boolean);
+  if (!listingId) return json({ ok: false, step: 'input', error: 'listing_id missing' }, 400);
+  if (!tags.length || tags.length > 13 || tags.some(t => t.length > 20)) return json({ ok: false, step: 'input', error: 'need 1 to 13 tags, 20 characters max each' }, 400);
+  const shop = sess.shop_id;
+  let r = await etsyFetch(env, sess.access, `/application/listings/${listingId}`);
+  let d = await r.json();
+  if (!r.ok) return json({ ok: false, listing_id: listingId, step: 'read', status: r.status, error: d }, 400);
+  if (String(d.shop_id) !== String(shop)) return json({ ok: false, listing_id: listingId, step: 'read', error: 'listing is not in this shop' }, 400);
+  const before = d.tags || [];
+  r = await etsyFetch(env, sess.access, `/application/shops/${shop}/listings/${listingId}`, {
+    method: 'PATCH', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ tags: tags.join(',') }) });
+  d = await r.json();
+  if (!r.ok) return json({ ok: false, listing_id: listingId, step: 'update', status: r.status, error: d }, 400);
+  return json({ ok: true, listing_id: listingId, state: d.state, before, after: d.tags });
+}
+
 // ---------- helpers ----------
 function json(o, status = 200, extra = {}) {
   return new Response(JSON.stringify(o), { status, headers: Object.assign({ 'Content-Type': 'application/json' }, extra) });
@@ -277,6 +298,9 @@ label{display:block;margin:10px 0 4px;font-weight:600}
 <div class="card"><h2>Step 4. Replace fixed files</h2>
 <p class="muted">Swaps in corrected files on listings that were already uploaded. It only changes the download files. Prices, titles, photos and draft or live status stay exactly as they are.</p>
 <button class="btn ghost" id="repl" disabled>Replace fixed files</button> <span id="replInfo" class="muted"></span></div>
+<div class="card"><h2>Step 5. Update tags</h2>
+<p class="muted">Changes only the 13 search tags on listings that already exist. It never creates a listing, so no duplicates.</p>
+<button class="btn ghost" id="tagb" disabled>Update tags</button> <span id="tagInfo" class="muted"></span></div>
 <div class="card"><h2>Progress</h2><div id="log">Nothing yet.</div>
 <div class="row" style="margin-top:10px"><button class="btn ghost" id="save">Save results file</button></div></div>
 </div>
@@ -293,7 +317,10 @@ if(manifest.taxonomy_id&&!document.getElementById('tax').value)document.getEleme
 ['test','all','pub'].forEach(id=>document.getElementById(id).disabled=false);
 var rl=manifest.replace_files||[],rv=manifest.replace_version||'';var todo=rl.filter(k=>replaced[k]!==rv);
 document.getElementById('replInfo').textContent=rl.length?(todo.length+' of '+rl.length+' listings need new files'):'Nothing to replace';
-document.getElementById('repl').disabled=!todo.length};
+document.getElementById('repl').disabled=!todo.length;
+var tl=manifest.update_tags||[],tv=manifest.tags_version||'';var tt=tl.filter(k=>tagged[k]!==tv);
+document.getElementById('tagInfo').textContent=tl.length?(tt.length+' of '+tl.length+' listings need new tags'):'No tag changes';
+document.getElementById('tagb').disabled=!tt.length};
 var replaced={};try{replaced=JSON.parse(localStorage.getItem('gs_etsy_replaced')||'{}')}catch(e){}
 async function replaceRun(){var rl=manifest.replace_files||[],rv=manifest.replace_version||'';document.getElementById('repl').disabled=true;
 for(const key of rl){if(replaced[key]===rv)continue;var it=manifest.items.find(x=>x.key===key);var lid=done[key];
@@ -308,6 +335,16 @@ else{log('  Problem at '+d.step+': '+JSON.stringify(d.error).slice(0,300),'bad')
 catch(e){log('  Network problem: '+e.message,'bad')}}
 log('Finished replacing files.');document.getElementById('repl').disabled=false}
 document.getElementById('repl').onclick=()=>replaceRun();
+var tagged={};try{tagged=JSON.parse(localStorage.getItem('gs_etsy_tagged')||'{}')}catch(e){}
+async function tagRun(){var tl=manifest.update_tags||[],tv=manifest.tags_version||'';document.getElementById('tagb').disabled=true;var n=0;
+for(const key of tl){if(tagged[key]===tv)continue;var it=manifest.items.find(x=>x.key===key);var lid=done[key];
+if(!it||!lid){log('Tags '+key+': no existing listing. Skipped (nothing is created).','bad');continue}
+try{var r=await fetch('/api/update-tags',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({listing_id:lid,tags:it.tags})});var d=await r.json();results.push(Object.assign({key:key,tags:true},d));
+if(d.ok){tagged[key]=tv;n++;try{localStorage.setItem('gs_etsy_tagged',JSON.stringify(tagged))}catch(e){};if(n%25===0)log('  '+n+' listings retagged ...','ok')}
+else{log('Tags '+key+': problem at '+d.step+': '+JSON.stringify(d.error).slice(0,200),'bad');if(r.status===401){log('Connection expired. Click Connect to Etsy again.','bad');break}}}
+catch(e){log('Tags '+key+': network problem: '+e.message,'bad')}}
+log('Finished updating tags: '+n+' listings.');document.getElementById('tagb').disabled=false}
+document.getElementById('tagb').onclick=()=>tagRun();
 function fileFor(rel){return files.find(f=>(f.webkitRelativePath||f.name).replace(/\\\\/g,'/').endsWith('/'+rel))}
 async function run(limit,publish){var tax=document.getElementById('tax').value.trim();if(!tax){alert('Category ID is empty.');return}try{localStorage.setItem('gs_etsy_tax',tax)}catch(e){}
 ['test','all','pub'].forEach(id=>document.getElementById(id).disabled=true);var n=0;
